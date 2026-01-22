@@ -1,0 +1,11 @@
+Admin("ID_Admin", Usuario, Contraseña)
+
+Create Table ADMIN (
+    ID_ADMIN INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    USUARIO VARCHAR(45) NOT NULL,
+    CONTRASEÑA VARCHAR(45)
+);
+
+
+
+
