@@ -29,6 +29,47 @@ public class IngredienteEntity implements Serializable {
 	
 	@OneToMany(mappedBy="ingrediente", cascade=CascadeType.ALL)
 	private Set<ProductosIngredientesEntity>Productos=new HashSet<ProductosIngredientesEntity>();
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public String getProveedor() {
+		return proveedor;
+	}
+
+	public void setProveedor(String proveedor) {
+		this.proveedor = proveedor;
+	}
+
+	public Set<ProductosIngredientesEntity> getProductos() {
+		return Productos;
+	}
+
+	public void setProductos(Set<ProductosIngredientesEntity> productos) {
+		Productos = productos;
+	}
+	
 	
 	
 	
