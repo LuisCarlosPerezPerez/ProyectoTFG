@@ -8,14 +8,25 @@ public class PedidoDTO {
 	private Date entrega;
 	private int telefono;
 	private String estado;
+	private ClienteDTO cliente;
 	
-	public PedidoDTO(int id, Date entrega, int telefono, String estado) {
+	public PedidoDTO(int id, Date entrega, int telefono, String estado,ClienteDTO cliente) {
 		this.id = id;
 		this.entrega = entrega;
 		this.telefono = telefono;
 		this.estado = estado;
+		this.cliente = cliente;
 	}
 
+	public ClienteDTO getCliente() {
+		return cliente;
+	}
+
+
+	public void setCliente(ClienteDTO cliente) {
+		this.cliente = cliente;
+	}
+	
 	public int getId() {
 		return id;
 	}

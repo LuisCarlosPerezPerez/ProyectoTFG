@@ -26,8 +26,19 @@ public class ClienteEntity implements Serializable {
 	@OneToMany(mappedBy="Pedido")
 	private Set<PedidoEntity>Pedidos=new HashSet<PedidoEntity>();
 	
+	@OneToMany(mappedBy="Producto")
+	private Set<PedidoProductoEntity>Productos=new HashSet<PedidoProductoEntity>();
 	
 	
+	
+	public Set<PedidoProductoEntity> getProductos() {
+		return Productos;
+	}
+
+	public void setProductos(Set<PedidoProductoEntity> productos) {
+		Productos = productos;
+	}
+
 	public Set<PedidoEntity> getPedidos() {
 		return Pedidos;
 	}
