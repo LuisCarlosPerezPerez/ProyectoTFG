@@ -1,14 +1,8 @@
 package com.example.demo.dto;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import com.example.demo.entity.ProductosEntity;
-import com.example.demo.entity.RegistroEntity;
-
-import jakarta.persistence.OneToMany;
 
 public class EmpleadoDTO {
 	

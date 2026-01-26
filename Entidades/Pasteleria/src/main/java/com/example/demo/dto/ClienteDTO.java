@@ -8,8 +8,8 @@ public class ClienteDTO {
 	private int id;
 	private String usuario;
 	private String contraseña;
-	private List<PedidoDTO>pedidos;
-	private List<ProductosDTO>productos;
+	private List<PedidoDTO>pedidos = new ArrayList<PedidoDTO>();
+	private List<ProductosDTO>productos = new ArrayList<ProductosDTO>();
 
 	public ClienteDTO(int id, String usuario, String contraseña, List<PedidoDTO> pedidos,
 			List<ProductosDTO> productos) {
