@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.*;
 
@@ -20,8 +22,20 @@ public class ClienteEntity implements Serializable {
 	
 	@Column(name="CONTRASEÑA")
 	private String contraseña;
-
 	
+	@OneToMany(mappedBy="Pedido")
+	private Set<PedidoEntity>Pedidos=new HashSet<PedidoEntity>();
+	
+	
+	
+	public Set<PedidoEntity> getPedidos() {
+		return Pedidos;
+	}
+
+	public void setPedidos(Set<PedidoEntity> pedidos) {
+		Pedidos = pedidos;
+	}
+
 	public int getId() {
 		return id;
 	}
