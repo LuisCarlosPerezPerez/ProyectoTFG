@@ -1,17 +1,13 @@
 package com.example.demo.dto;
 
-import com.example.demo.entity.IngredienteEntity;
-import com.example.demo.entity.ProductosEntity;
-
-
 
 public class ProductosIngredientesDTO {
 
     private int ID_producto_ingrediente;
-    private ProductosEntity producto;
+    private ProductosDTO producto;
     private IngredienteDTO ingrediente;
     
-	public ProductosIngredientesDTO(int iD_producto_ingrediente, ProductosEntity producto,
+	public ProductosIngredientesDTO(int iD_producto_ingrediente, ProductosDTO producto,
 			IngredienteDTO ingrediente) {
 		super();
 		this.ID_producto_ingrediente = iD_producto_ingrediente;
@@ -24,16 +20,16 @@ public class ProductosIngredientesDTO {
 	public void setID_producto_ingrediente(int iD_producto_ingrediente) {
 		ID_producto_ingrediente = iD_producto_ingrediente;
 	}
-	public ProductosEntity getProducto() {
+	public ProductosDTO getProducto() {
 		return producto;
 	}
-	public void setProducto(ProductosEntity producto) {
+	public void setProducto(ProductosDTO producto) {
 		this.producto = producto;
 	}
-	public IngredienteEntity getIngrediente() {
+	public IngredienteDTO getIngrediente() {
 		return ingrediente;
 	}
-	public void setIngrediente(IngredienteEntity ingrediente) {
+	public void setIngrediente(IngredienteDTO ingrediente) {
 		this.ingrediente = ingrediente;
 	}
     
