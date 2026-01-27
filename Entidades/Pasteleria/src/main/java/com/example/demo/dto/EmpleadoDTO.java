@@ -27,6 +27,9 @@ public class EmpleadoDTO {
 			this.productos = productos;
 		}
 
+		public EmpleadoDTO() {
+		}
+
 		public List<RegistroDTO> getRegistros() {
 			return registros;
 		}

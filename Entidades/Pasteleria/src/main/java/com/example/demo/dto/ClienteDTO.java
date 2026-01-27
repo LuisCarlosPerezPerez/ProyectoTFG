@@ -23,6 +23,12 @@ public class ClienteDTO {
 	
 	
 
+	public ClienteDTO() {
+		
+	}
+
+
+
 	public List<PedidoDTO> getPedidos() {
 		return pedidos;
 	}

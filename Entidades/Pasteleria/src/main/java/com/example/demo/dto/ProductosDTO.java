@@ -29,6 +29,8 @@ public class ProductosDTO {
 		this.Pedidos = pedidos;
 	}
 	
+	
+	
 	public int getID_producto() {
 		return ID_producto;
 	}
