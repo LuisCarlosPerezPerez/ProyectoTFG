@@ -18,6 +18,10 @@ public class PedidoDTO {
 		this.cliente = cliente;
 	}
 
+	public PedidoDTO() {
+		
+	}
+
 	public ClienteDTO getCliente() {
 		return cliente;
 	}
