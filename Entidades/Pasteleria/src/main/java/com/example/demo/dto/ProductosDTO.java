@@ -15,7 +15,12 @@ public class ProductosDTO {
     private List<ProductosIngredientesDTO> Ingredientes = new ArrayList<ProductosIngredientesDTO>();
     private List<PedidoProductoDTO> Pedidos = new ArrayList<PedidoProductoDTO>();
     
+
     
+	public ProductosDTO() {
+		super();
+	}
+
 	public ProductosDTO(int iD_producto, String nombre, int stock, String receta, int precio, EmpleadoDTO empleado,
 			List<ProductosIngredientesDTO> ingredientes, List<PedidoProductoDTO> pedidos) {
 		super();

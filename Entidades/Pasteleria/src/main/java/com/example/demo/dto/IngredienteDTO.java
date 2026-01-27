@@ -21,6 +21,10 @@ public class IngredienteDTO {
 		this.Productos = productos;
 	}
 
+	public IngredienteDTO() {
+		
+	}
+
 	public int getId() {
 		return id;
 	}

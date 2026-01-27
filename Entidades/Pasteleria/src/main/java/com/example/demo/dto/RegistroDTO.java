@@ -22,6 +22,9 @@ public class RegistroDTO {
 		this.total_horas = total_horas;
 		this.empleado = empleado;
 	}
+	public RegistroDTO() {
+		
+	}
 	public int getID_Registro() {
 		return ID_Registro;
 	}
