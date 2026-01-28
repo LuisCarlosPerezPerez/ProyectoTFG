@@ -1,5 +1,10 @@
 package com.example.demo.servicios;
 
-public interface ServicioPedido {
+import com.example.demo.dto.PedidoDTO;
 
+public interface ServicioPedido {
+	
+	void guardarpedido(PedidoDTO pedido);
+	
+	
 }
