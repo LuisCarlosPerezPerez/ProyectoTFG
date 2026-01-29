@@ -2,7 +2,9 @@ package com.example.demo.entity;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Optional;
 
 import jakarta.persistence.*;
 
@@ -21,17 +23,17 @@ public class RegistroEntity implements Serializable {
     private Date fecha;
     
     @Column(name="FECHA_ENTRADA")
-    private Date fecha_entrada;
+    private LocalDateTime fecha_entrada;
     
     @Column(name="FECHA_SALIDA")
-    private Date fecha_salida;
+    private LocalDateTime fecha_salida;
     
     @Column(name="TOTAL_HORAS")
     private int total_horas;
     
     @ManyToOne
     @JoinColumn(name = "ID_EMPLEADO", nullable = false)
-    private EmpleadoEntity empleado;
+    private Optional<EmpleadoEntity> empleado;
 
 	public int getID_Registro() {
 		return ID_Registro;
@@ -49,19 +51,21 @@ public class RegistroEntity implements Serializable {
 		this.fecha = fecha;
 	}
 
-	public Date getFecha_entrada() {
+	
+
+	public LocalDateTime getFecha_entrada() {
 		return fecha_entrada;
 	}
 
-	public void setFecha_entrada(Date fecha_entrada) {
+	public void setFecha_entrada(LocalDateTime fecha_entrada) {
 		this.fecha_entrada = fecha_entrada;
 	}
 
-	public Date getFecha_salida() {
+	public LocalDateTime getFecha_salida() {
 		return fecha_salida;
 	}
 
-	public void setFecha_salida(Date fecha_salida) {
+	public void setFecha_salida(LocalDateTime fecha_salida) {
 		this.fecha_salida = fecha_salida;
 	}
 
@@ -73,12 +77,12 @@ public class RegistroEntity implements Serializable {
 		this.total_horas = total_horas;
 	}
 
-	public EmpleadoEntity getEmpleado() {
+	public Optional<EmpleadoEntity> getEmpleado() {
 		return empleado;
 	}
 
-	public void setEmpleado(EmpleadoEntity empleado) {
-		this.empleado = empleado;
+	public void setEmpleado(Optional<EmpleadoEntity> optional) {
+		this.empleado = optional;
 	}
     
     
