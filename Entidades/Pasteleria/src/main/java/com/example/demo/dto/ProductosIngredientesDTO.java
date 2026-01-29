@@ -7,6 +7,11 @@ public class ProductosIngredientesDTO {
     private ProductosDTO producto;
     private IngredienteDTO ingrediente;
     
+    
+    
+	public ProductosIngredientesDTO() {
+		super();
+	}
 	public ProductosIngredientesDTO(int iD_producto_ingrediente, ProductosDTO producto,
 			IngredienteDTO ingrediente) {
 		super();
