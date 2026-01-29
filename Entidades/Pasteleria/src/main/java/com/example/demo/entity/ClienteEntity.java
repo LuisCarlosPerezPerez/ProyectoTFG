@@ -7,44 +7,39 @@ import java.util.Set;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="CLIENTE")
+@Table(name = "CLIENTE")
 public class ClienteEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID_CLIENTE")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_CLIENTE")
 	private int id;
-	
-	@Column(name="USUARIO")
+
+	@Column(name = "USUARIO")
 	private String usuario;
-	
-	@Column(name="CONTRASEÑA")
+
+	@Column(name = "CONTRASEÑA")
 	private String contraseña;
-	
-	@OneToMany(mappedBy="Pedido")
-	private Set<PedidoEntity>Pedidos=new HashSet<PedidoEntity>();
-	
-	@OneToMany(mappedBy="Producto")
-	private Set<PedidoProductoEntity>Productos=new HashSet<PedidoProductoEntity>();
-	
-	
-	
-	public Set<PedidoProductoEntity> getProductos() {
-		return Productos;
+
+	@OneToMany(mappedBy = "Pedido")
+	private PedidoEntity pedido;
+
+	// Constructor para crear el Cliente (
+	public ClienteEntity(int id, String usuario, String contraseña, PedidoEntity pedido) {
+		this.id = id;
+		this.usuario = usuario;
+		this.contraseña = contraseña;
+		this.pedido = pedido;
 	}
 
-	public void setProductos(Set<PedidoProductoEntity> productos) {
-		Productos = productos;
+	public PedidoEntity getPedido() {
+		return pedido;
 	}
 
-	public Set<PedidoEntity> getPedidos() {
-		return Pedidos;
-	}
-
-	public void setPedidos(Set<PedidoEntity> pedidos) {
-		Pedidos = pedidos;
+	public void setPedido(PedidoEntity pedido) {
+		this.pedido = pedido;
 	}
 
 	public int getId() {
@@ -70,6 +65,5 @@ public class ClienteEntity implements Serializable {
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
 	}
-	
-	
+
 }

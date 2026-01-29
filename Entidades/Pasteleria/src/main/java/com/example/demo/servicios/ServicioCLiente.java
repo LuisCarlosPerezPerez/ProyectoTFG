@@ -6,7 +6,7 @@ import com.example.demo.dto.IniciarSesionDTO;
 public interface ServicioCLiente {
 	
 	void guardarcliente (ClienteDTO cliente);
-	void comprobarsesion (IniciarSesionDTO sesion);
+	boolean comprobarsesion (IniciarSesionDTO sesion);
 	void comprarproducto (int idproducto, ClienteDTO cliente);
 
 }

@@ -1,23 +1,22 @@
 package com.example.demo.dto;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ClienteDTO {
 
 	private int id;
 	private String usuario;
 	private String contraseña;
-	private List<PedidoDTO>pedidos = new ArrayList<PedidoDTO>();
-	private List<ProductosDTO>productos = new ArrayList<ProductosDTO>();
+	private PedidoDTO pedido;
+	private Set<ProductosDTO>productos = new HashSet<ProductosDTO>();
 
-	public ClienteDTO(int id, String usuario, String contraseña, List<PedidoDTO> pedidos,
-			List<ProductosDTO> productos) {
+	public ClienteDTO(int id, String usuario, String contraseña, PedidoDTO pedido,
+			Set<ProductosDTO> productos) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
 		this.contraseña = contraseña;
-		this.pedidos = pedidos;
+		this.pedido = pedido;
 		this.productos = productos;
 	}
 	
@@ -28,26 +27,25 @@ public class ClienteDTO {
 	}
 
 
-
-	public List<PedidoDTO> getPedidos() {
-		return pedidos;
+	public PedidoDTO getPedido() {
+		return pedido;
 	}
 
 
 
-	public void setPedidos(List<PedidoDTO> pedidos) {
-		this.pedidos = pedidos;
+	public void setPedido(PedidoDTO pedido) {
+		this.pedido = pedido;
 	}
 
 
 
-	public List<ProductosDTO> getProductos() {
+	public Set<ProductosDTO> getProductos() {
 		return productos;
 	}
 
 
 
-	public void setProductos(List<ProductosDTO> productos) {
+	public void setProductos(Set<ProductosDTO> productos) {
 		this.productos = productos;
 	}
 
