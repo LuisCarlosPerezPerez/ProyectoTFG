@@ -8,36 +8,48 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.example.demo.dto.ProductosDTO;
+import com.example.demo.dto.RegistroDTO;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Empleado")
-public class EmpleadoEntity implements Serializable{
-	
+public class EmpleadoEntity implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="ID_EMPLEADO")
-    private int ID_Empleado;
-    
-    @Column(name ="USUARIO")
-    private String Usuario;
-    
-    @Column(name ="CONTRASEÑA")
-    private String Contraseña;
-    
-    @Column(name = "ADMININISTRADOR")
-    private int Administrador;
-    
-    @OneToMany(mappedBy = "registro")
-    Set<RegistroEntity> registros = new HashSet<RegistroEntity>();
-    
-    @OneToMany(mappedBy = "productos")
-    Set<ProductosEntity> productos = new HashSet<ProductosEntity>();
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_EMPLEADO")
+	private int ID_Empleado;
 
-    
-    
+	@Column(name = "USUARIO")
+	private String Usuario;
+
+	@Column(name = "CONTRASEÑA")
+	private String Contraseña;
+
+	@Column(name = "ADMININISTRADOR")
+	private int Administrador;
+
+	@OneToMany(mappedBy = "registro")
+	Set<RegistroEntity> registros = new HashSet<RegistroEntity>();
+
+	@OneToMany(mappedBy = "productos")
+	Set<ProductosEntity> productos = new HashSet<ProductosEntity>();
+
+	// Constructor para crear el EmpleadoEntity
+	public EmpleadoEntity(int iD_Empleado, String usuario, String contraseña, int administrador,
+			Set<RegistroEntity> registros, Set<ProductosEntity> productos) {
+		this.ID_Empleado = iD_Empleado;
+		this.Usuario = usuario;
+		this.Contraseña = contraseña;
+		this.Administrador = administrador;
+		this.registros = registros;
+		this.productos = productos;
+	}
+
 	public Set<ProductosEntity> getProductos() {
 		return productos;
 	}
@@ -85,14 +97,5 @@ public class EmpleadoEntity implements Serializable{
 	public void setAdministrador(int administrador) {
 		Administrador = administrador;
 	}
-    
-    
-	
-    
-    
-	
-	
-	
-	
 
 }

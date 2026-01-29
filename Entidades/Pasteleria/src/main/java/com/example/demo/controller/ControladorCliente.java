@@ -19,7 +19,6 @@ public class ControladorCliente {
 	
 	//ClienteServicio serviciocliente
 	
-	
 //--------------------- Iniciar Sesion
 	@GetMapping("/RegistrarCliente")
 	public String registrarcliente(Model modelo) {

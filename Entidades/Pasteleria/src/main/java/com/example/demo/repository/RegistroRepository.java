@@ -3,10 +3,13 @@ package com.example.demo.repository;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.query.Param;
 
+import com.example.demo.entity.ProductosEntity;
 import com.example.demo.entity.RegistroEntity;
 
 public interface RegistroRepository extends JpaRepository <RegistroEntity, Integer>{
