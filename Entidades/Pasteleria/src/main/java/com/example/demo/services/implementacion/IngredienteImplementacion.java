@@ -30,7 +30,7 @@ public class IngredienteImplementacion implements IngredienteInterfaz {
 		Ingredientes.setNombre(ingrediente.getNombre());
 		Ingredientes.setProveedor(ingrediente.getProveedor());
 		Ingredientes.setStock(ingrediente.getStock());
-		return Ingredientes;
+		return RepoIngrediente.save(Ingredientes);
 	}
 
 }
