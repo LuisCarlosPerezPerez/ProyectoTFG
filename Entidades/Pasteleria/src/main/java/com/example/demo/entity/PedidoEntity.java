@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.*;
 
@@ -29,7 +31,31 @@ public class PedidoEntity implements Serializable {
 	@JoinColumn(name="ID_CLIENTE",nullable=false)
 	private ClienteEntity cliente;
 	
+	@OneToMany(mappedBy="Producto")
+	private Set<PedidoProductoEntity>productos=new HashSet<PedidoProductoEntity>();
 	
+	public PedidoEntity(int id, Date entrega, int telefono, String estado, ClienteEntity cliente) {
+		this.id = id;
+		this.entrega = entrega;
+		this.telefono = telefono;
+		this.estado = estado;
+		this.cliente = cliente;
+		this.productos= new HashSet<PedidoProductoEntity>();
+	}
+	
+	
+
+	public Set<PedidoProductoEntity> getProductos() {
+		return productos;
+	}
+
+
+
+	public void setProductos(Set<PedidoProductoEntity> productos) {
+		this.productos = productos;
+	}
+
+
 
 	public ClienteEntity getCliente() {
 		return cliente;
