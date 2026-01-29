@@ -29,6 +29,7 @@ public class RegistroImplementacion implements RegistroInterfaz {
 	
 	@Override
 	public RegistroEntity GuardarRegistro(RegistroDTO registro) {
+		registro.setEmpleado(empleadosql.findById(ID_EMPLEADO));
 		RegistroEntity registrar = new RegistroEntity();
 		registrar.setFecha(registro.getFecha());
 		registrar.setFecha_entrada(registro.getFecha_entrada());
@@ -47,7 +48,7 @@ public class RegistroImplementacion implements RegistroInterfaz {
 
 	@Override
 	public List<RegistroEntity> listarRegistros() {
-		return registrosql.listarRegistros(ID_EMPLEADO);
+		return registrosql.findAll();
 	}
 
 }

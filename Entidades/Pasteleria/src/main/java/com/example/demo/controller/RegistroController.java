@@ -16,13 +16,7 @@ import com.example.demo.repository.RepositorioEmpleado;
 import com.example.demo.services.interfaz.RegistroInterfaz;
 
 public class RegistroController {
-	int ID_EMPLEADO;
 	
-	@Autowired
-	RegistroRepository registrosql;
-	
-	@Autowired
-	RepositorioEmpleado empleadosql;
 
 	@Autowired
 	RegistroInterfaz registroServicio;
@@ -38,7 +32,6 @@ public class RegistroController {
 		registro.setFecha(new Date());
 		registro.setFecha_entrada(LocalDateTime.now());
 		registro.setTotal_horas(0);
-		registro.setEmpleado(empleadosql.findById(ID_EMPLEADO));
 		return registroServicio.GuardarRegistro(registro);
 	}
 	
