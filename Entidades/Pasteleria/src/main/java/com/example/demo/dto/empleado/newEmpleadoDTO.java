@@ -1,26 +1,19 @@
-package com.example.demo.dto;
+package com.example.demo.dto.empleado;
 
-public class verEmpleadoDTO {
+public class newEmpleadoDTO {
 	
-    private int ID_Empleado;
-    private String Usuario;
+	private String Usuario;
     private String Contraseña;
     private int Administrador;
-	public verEmpleadoDTO(int iD_Empleado, String usuario, String contraseña, int administrador) {
+    
+	public newEmpleadoDTO() {
 		super();
-		ID_Empleado = iD_Empleado;
+	}
+	public newEmpleadoDTO(String usuario, String contraseña, int administrador) {
+		super();
 		Usuario = usuario;
 		Contraseña = contraseña;
 		Administrador = administrador;
-	}
-	public verEmpleadoDTO() {
-		super();
-	}
-	public int getID_Empleado() {
-		return ID_Empleado;
-	}
-	public void setID_Empleado(int iD_Empleado) {
-		ID_Empleado = iD_Empleado;
 	}
 	public String getUsuario() {
 		return Usuario;

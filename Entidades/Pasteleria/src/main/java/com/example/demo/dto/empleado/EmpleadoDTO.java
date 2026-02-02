@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.dto.empleado;
 
 import java.util.ArrayList;
 import java.util.HashSet;
