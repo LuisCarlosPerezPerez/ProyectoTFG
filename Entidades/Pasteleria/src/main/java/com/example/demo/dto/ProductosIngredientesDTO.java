@@ -1,11 +1,12 @@
 package com.example.demo.dto;
 
+import com.example.demo.dto.IngredientesDTO.IngredienteMostrarDTO;
 
 public class ProductosIngredientesDTO {
 
     private int ID_producto_ingrediente;
     private ProductosDTO producto;
-    private IngredienteDTO ingrediente;
+    private IngredienteMostrarDTO ingrediente;
     
     
     
@@ -13,7 +14,7 @@ public class ProductosIngredientesDTO {
 		super();
 	}
 	public ProductosIngredientesDTO(int iD_producto_ingrediente, ProductosDTO producto,
-			IngredienteDTO ingrediente) {
+			IngredienteMostrarDTO ingrediente) {
 		super();
 		this.ID_producto_ingrediente = iD_producto_ingrediente;
 		this.producto = producto;
@@ -31,10 +32,10 @@ public class ProductosIngredientesDTO {
 	public void setProducto(ProductosDTO producto) {
 		this.producto = producto;
 	}
-	public IngredienteDTO getIngrediente() {
+	public IngredienteMostrarDTO getIngrediente() {
 		return ingrediente;
 	}
-	public void setIngrediente(IngredienteDTO ingrediente) {
+	public void setIngrediente(IngredienteMostrarDTO ingrediente) {
 		this.ingrediente = ingrediente;
 	}
     

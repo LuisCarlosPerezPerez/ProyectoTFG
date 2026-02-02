@@ -1,7 +1,10 @@
+//-------------------------Objeto Full (Peticion)-------------------------
 package com.example.demo.dto.PedidosDTO;
-import com.example.demo.dto.*;
-import com.example.demo.dto.ClientesDTO.ClienteDTO;
+import com.example.demo.dto.ProductosDTO;
+import com.example.demo.dto.ClientesDTO.ClienteFullDTO;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PedidoFullDTO {
 	
@@ -9,26 +12,36 @@ public class PedidoFullDTO {
 	private Date entrega;
 	private int telefono;
 	private String estado;
-	private ClienteDTO cliente;
+	private Set<ProductosDTO>productos = new HashSet<ProductosDTO>();
+	private ClienteFullDTO cliente;
 	
-	public PedidoFullDTO(int id, Date entrega, int telefono, String estado,ClienteDTO cliente) {
+	public PedidoFullDTO(int id, Date entrega, int telefono, String estado,ClienteFullDTO cliente) {
 		this.id = id;
 		this.entrega = entrega;
 		this.telefono = telefono;
 		this.estado = estado;
+		this.productos = new HashSet<ProductosDTO>();
 		this.cliente = cliente;
+	}
+
+	public Set<ProductosDTO> getProductos() {
+		return productos;
+	}
+
+	public void setProductos(Set<ProductosDTO> productos) {
+		this.productos = productos;
 	}
 
 	public PedidoFullDTO() {
 		
 	}
 
-	public ClienteDTO getCliente() {
+	public ClienteFullDTO getCliente() {
 		return cliente;
 	}
 
 
-	public void setCliente(ClienteDTO cliente) {
+	public void setCliente(ClienteFullDTO cliente) {
 		this.cliente = cliente;
 	}
 	

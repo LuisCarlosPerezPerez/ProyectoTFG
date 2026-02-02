@@ -2,13 +2,15 @@ package com.example.demo.dto;
 
 import java.util.List;
 
+import com.example.demo.dto.IngredientesDTO.IngredienteMostrarDTO;
+
 public class VerProductosDTO {
 
 	private String nombre;
 	private int precio;
-	private List<IngredienteDTO>Ingredientes;
+	private List<IngredienteMostrarDTO>Ingredientes;
 	
-	public VerProductosDTO(String nombre, int precio, List<IngredienteDTO> ingredientes) {
+	public VerProductosDTO(String nombre, int precio, List<IngredienteMostrarDTO> ingredientes) {
 		
 		this.nombre = nombre;
 		this.precio = precio;
@@ -31,11 +33,11 @@ public class VerProductosDTO {
 		this.precio = precio;
 	}
 
-	public List<IngredienteDTO> getIngredientes() {
+	public List<IngredienteMostrarDTO> getIngredientes() {
 		return Ingredientes;
 	}
 
-	public void setIngredientes(List<IngredienteDTO> ingredientes) {
+	public void setIngredientes(List<IngredienteMostrarDTO> ingredientes) {
 		Ingredientes = ingredientes;
 	}
 	

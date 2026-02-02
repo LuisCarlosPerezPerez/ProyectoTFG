@@ -1,27 +1,21 @@
-package com.example.demo.dto;
+//-------------------------Objeto Mostrar(Respuesta)-------------------------
+package com.example.demo.dto.IngredientesDTO;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class IngredienteDTO {
+public class IngredienteMostrarDTO {
 
 	private int id;
 	private String nombre;
 	private int stock;
 	private String proveedor;
-	private List<ProductosIngredientesDTO>Productos=new ArrayList<ProductosIngredientesDTO>();
 	
-	public IngredienteDTO(int id, String nombre, int stock, String proveedor,
-			List<ProductosIngredientesDTO> productos) {
-		super();
+	public IngredienteMostrarDTO(int id, String nombre, int stock, String proveedor) {
 		this.id = id;
 		this.nombre = nombre;
 		this.stock = stock;
 		this.proveedor = proveedor;
-		this.Productos = productos;
 	}
 
-	public IngredienteDTO() {
+	public IngredienteMostrarDTO() {
 		
 	}
 
@@ -56,16 +50,5 @@ public class IngredienteDTO {
 	public void setProveedor(String proveedor) {
 		this.proveedor = proveedor;
 	}
-
-	public List<ProductosIngredientesDTO> getProductos() {
-		return Productos;
-	}
-
-	public void setProductos(List<ProductosIngredientesDTO> productos) {
-		Productos = productos;
-	}
-	
-	
-
 	
 }

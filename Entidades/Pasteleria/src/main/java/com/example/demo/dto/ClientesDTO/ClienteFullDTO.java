@@ -2,8 +2,6 @@
 package com.example.demo.dto.ClientesDTO;
 import com.example.demo.dto.*;
 import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
-
-import java.util.HashSet;
 import java.util.Set;
 
 public class ClienteFullDTO {
@@ -11,7 +9,6 @@ public class ClienteFullDTO {
 	private String usuario;
 	private String contraseña;
 	private PedidoFullDTO pedido;
-	private Set<ProductosDTO>productos = new HashSet<ProductosDTO>();
 
 	//Constructor completo
 	public ClienteFullDTO(int id, String usuario, String contraseña, PedidoFullDTO pedido,
@@ -20,7 +17,6 @@ public class ClienteFullDTO {
 		this.usuario = usuario;
 		this.contraseña = contraseña;
 		this.pedido = pedido;
-		this.productos = productos;
 	}
 
 	//Constructor vacio
@@ -34,14 +30,6 @@ public class ClienteFullDTO {
 
 	public void setPedido(PedidoFullDTO pedido) {
 		this.pedido = pedido;
-	}
-
-	public Set<ProductosDTO> getProductos() {
-		return productos;
-	}
-
-	public void setProductos(Set<ProductosDTO> productos) {
-		this.productos = productos;
 	}
 
 	public int getId() {

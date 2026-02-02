@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.demo.dto.IngredienteDTO;
+import com.example.demo.dto.IngredientesDTO.IngredienteMostrarDTO;
 import com.example.demo.entity.IngredienteEntity;
 import com.example.demo.repository.IngredienteRepository;
 import com.example.demo.services.interfaz.IngredienteInterfaz;
@@ -20,12 +20,12 @@ public class IngredienteImplementacion implements IngredienteInterfaz {
 	}
 
 	@Override
-	public IngredienteDTO crearIngrediente() {
-		return new IngredienteDTO();
+	public IngredienteMostrarDTO crearIngrediente() {
+		return new IngredienteMostrarDTO();
 	}
 
 	@Override
-	public IngredienteEntity GuardarIngrediente(IngredienteDTO ingrediente) {
+	public IngredienteEntity GuardarIngrediente(IngredienteMostrarDTO ingrediente) {
 		IngredienteEntity Ingredientes = new IngredienteEntity();
 		Ingredientes.setNombre(ingrediente.getNombre());
 		Ingredientes.setProveedor(ingrediente.getProveedor());

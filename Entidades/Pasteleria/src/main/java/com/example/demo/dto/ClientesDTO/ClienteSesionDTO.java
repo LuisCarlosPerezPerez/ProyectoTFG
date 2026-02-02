@@ -5,15 +5,9 @@ public class ClienteSesionDTO {
     private String usuario;
     private String contraseña;
 
-    // Constructor completo
     public ClienteSesionDTO(String usuario, String contraseña) {
         this.usuario = usuario;
         this.contraseña = contraseña;
-    }
-
-    // Constructor vacio
-    public ClienteSesionDTO() {
-
     }
 
     public String getUsuario() {
