@@ -34,16 +34,15 @@ public class PedidoEntity implements Serializable {
 	@OneToMany(mappedBy="Producto")
 	private Set<PedidoProductoEntity>productos=new HashSet<PedidoProductoEntity>();
 	
-	public PedidoEntity(int id, Date entrega, int telefono, String estado, ClienteEntity cliente) {
-		this.id = id;
+	public PedidoEntity(Date entrega, int telefono){
 		this.entrega = entrega;
 		this.telefono = telefono;
-		this.estado = estado;
-		this.cliente = cliente;
+		this.estado = "pendiente";
 		this.productos= new HashSet<PedidoProductoEntity>();
 	}
-	
-	
+
+	public PedidoEntity() {
+	}
 
 	public Set<PedidoProductoEntity> getProductos() {
 		return productos;
@@ -96,7 +95,7 @@ public class PedidoEntity implements Serializable {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
+
 	
 	
 	

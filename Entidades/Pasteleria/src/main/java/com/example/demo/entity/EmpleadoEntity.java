@@ -40,14 +40,13 @@ public class EmpleadoEntity implements Serializable {
 	Set<ProductosEntity> productos = new HashSet<ProductosEntity>();
 
 	// Constructor para crear el EmpleadoEntity
-	public EmpleadoEntity(int iD_Empleado, String usuario, String contraseña, int administrador,
-			Set<RegistroEntity> registros, Set<ProductosEntity> productos) {
+	public EmpleadoEntity(int iD_Empleado, String usuario, String contraseña, int administrador) {
 		this.ID_Empleado = iD_Empleado;
 		this.Usuario = usuario;
 		this.Contraseña = contraseña;
 		this.Administrador = administrador;
-		this.registros = registros;
-		this.productos = productos;
+		this.registros = new HashSet<RegistroEntity>();
+		this.productos = new HashSet<ProductosEntity>();
 	}
 
 	public Set<ProductosEntity> getProductos() {

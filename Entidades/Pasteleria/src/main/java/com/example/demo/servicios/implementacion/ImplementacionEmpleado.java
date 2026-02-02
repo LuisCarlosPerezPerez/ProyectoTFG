@@ -1,7 +1,5 @@
 package com.example.demo.servicios.implementacion;
 
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,9 +7,7 @@ import com.example.demo.dto.EmpleadoDTO;
 import com.example.demo.dto.ProductosDTO;
 import com.example.demo.entity.EmpleadoEntity;
 import com.example.demo.entity.ProductosEntity;
-import com.example.demo.entity.RegistroEntity;
 import com.example.demo.repository.ProductoRepository;
-import com.example.demo.repository.RegistroRepository;
 import com.example.demo.repository.RepositorioEmpleado;
 import com.example.demo.servicios.ServicioEmpleado;
 
@@ -19,53 +15,50 @@ import com.example.demo.servicios.ServicioEmpleado;
 public class ImplementacionEmpleado implements ServicioEmpleado {
 
 	@Autowired
-	ProductoRepository repoproducto;
+	private RepositorioEmpleado repositorioEmpleado;
+	
 	@Autowired
-	RepositorioEmpleado repoempleado;
-
-	public void guardarempleado(EmpleadoDTO empleado) {
-		Set<ProductosEntity> listaproductos = repoproducto.Obtenerciertosproductos(empleado.getID_Empleado());
-
-		EmpleadoEntity empleadoEntity = new EmpleadoEntity(empleado.getID_Empleado(), empleado.getUsuario(),
-				empleado.getContraseña(), empleado.getAdministrador(), listaregistros, listaproductos);
-
-		repoempleado.save(empleadoEntity);
-
+	private ProductoRepository productoRepository;
+	
+	@Override
+	public EmpleadoDTO crearEmpleado() {
+		return new EmpleadoDTO();
+	}
+	@Override
+	public void guardarEmpleado(EmpleadoDTO empleado) {
+		EmpleadoEntity entidad = new EmpleadoEntity(empleado.getID_Empleado(), empleado.getUsuario(), empleado.getContraseña(),
+				empleado.getAdministrador());
+		repositorioEmpleado.save(entidad);
+	}
+	@Override
+	public ProductosDTO crearProducto(String nombre, int stock, String receta, int precio) {
+		ProductosDTO producto = new ProductosDTO();
+		producto.setNombre(nombre);
+		producto.setStock(stock);
+		producto.setReceta(receta);
+		producto.setPrecio(precio);
+		return producto;
+	}
+	@Override
+	public void guardarProducto(ProductosDTO producto) {
+		ProductosEntity entidad = new ProductosEntity(producto.getNombre(), producto.getStock(), producto.getReceta(), producto.getPrecio());
+		productoRepository.save(entidad);
 	}
 
 	@Override
-	public void guardarproducto(EmpleadoDTO empleado, ProductosDTO producto) {
-		ProductosEntity productoo = repoproducto.BuscarPorId(producto.getID_producto());
-		EmpleadoEntity empleadoo = repoempleado.BuscarPorId(empleado.getID_Empleado());
-		empleadoo.getProductos().add(productoo);
-
-	}
-
-	@Override
-	public ProductosEntity obtenerproducto(EmpleadoDTO empleado, int id) {
-		EmpleadoEntity empleadoo = repoempleado.BuscarPorId(empleado.getID_Empleado());
-		Set<ProductosEntity> lista = empleadoo.getProductos();
-		ProductosEntity productoobtenido = null;
-		for (ProductosEntity product : lista) {
-			if (product.getID_producto() == id) {
-				productoobtenido = product;
-			}
+	public void modificarProducto(ProductosDTO producto) {
+		ProductosEntity entidad = productoRepository.findById(producto.getID_producto()).orElse(null);
+		if (entidad != null) {
+			entidad.setNombre(producto.getNombre());
+			entidad.setStock(producto.getStock());
+			entidad.setReceta(producto.getReceta());
+			entidad.setPrecio(producto.getPrecio());
+			productoRepository.save(entidad);
 		}
-		return productoobtenido;
 	}
-
 	@Override
-	public void eliminarproducto(EmpleadoDTO empleado, int id) {
-
-		EmpleadoEntity empleadoo = repoempleado.BuscarPorId(empleado.getID_Empleado());
-		Set<ProductosEntity> lista = empleadoo.getProductos();
-		for (ProductosEntity product : lista) {
-			if (product.getID_producto() == id) {
-				lista.remove(product);
-				repoproducto.deleteById(id);
-			}
-		}
-
+	public void eliminarProducto(int idProducto) {
+		productoRepository.deleteById(idProducto);
 	}
 
 }

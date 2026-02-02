@@ -15,11 +15,11 @@ public class PedidoFullDTO {
 	private Set<ProductosDTO>productos = new HashSet<ProductosDTO>();
 	private ClienteFullDTO cliente;
 	
-	public PedidoFullDTO(int id, Date entrega, int telefono, String estado,ClienteFullDTO cliente) {
+	public PedidoFullDTO(int id, Date entrega, int telefono,ClienteFullDTO cliente) {
 		this.id = id;
 		this.entrega = entrega;
 		this.telefono = telefono;
-		this.estado = estado;
+		this.estado = "Pendiente";
 		this.productos = new HashSet<ProductosDTO>();
 		this.cliente = cliente;
 	}

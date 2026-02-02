@@ -12,9 +12,11 @@ public class PedidoVistaDTO {
 
     public PedidoVistaDTO(int id, String estado,Date entrega) {
         this.id = id;
-        this.estado = estado;
+        this.estado = "Pendiente";
         this.productos = new HashSet<>();
         this.entrega = entrega;
+    }
+    public PedidoVistaDTO() {
     }
 
     public int getId() {
