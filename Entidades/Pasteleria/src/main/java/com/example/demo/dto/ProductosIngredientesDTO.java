@@ -7,8 +7,6 @@ public class ProductosIngredientesDTO {
     private int id_producto;
     private int id_ingrediente;
     
-    
-    
 	public ProductosIngredientesDTO() {
 		super();
 	}
