@@ -2,7 +2,7 @@ package com.example.demo.services.interfaz;
 
 import java.util.List;
 
-import com.example.demo.dto.IngredienteDTO;
+import com.example.demo.dto.IngredientesDTO.*;
 import com.example.demo.entity.IngredienteEntity;
 
 

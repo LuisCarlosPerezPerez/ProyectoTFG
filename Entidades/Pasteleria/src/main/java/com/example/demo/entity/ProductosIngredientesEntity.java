@@ -33,6 +33,10 @@ public class ProductosIngredientesEntity implements Serializable{
 		this.producto = producto;
 	}
 
+	public ProductosIngredientesEntity() {
+		
+	}
+
 	public int getID_producto_ingrediente() {
 		return ID_producto_ingrediente;
 	}
