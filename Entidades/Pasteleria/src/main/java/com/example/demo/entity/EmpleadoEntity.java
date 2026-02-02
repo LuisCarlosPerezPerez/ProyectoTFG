@@ -8,8 +8,6 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.example.demo.dto.ProductosDTO;
-import com.example.demo.dto.RegistroDTO;
 
 import jakarta.persistence.*;
 
