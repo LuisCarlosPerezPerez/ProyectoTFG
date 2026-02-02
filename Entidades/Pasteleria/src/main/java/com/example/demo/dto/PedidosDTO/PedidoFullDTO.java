@@ -1,8 +1,9 @@
-package com.example.demo.dto;
-
+package com.example.demo.dto.PedidosDTO;
+import com.example.demo.dto.*;
+import com.example.demo.dto.ClientesDTO.ClienteDTO;
 import java.sql.Date;
 
-public class PedidoDTO {
+public class PedidoFullDTO {
 	
 	private int id;
 	private Date entrega;
@@ -10,7 +11,7 @@ public class PedidoDTO {
 	private String estado;
 	private ClienteDTO cliente;
 	
-	public PedidoDTO(int id, Date entrega, int telefono, String estado,ClienteDTO cliente) {
+	public PedidoFullDTO(int id, Date entrega, int telefono, String estado,ClienteDTO cliente) {
 		this.id = id;
 		this.entrega = entrega;
 		this.telefono = telefono;
@@ -18,7 +19,7 @@ public class PedidoDTO {
 		this.cliente = cliente;
 	}
 
-	public PedidoDTO() {
+	public PedidoFullDTO() {
 		
 	}
 

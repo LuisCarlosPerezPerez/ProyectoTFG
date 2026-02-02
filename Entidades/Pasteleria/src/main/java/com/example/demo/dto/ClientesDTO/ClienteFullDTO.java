@@ -1,55 +1,48 @@
-package com.example.demo.dto;
+//-------------------------Objeto Full-------------------------
+package com.example.demo.dto.ClientesDTO;
+import com.example.demo.dto.*;
+import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
+
 import java.util.HashSet;
 import java.util.Set;
 
-public class ClienteDTO {
-
+public class ClienteFullDTO {
 	private int id;
 	private String usuario;
 	private String contraseña;
-	private PedidoDTO pedido;
+	private PedidoFullDTO pedido;
 	private Set<ProductosDTO>productos = new HashSet<ProductosDTO>();
 
-	public ClienteDTO(int id, String usuario, String contraseña, PedidoDTO pedido,
+	//Constructor completo
+	public ClienteFullDTO(int id, String usuario, String contraseña, PedidoFullDTO pedido,
 			Set<ProductosDTO> productos) {
-		super();
 		this.id = id;
 		this.usuario = usuario;
 		this.contraseña = contraseña;
 		this.pedido = pedido;
 		this.productos = productos;
 	}
-	
-	
 
-	public ClienteDTO() {
+	//Constructor vacio
+	public ClienteFullDTO() {
 		
 	}
 
-
-	public PedidoDTO getPedido() {
+	public PedidoFullDTO getPedido() {
 		return pedido;
 	}
 
-
-
-	public void setPedido(PedidoDTO pedido) {
+	public void setPedido(PedidoFullDTO pedido) {
 		this.pedido = pedido;
 	}
-
-
 
 	public Set<ProductosDTO> getProductos() {
 		return productos;
 	}
 
-
-
 	public void setProductos(Set<ProductosDTO> productos) {
 		this.productos = productos;
 	}
-
-
 
 	public int getId() {
 		return id;
