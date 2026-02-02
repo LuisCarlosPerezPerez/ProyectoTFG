@@ -1,20 +1,19 @@
 //-------------------------Objeto Full-------------------------
 package com.example.demo.dto.ClientesDTO;
-import com.example.demo.dto.*;
 import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
-import java.util.Set;
 
 public class ClienteFullDTO {
 	private int id;
 	private String usuario;
 	private String contraseña;
+	private String email;
 	private PedidoFullDTO pedido;
 
 	//Constructor completo
-	public ClienteFullDTO(int id, String usuario, String contraseña, PedidoFullDTO pedido,
-			Set<ProductosDTO> productos) {
+	public ClienteFullDTO(int id, String usuario, String contraseña, String email, PedidoFullDTO pedido) {
 		this.id = id;
 		this.usuario = usuario;
+		this.email = email;
 		this.contraseña = contraseña;
 		this.pedido = pedido;
 	}
@@ -22,6 +21,14 @@ public class ClienteFullDTO {
 	//Constructor vacio
 	public ClienteFullDTO() {
 		
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public PedidoFullDTO getPedido() {

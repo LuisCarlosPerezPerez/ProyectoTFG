@@ -7,7 +7,7 @@ import java.util.Set;
 public class PedidoVistaDTO {
     private int id;
     private String estado;
-    private Set<Integer> productos;
+    private Set<Integer>productos;
     private Date entrega;
 
     public PedidoVistaDTO(int id, String estado,Date entrega) {

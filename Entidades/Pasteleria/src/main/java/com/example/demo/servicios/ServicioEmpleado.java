@@ -5,10 +5,17 @@ import com.example.demo.dto.ProductosDTO;
 import com.example.demo.entity.ProductosEntity;
 
 public interface ServicioEmpleado {
-
-	void guardarempleado(EmpleadoDTO empleado);
-	void guardarproducto(EmpleadoDTO empleado, ProductosDTO producto);
-	ProductosEntity obtenerproducto(EmpleadoDTO empleado, int id);
-	void eliminarproducto (EmpleadoDTO empleado, int id);
+	
+	//-> Metodo para iniciar sesion como empleado
+	EmpleadoSesionDTO IniciarSesion(String nombre, String contraseña);
+	
+	//-> Metodo para agregar un nuevo producto al inventario
+	ProductoCrearDTO AgregarProducto(String nombre, String descripcion, double precio, int stock);
+	
+	//-> Metodo para eliminar un producto del inventario
+	void EliminarProducto(int idProducto);
+	
+	//-> Metodo para actualizar los datos de un producto del inventario
+	ProductoActualizarDTO ActualizarProducto(int idProducto, String nombre, String descripcion, double precio, int stock);
 	
 }

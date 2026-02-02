@@ -1,10 +1,14 @@
 package com.example.demo.servicios;
-
-import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
+import java.util.Set;
+import com.example.demo.dto.PedidosDTO.*;
 
 public interface ServicioPedido {
 	
-	void guardarpedido(PedidoFullDTO pedido);
+	//-> Metodo para confirmar la creacion el pedido (Cliente)
+	PedidoVistaDTO CrearPedido(int idCliente);
+	//-> Metodo para listar todos los pedidos (Empleado)
+	Set<PedidoVistaDTO> ListarPedidos();
+
 	
 	
 }
