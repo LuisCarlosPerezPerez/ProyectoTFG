@@ -6,13 +6,13 @@ public class VerProductosDTO {
 
 	private String nombre;
 	private int precio;
-	private List<IngredienteDTO>Ingredientes;
+	private List<Integer>Ingredientes;
 	
-	public VerProductosDTO(String nombre, int precio, List<IngredienteDTO> ingredientes) {
+	public VerProductosDTO(String nombre, int precio, List<Integer> ingredientes) {
 		
 		this.nombre = nombre;
 		this.precio = precio;
-		Ingredientes = ingredientes;
+		this.Ingredientes = ingredientes;
 	}
 
 	public String getNombre() {
@@ -31,11 +31,11 @@ public class VerProductosDTO {
 		this.precio = precio;
 	}
 
-	public List<IngredienteDTO> getIngredientes() {
+	public List<Integer> getIngredientes() {
 		return Ingredientes;
 	}
 
-	public void setIngredientes(List<IngredienteDTO> ingredientes) {
+	public void setIngredientes(List<Integer> ingredientes) {
 		Ingredientes = ingredientes;
 	}
 	

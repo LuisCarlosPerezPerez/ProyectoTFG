@@ -12,8 +12,8 @@ public class ProductosDTO {
     private String receta;
     private int precio;
     private EmpleadoDTO empleado;
-    private List<ProductosIngredientesDTO> Ingredientes = new ArrayList<ProductosIngredientesDTO>();
-    private List<PedidoProductoDTO> Pedidos = new ArrayList<PedidoProductoDTO>();
+    private List<Integer> Ingredientes = new ArrayList<>();
+    private List<Integer> Pedidos = new ArrayList<>();
     
 
     
@@ -22,7 +22,7 @@ public class ProductosDTO {
 	}
 
 	public ProductosDTO(int iD_producto, String nombre, int stock, String receta, int precio, EmpleadoDTO empleado,
-			List<ProductosIngredientesDTO> ingredientes, List<PedidoProductoDTO> pedidos) {
+			List<Integer> ingredientes, List<Integer> pedidos) {
 		super();
 		this.ID_producto = iD_producto;
 		this.nombre = nombre;
@@ -72,16 +72,16 @@ public class ProductosDTO {
 	public void setEmpleado(EmpleadoDTO empleado) {
 		this.empleado = empleado;
 	}
-	public List<ProductosIngredientesDTO> getIngredientes() {
+	public List<Integer> getIngredientes() {
 		return Ingredientes;
 	}
-	public void setIngredientes(List<ProductosIngredientesDTO> ingredientes) {
+	public void setIngredientes(List<Integer> ingredientes) {
 		Ingredientes = ingredientes;
 	}
-	public List<PedidoProductoDTO> getPedidos() {
+	public List<Integer> getPedidos() {
 		return Pedidos;
 	}
-	public void setPedidos(List<PedidoProductoDTO> pedidos) {
+	public void setPedidos(List<Integer> pedidos) {
 		Pedidos = pedidos;
 	}
     

@@ -2,6 +2,7 @@ package com.example.demo.dto;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.entity.EmpleadoEntity;
@@ -15,16 +16,17 @@ public class RegistroDTO {
     private LocalDateTime fecha_entrada;
     private LocalDateTime fecha_salida;
     private int total_horas;
-    private Optional<EmpleadoEntity> empleado;
+    private int id_empleado;
+    
 	public RegistroDTO(int iD_Registro, Date fecha, LocalDateTime fecha_entrada, LocalDateTime fecha_salida, int total_horas,
-			Optional<EmpleadoEntity> empleado) {
+			int id_empleado) {
 		super();
 		this.ID_Registro = iD_Registro;
 		this.fecha = fecha;
 		this.fecha_entrada = fecha_entrada;
 		this.fecha_salida = fecha_salida;
 		this.total_horas = total_horas;
-		this.empleado = empleado;
+		this.id_empleado = id_empleado;
 	}
 	public RegistroDTO() {
 		
@@ -59,11 +61,11 @@ public class RegistroDTO {
 	public void setTotal_horas(int total_horas) {
 		this.total_horas = total_horas;
 	}
-	public Optional<EmpleadoEntity> getEmpleado() {
-		return empleado;
+	public int getEmpleado() {
+		return id_empleado;
 	}
-	public void setEmpleado(Optional<EmpleadoEntity> optional) {
-		this.empleado = optional;
+	public void setEmpleado(int id_empleado) {
+		this.id_empleado = id_empleado;
 	}
 
     
