@@ -7,15 +7,17 @@ public class newRegistroDTO {
 	
 	private Date fecha;
     private LocalDateTime fecha_entrada;
+    private int id_empleado;
     
 	public newRegistroDTO() {
 		super();
 	}
 	
-	public newRegistroDTO(Date fecha, LocalDateTime fecha_entrada) {
+	public newRegistroDTO(Date fecha, LocalDateTime fecha_entrada, int id_empleado) {
 		super();
 		this.fecha = fecha;
 		this.fecha_entrada = fecha_entrada;
+		this.id_empleado = id_empleado;
 	}
 
 	public Date getFecha() {
@@ -32,6 +34,14 @@ public class newRegistroDTO {
 
 	public void setFecha_entrada(LocalDateTime fecha_entrada) {
 		this.fecha_entrada = fecha_entrada;
+	}
+
+	public int getId_empleado() {
+		return id_empleado;
+	}
+
+	public void setId_empleado(int id_empleado) {
+		this.id_empleado = id_empleado;
 	}
     
     

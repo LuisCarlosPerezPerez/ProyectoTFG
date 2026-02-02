@@ -5,7 +5,7 @@ import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.example.demo.dto.RegistroDTO;
+import com.example.demo.dto.registro.*;
 import com.example.demo.entity.RegistroEntity;
 import com.example.demo.repository.RegistroRepository;
 import com.example.demo.repository.RepositorioEmpleado;
@@ -16,6 +16,8 @@ public class RegistroImplementacion implements RegistroInterfaz {
 	
 	public static int ID_EMPLEADO;
 	
+	public static List<RegistroEntity> listaEntidadRegistro = new ArrayList<RegistroEntity>();
+	
 	@Autowired
 	RegistroRepository registrosql;
 	
@@ -23,19 +25,20 @@ public class RegistroImplementacion implements RegistroInterfaz {
 	RepositorioEmpleado empleadosql;
 
 	@Override
-	public RegistroDTO crearRegistro() {
-		return new RegistroDTO();
+	public newRegistroDTO crearRegistro() {
+		return new newRegistroDTO();
 	}
 	
 	@Override
-	public RegistroEntity GuardarRegistro(RegistroDTO registro) {
-		registro.setEmpleado(empleadosql.findById(ID_EMPLEADO));
+	public int GuardarRegistro(newRegistroDTO registro) {
+		RegistroEntity r = null;
 		RegistroEntity registrar = new RegistroEntity();
 		registrar.setFecha(registro.getFecha());
 		registrar.setFecha_entrada(registro.getFecha_entrada());
-		registrar.setTotal_horas(registro.getTotal_horas());
-		registrar.setEmpleado(registro.getEmpleado());
-		return registrosql.save(registrar);
+		registrar.setTotal_horas(0);
+		registrar.setEmpleado(empleadosql.findById(registro.getId_empleado()));
+		r = registrosql.save(registrar);
+		return r.getID_Registro();
 	}
 
 	@Override
@@ -47,8 +50,17 @@ public class RegistroImplementacion implements RegistroInterfaz {
 	}
 
 	@Override
-	public List<RegistroEntity> listarRegistros() {
-		return registrosql.findAll();
+	public List<RegistroDTO> listarRegistros() {
+		return listaEntidadRegistro.stream()
+	            .map(a -> new RegistroDTO(
+	            		a.getID_Registro(),
+	            		a.getFecha(),
+	            		a.getFecha_entrada(),
+	            		a.getFecha_salida(),
+	            		a.getTotal_horas(),
+	            		a.getEmpleado().get().getID_Empleado()
+	            ))
+	            .toList();
 	}
 
 }
