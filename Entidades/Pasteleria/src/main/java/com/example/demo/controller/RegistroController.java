@@ -2,13 +2,11 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.dto.registro.*;
-import com.example.demo.entity.RegistroEntity;
 import com.example.demo.services.interfaz.RegistroInterfaz;
 
 public class RegistroController {
@@ -25,12 +23,12 @@ public class RegistroController {
 	
 	
 	@PostMapping("/GuardarHoraSalida")
-	public void GuardarHoraSalida (Model model) {
+	public void GuardarHoraSalida () {
 		registroServicio.RegistrarSalida();
 	}
 	
 	@GetMapping("/MostrarRegistros")
-	public List<RegistroDTO> listaRegistros(Model model){
+	public List<RegistroDTO> listaRegistros(){
 		return registroServicio.listarRegistros();
 	}
 
