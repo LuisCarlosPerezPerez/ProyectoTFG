@@ -11,11 +11,11 @@ public class VerProductosDTO {
 	private int precio;
 	private List<Integer>Ingredientes;
 	
-	public VerProductosDTO(String nombre, int precio, List<IngredienteMostrarDTO> ingredientes) {
+	public VerProductosDTO(String nombre, int precio, List<Integer> ingredientes) {
 		
 		this.nombre = nombre;
 		this.precio = precio;
-		this.Ingredientes = new ArrayList<Integer>();
+		this.Ingredientes = ingredientes;
 	}
 
 	public String getNombre() {
