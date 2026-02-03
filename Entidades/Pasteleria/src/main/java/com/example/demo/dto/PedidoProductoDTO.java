@@ -1,13 +1,14 @@
 package com.example.demo.dto;
 
+import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
 
 public class PedidoProductoDTO {
 
 	private int id;
-	private PedidoDTO pedido; 
+	private PedidoFullDTO pedido; 
 	private ProductosDTO producto;
 	
-	public PedidoProductoDTO(int id, PedidoDTO pedido, ProductosDTO producto) {
+	public PedidoProductoDTO(int id, PedidoFullDTO pedido, ProductosDTO producto) {
 		
 		this.id = id;
 		this.pedido = pedido;
@@ -22,11 +23,11 @@ public class PedidoProductoDTO {
 		this.id = id;
 	}
 
-	public PedidoDTO getPedido() {
+	public PedidoFullDTO getPedido() {
 		return pedido;
 	}
 
-	public void setPedido(PedidoDTO pedido) {
+	public void setPedido(PedidoFullDTO pedido) {
 		this.pedido = pedido;
 	}
 

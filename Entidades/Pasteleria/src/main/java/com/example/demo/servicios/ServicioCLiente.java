@@ -1,12 +1,14 @@
 package com.example.demo.servicios;
 
-import com.example.demo.dto.ClienteDTO;
-import com.example.demo.dto.IniciarSesionDTO;
+import com.example.demo.dto.ClientesDTO.*;
 
-public interface ServicioCLiente {
+public interface ServicioCliente {
 	
-	void guardarcliente (ClienteDTO cliente);
-	boolean comprobarsesion (IniciarSesionDTO sesion);
-	void comprarproducto (int idproducto, ClienteDTO cliente);
+	//-> Metodo para registrar un nuevo cliente
+	ClienteRegistroDTO RegistroCliente();
 
+	int guardarcliente(ClienteRegistroDTO cliente);
+	
+	//-> Metodo para iniciar sesion como cliente
+	void ComprobarSesion(String usuario,String contraseña);
 }

@@ -18,4 +18,7 @@ public interface RepositorioCliente extends JpaRepository<ClienteEntity, Integer
 	//Consulta para Obtener cierto Producto
 	@Query("SELECT C.* FROM CLienteEntity C WHERE C.id = :id")
     ClienteEntity BuscarPorId(@Param("id") int id);
+
+    @Query("SELECT C.* FROM ClienteEntity C WHERE C.usuario = :usuario AND C.contraseña = :contraseña")
+    ClienteEntity BuscarPorUsuarioYContraseña(@Param("usuario") String usuario, @Param("contraseña") String contraseña);
 }
