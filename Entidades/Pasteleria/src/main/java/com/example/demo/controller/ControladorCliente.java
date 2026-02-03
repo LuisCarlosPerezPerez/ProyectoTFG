@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.dto.ClientesDTO.*;
 import com.example.demo.services.interfaz.*;
@@ -25,7 +26,7 @@ public class ControladorCliente {
 	}
 	
 	@PostMapping("/InicioSesion")
-	public void IniciarSesion(String usuario,String contraseña) {
+	public void IniciarSesion(@RequestBody String usuario, @RequestBody String contraseña) {
 	serviciocliente.ComprobarSesion(usuario,contraseña);
 		
 	}

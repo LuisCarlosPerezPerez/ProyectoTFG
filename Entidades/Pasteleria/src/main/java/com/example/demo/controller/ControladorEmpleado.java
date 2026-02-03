@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.example.demo.services.interfaz.*;
 
 import com.example.demo.dto.empleado.EmpleadoDTO;
+import com.example.demo.dto.producto.ProductosDTO;
 
 @Controller
 @RequestMapping("/Empleado")
@@ -27,9 +28,8 @@ public class ControladorEmpleado {
 	}
 	
 	@PostMapping("/ModificarProducto")
-	public String modificarproducto(@RequestBody String nombreproducto) {
-	//servicioproducto.modificarproducto(nombreproducto);
-		return nombreproducto;
+	public void modificarproducto(@RequestBody ProductosDTO nombreproducto) {
+	servicioempleado.modificarProducto(nombreproducto);
 	}
 	
 	

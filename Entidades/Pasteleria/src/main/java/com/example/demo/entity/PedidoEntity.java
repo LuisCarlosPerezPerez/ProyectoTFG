@@ -38,13 +38,10 @@ public class PedidoEntity implements Serializable {
 		return productos;
 	}
 
-
-
 	public void setProductos(Set<PedidoProductoEntity> productos) {
 		this.productos = productos;
 	}
-
-
+	
 
 	public ClienteEntity getCliente() {
 		return cliente;
