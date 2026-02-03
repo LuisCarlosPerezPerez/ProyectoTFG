@@ -14,7 +14,7 @@ import com.example.demo.dto.PedidosDTO.PedidoVistaDTO;
 
 import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
 
-@Controller
+@RestController
 @RequestMapping("/Pedido")
 public class ControladorPedido {
 

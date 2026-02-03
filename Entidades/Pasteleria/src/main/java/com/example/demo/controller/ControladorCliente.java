@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.dto.ClientesDTO.*;
 import com.example.demo.services.interfaz.*;
 
-@Controller
+
+@RestController
 @RequestMapping("/Cliente")
 public class ControladorCliente {
 	
