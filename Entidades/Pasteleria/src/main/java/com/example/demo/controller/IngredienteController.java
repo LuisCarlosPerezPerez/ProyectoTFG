@@ -26,7 +26,7 @@ public class IngredienteController {
 	}
 	
 	@GetMapping("/MostarIngredientes")
-	private List<IngredienteEntity> MostrarIgredientes() {
+	private List<IngredienteMostrarDTO> MostrarIgredientes() {
 		return IngredienteServicio.listarIngredientes();
 	}
 }
