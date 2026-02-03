@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.example.demo.dto.producto.*;
 import com.example.demo.services.interfaz.ProductoInterfaz;
 
+@RestController
+@RequestMapping("/Producto")
 public class ProductoController {
 	
 	@Autowired

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.example.demo.dto.registro.*;
 import com.example.demo.services.interfaz.RegistroInterfaz;
 
+@RestController
+@RequestMapping("/Registro")
 public class RegistroController {
 	
 

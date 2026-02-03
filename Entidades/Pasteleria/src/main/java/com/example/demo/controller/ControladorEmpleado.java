@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.empleado.EmpleadoDTO;
 
-@Controller
+@RestController
 @RequestMapping("/Empleado")
 public class ControladorEmpleado {
 	
