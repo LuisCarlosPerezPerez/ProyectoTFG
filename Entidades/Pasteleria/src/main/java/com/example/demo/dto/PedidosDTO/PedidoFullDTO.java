@@ -1,6 +1,5 @@
 //-------------------------Objeto Full (Peticion)-------------------------
 package com.example.demo.dto.PedidosDTO;
-import com.example.demo.dto.ProductosDTO;
 import com.example.demo.dto.ClientesDTO.ClienteFullDTO;
 import java.sql.Date;
 import java.util.HashSet;
