@@ -1,5 +1,6 @@
 package com.example.demo.services.implementacion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +13,19 @@ import com.example.demo.services.interfaz.IngredienteInterfaz;
 
 public class IngredienteImplementacion implements IngredienteInterfaz {
 	
-	public static List<IngredienteFullDTO> listaingrediente = new ArrayList<IngredientesFullDTO>();
+	public static List<IngredienteEntity> listaingrediente = new ArrayList<IngredienteEntity>();
 	
 	@Autowired
 	IngredienteRepository RepoIngrediente;
 
 	@Override
-	public List<IngredienteFullDTO> listarIngredientes() {
-		return listaingrediente.stream
-				.map(a -> new IngredienteFullDTO(
-	            		a.getid(),
+	public List<IngredienteMostrarDTO> listarIngredientes() {
+		return listaingrediente.stream()
+				.map(a -> new IngredienteMostrarDTO(
+	            		a.getId(),
 	            		a.getNombre(),
 	            		a.getStock(),
-	            		a.getProoveedor()
+	            		a.getProveedor()
 	            ))
 	            .toList();
 	}

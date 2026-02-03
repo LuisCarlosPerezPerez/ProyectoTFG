@@ -8,8 +8,8 @@ import com.example.demo.entity.IngredienteEntity;
 
 public interface IngredienteInterfaz {
 	
-	List<IngredienteEntity> listarIngredientes();
-	IngredienteDTO crearIngrediente();
-	IngredienteEntity GuardarIngrediente(IngredienteDTO ingrediente);
+	List<IngredienteMostrarDTO> listarIngredientes();
+	IngredienteCrearDTO crearIngrediente();
+	int GuardarIngrediente(IngredienteCrearDTO ingrediente);
 
 }
