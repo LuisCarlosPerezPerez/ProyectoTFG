@@ -40,19 +40,6 @@ public class ProductosEntity implements Serializable{
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
 	private Set<PedidoProductoEntity> Pedidos = new HashSet<PedidoProductoEntity>();
 
-	public ProductosEntity(String nombre, int stock, String receta, int precio) {
-		this.nombre = nombre;
-		this.stock = stock;
-		this.receta = receta;
-		this.precio = precio;
-		this.empleado = null;
-		this.Pedidos = new HashSet<PedidoProductoEntity>();
-		this.Ingredientes = new HashSet<ProductosIngredientesEntity>();
-	}
-	
-	public ProductosEntity() {
-	}
-
 	public Set<PedidoProductoEntity> getPedidos() {
 		return Pedidos;
 	}

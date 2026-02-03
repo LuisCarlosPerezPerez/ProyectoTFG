@@ -13,14 +13,28 @@ public class ImplementacionCliente implements ServicioCliente {
 	
 	@Autowired
 	private RepositorioCliente clienteRepository;
+	
 	@Override
 	public ClienteRegistroDTO RegistroCliente() {
 		return new ClienteRegistroDTO();
 	}
+
+	public int guardarcliente(ClienteRegistroDTO cliente) {
+		ClienteEntity clienteentity=null;
+		ClienteEntity entidad = new ClienteEntity();
+		entidad.setContraseña(cliente.getContraseña());
+		entidad.setUsuario(cliente.getUsuario());
+		clienteentity=clienteRepository.save(entidad);
+		return clienteentity.getId();
+	}
 	
 	@Override
-	public ClienteSesionDTO IniciarSesion(ClienteRegistroDTO cliente) {
-		clienteRepository.save(new ClienteEntity(0, cliente.getUsuario(), cliente.getContraseña(), null));
-		return new ClienteSesionDTO(cliente.getUsuario(), cliente.getContraseña());
+	public void ComprobarSesion(String usuario,String contraseña) {
+		ClienteEntity clienteentity=clienteRepository.BuscarPorUsuarioYContraseña(usuario, contraseña);
+		if(clienteentity!=null) {
+			System.out.println("Inicio de Sesion Correcto");
+		}else {
+			System.out.println("Error en el Inicio de Sesion");
+		}
 	}
 }

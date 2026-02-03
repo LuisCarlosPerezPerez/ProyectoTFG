@@ -5,9 +5,8 @@ public class ClienteSesionDTO {
     private String usuario;
     private String contraseña;
 
-    public ClienteSesionDTO(String usuario, String contraseña) {
-        this.usuario = usuario;
-        this.contraseña = contraseña;
+
+    public ClienteSesionDTO() {
     }
 
     public String getUsuario() {

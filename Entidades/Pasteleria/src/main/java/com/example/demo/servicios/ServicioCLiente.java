@@ -6,7 +6,9 @@ public interface ServicioCliente {
 	
 	//-> Metodo para registrar un nuevo cliente
 	ClienteRegistroDTO RegistroCliente();
+
+	int guardarcliente(ClienteRegistroDTO cliente);
 	
 	//-> Metodo para iniciar sesion como cliente
-	ClienteSesionDTO IniciarSesion(ClienteRegistroDTO cliente);
+	void ComprobarSesion(String usuario,String contraseña);
 }

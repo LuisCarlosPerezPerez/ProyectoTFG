@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.demo.dto.IngredientesDTO.IngredienteMostrarDTO;
@@ -8,13 +9,13 @@ public class VerProductosDTO {
 
 	private String nombre;
 	private int precio;
-	private List<IngredienteMostrarDTO>Ingredientes;
+	private List<Integer>Ingredientes;
 	
 	public VerProductosDTO(String nombre, int precio, List<IngredienteMostrarDTO> ingredientes) {
 		
 		this.nombre = nombre;
 		this.precio = precio;
-		Ingredientes = ingredientes;
+		this.Ingredientes = new ArrayList<Integer>();
 	}
 
 	public String getNombre() {
@@ -33,12 +34,11 @@ public class VerProductosDTO {
 		this.precio = precio;
 	}
 
-	public List<IngredienteMostrarDTO> getIngredientes() {
+	public List<Integer> getIngredientes() {
 		return Ingredientes;
 	}
-
-	public void setIngredientes(List<IngredienteMostrarDTO> ingredientes) {
-		Ingredientes = ingredientes;
+	public void setIngredientes(List<Integer> ingredientes) {
+		this.Ingredientes = ingredientes;
 	}
 	
 	

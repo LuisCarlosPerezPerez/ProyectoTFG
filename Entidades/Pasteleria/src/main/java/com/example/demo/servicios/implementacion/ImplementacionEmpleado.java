@@ -30,23 +30,9 @@ public class ImplementacionEmpleado implements ServicioEmpleado {
 				empleado.getAdministrador());
 		repositorioEmpleado.save(entidad);
 	}
-	@Override
-	public ProductosDTO crearProducto(String nombre, int stock, String receta, int precio) {
-		ProductosDTO producto = new ProductosDTO();
-		producto.setNombre(nombre);
-		producto.setStock(stock);
-		producto.setReceta(receta);
-		producto.setPrecio(precio);
-		return producto;
-	}
-	@Override
-	public void guardarProducto(ProductosDTO producto) {
-		ProductosEntity entidad = new ProductosEntity(producto.getNombre(), producto.getStock(), producto.getReceta(), producto.getPrecio());
-		productoRepository.save(entidad);
-	}
 
 	@Override
-	public void modificarProducto(ProductosDTO producto) {
+	public int modificarProducto(ProductosDTO producto) {
 		ProductosEntity entidad = productoRepository.findById(producto.getID_producto()).orElse(null);
 		if (entidad != null) {
 			entidad.setNombre(producto.getNombre());
@@ -55,6 +41,7 @@ public class ImplementacionEmpleado implements ServicioEmpleado {
 			entidad.setPrecio(producto.getPrecio());
 			productoRepository.save(entidad);
 		}
+		return entidad.getID_producto();
 	}
 	@Override
 	public void eliminarProducto(int idProducto) {

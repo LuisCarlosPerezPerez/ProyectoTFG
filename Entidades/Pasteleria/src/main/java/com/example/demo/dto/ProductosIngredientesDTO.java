@@ -1,24 +1,22 @@
 package com.example.demo.dto;
 
-import com.example.demo.dto.IngredientesDTO.IngredienteMostrarDTO;
-
 public class ProductosIngredientesDTO {
 
     private int ID_producto_ingrediente;
-    private ProductosDTO producto;
-    private IngredienteMostrarDTO ingrediente;
+    private int Id_producto;
+    private int Id_ingrediente;
     
     
     
 	public ProductosIngredientesDTO() {
 		super();
 	}
-	public ProductosIngredientesDTO(int iD_producto_ingrediente, ProductosDTO producto,
-			IngredienteMostrarDTO ingrediente) {
+	public ProductosIngredientesDTO(int iD_producto_ingrediente, int id_producto,
+			int id_ingrediente) {
 		super();
 		this.ID_producto_ingrediente = iD_producto_ingrediente;
-		this.producto = producto;
-		this.ingrediente = ingrediente;
+		this.Id_producto = id_producto;
+		this.Id_ingrediente = id_ingrediente;
 	}
 	public int getID_producto_ingrediente() {
 		return ID_producto_ingrediente;
@@ -26,17 +24,17 @@ public class ProductosIngredientesDTO {
 	public void setID_producto_ingrediente(int iD_producto_ingrediente) {
 		ID_producto_ingrediente = iD_producto_ingrediente;
 	}
-	public ProductosDTO getProducto() {
-		return producto;
+	public int getId_producto() {
+		return Id_producto;
 	}
-	public void setProducto(ProductosDTO producto) {
-		this.producto = producto;
+	public void setId_producto(int id_producto) {
+		Id_producto = id_producto;
 	}
-	public IngredienteMostrarDTO getIngrediente() {
-		return ingrediente;
+	public int getId_ingrediente() {
+		return Id_ingrediente;
 	}
-	public void setIngrediente(IngredienteMostrarDTO ingrediente) {
-		this.ingrediente = ingrediente;
+	public void setId_ingrediente(int id_ingrediente) {
+		Id_ingrediente = id_ingrediente;
 	}
     
     

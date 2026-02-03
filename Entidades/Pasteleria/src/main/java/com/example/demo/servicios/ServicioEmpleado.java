@@ -7,9 +7,7 @@ public interface ServicioEmpleado {
 	
 	EmpleadoDTO crearEmpleado();
 	void guardarEmpleado(EmpleadoDTO empleado);
-	ProductosDTO crearProducto(String nombre, int stock, String receta, int precio);
-	void guardarProducto(ProductosDTO producto);
-	void modificarProducto(ProductosDTO producto);
+	int modificarProducto(ProductosDTO producto);
 	void eliminarProducto(int idProducto);
 	
 }

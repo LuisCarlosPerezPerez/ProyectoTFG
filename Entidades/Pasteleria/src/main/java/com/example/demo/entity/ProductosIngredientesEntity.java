@@ -25,14 +25,6 @@ public class ProductosIngredientesEntity implements Serializable{
     @JoinColumn(name = "ID_INGREDIENTE", nullable = false)
     private IngredienteEntity ingrediente;
 
-	
-
-	public ProductosIngredientesEntity(int iD_producto_ingrediente, ProductosEntity producto) {
-		
-		this.ID_producto_ingrediente = iD_producto_ingrediente;
-		this.producto = producto;
-	}
-
 	public int getID_producto_ingrediente() {
 		return ID_producto_ingrediente;
 	}

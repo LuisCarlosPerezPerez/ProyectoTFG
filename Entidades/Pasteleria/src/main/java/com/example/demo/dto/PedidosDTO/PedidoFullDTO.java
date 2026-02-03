@@ -12,7 +12,7 @@ public class PedidoFullDTO {
 	private Date entrega;
 	private int telefono;
 	private String estado;
-	private Set<ProductosDTO>productos = new HashSet<ProductosDTO>();
+	private Set<Integer>productos = new HashSet<Integer>();
 	private ClienteFullDTO cliente;
 	
 	public PedidoFullDTO(int id, Date entrega, int telefono,ClienteFullDTO cliente) {
@@ -20,15 +20,15 @@ public class PedidoFullDTO {
 		this.entrega = entrega;
 		this.telefono = telefono;
 		this.estado = "Pendiente";
-		this.productos = new HashSet<ProductosDTO>();
+		this.productos = new HashSet<Integer>();
 		this.cliente = cliente;
 	}
 
-	public Set<ProductosDTO> getProductos() {
+	public Set<Integer> getProductos() {
 		return productos;
 	}
 
-	public void setProductos(Set<ProductosDTO> productos) {
+	public void setProductos(Set<Integer> productos) {
 		this.productos = productos;
 	}
 

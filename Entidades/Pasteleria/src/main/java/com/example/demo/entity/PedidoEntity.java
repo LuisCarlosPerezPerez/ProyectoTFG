@@ -33,16 +33,6 @@ public class PedidoEntity implements Serializable {
 	
 	@OneToMany(mappedBy="Producto")
 	private Set<PedidoProductoEntity>productos=new HashSet<PedidoProductoEntity>();
-	
-	public PedidoEntity(Date entrega, int telefono){
-		this.entrega = entrega;
-		this.telefono = telefono;
-		this.estado = "pendiente";
-		this.productos= new HashSet<PedidoProductoEntity>();
-	}
-
-	public PedidoEntity() {
-	}
 
 	public Set<PedidoProductoEntity> getProductos() {
 		return productos;

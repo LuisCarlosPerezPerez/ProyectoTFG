@@ -21,14 +21,7 @@ public class PedidoProductoEntity implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "ID_PRODUCTO", nullable = false)
 	private ProductosEntity producto;
-
 	
-	//Constructor para añadir el Producto (El Id va aumentando y por eso no se pone)
-	public PedidoProductoEntity(PedidoEntity pedido, ProductosEntity producto) {
-		this.pedido = pedido;
-		this.producto = producto;
-	}
-
 	public int getId() {
 		return id;
 	}

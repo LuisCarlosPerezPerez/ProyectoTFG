@@ -26,14 +26,6 @@ public class ClienteEntity implements Serializable {
 	@OneToMany(mappedBy = "Pedido")
 	private PedidoEntity pedido;
 
-	// Constructor para crear el Cliente (
-	public ClienteEntity(int id, String usuario, String contraseña, PedidoEntity pedido) {
-		this.id = id;
-		this.usuario = usuario;
-		this.contraseña = contraseña;
-		this.pedido = pedido;
-	}
-
 	public PedidoEntity getPedido() {
 		return pedido;
 	}
