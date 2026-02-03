@@ -1,4 +1,4 @@
-package com.example.demo.servicios.implementacion;
+package com.example.demo.services.implementacion;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.ClientesDTO.*;
 import com.example.demo.entity.*;
 import com.example.demo.repository.*;
-import com.example.demo.servicios.ServicioCliente;
+import com.example.demo.services.interfaz.*;
 
 @Service
-public class ImplementacionCliente implements ServicioCliente {
+public class ImplementacionCliente implements ServicioCLiente {
 	
 	@Autowired
 	private RepositorioCliente clienteRepository;

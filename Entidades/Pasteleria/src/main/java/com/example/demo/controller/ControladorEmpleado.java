@@ -1,36 +1,35 @@
 package com.example.demo.controller;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.services.interfaz.*;
 
 import com.example.demo.dto.empleado.EmpleadoDTO;
+import com.example.demo.dto.producto.ProductosDTO;
 
 @RestController
 @RequestMapping("/Empleado")
 public class ControladorEmpleado {
+
+	@Autowired
+	ServicioEmpleado servicioempleado;
 	
 	@PostMapping("/GuardarEmpleado")
-	public String guardarempleado(@RequestBody EmpleadoDTO empleado) {
-	//servicioempleado.guardarempleado(empleado);
-		return "";
+	public void guardarempleado(@RequestBody EmpleadoDTO empleado) {
+	servicioempleado.guardarEmpleado(empleado);
 		
 	}
 	
 	@PostMapping("/EliminarProducto")
-	public String eliminarproducto(@RequestParam String nombreproducto) {
-	//servicioproducto.eliminarproducto(nombreproducto);
-		return nombreproducto;
+	public void eliminarproducto(@RequestBody int idProducto) {
+	servicioempleado.eliminarProducto(idProducto);
 	}
 	
 	@PostMapping("/ModificarProducto")
-	public String modificarproducto(@RequestParam String nombreproducto) {
-	//servicioproducto.modificarproducto(nombreproducto);
-		return nombreproducto;
+	public void modificarproducto(@RequestBody ProductosDTO nombreproducto) {
+	servicioempleado.modificarProducto(nombreproducto);
 	}
 	
 	

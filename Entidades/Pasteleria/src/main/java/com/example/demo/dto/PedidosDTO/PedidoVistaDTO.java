@@ -2,6 +2,7 @@
 package com.example.demo.dto.PedidosDTO;
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class PedidoVistaDTO {
@@ -9,14 +10,23 @@ public class PedidoVistaDTO {
     private String estado;
     private Set<Integer>productos;
     private Date entrega;
+    private int id_cliente;
 
-    public PedidoVistaDTO(int id, String estado,Date entrega) {
+    public PedidoVistaDTO(int id, String estado, Set<Integer> productos, Date entrega, int id_cliente) {
         this.id = id;
-        this.estado = "Pendiente";
-        this.productos = new HashSet<>();
+        this.estado = estado;
+        this.productos = productos != null ? new HashSet<>(productos) : new HashSet<>();
         this.entrega = entrega;
+        this.id_cliente = id_cliente;
     }
     public PedidoVistaDTO() {
+    }
+
+    public int getId_cliente() {
+        return id_cliente;
+    }
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
     public int getId() {

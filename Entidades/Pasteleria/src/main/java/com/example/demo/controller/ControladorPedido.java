@@ -1,13 +1,16 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.services.interfaz.*;
+import com.example.demo.dto.PedidosDTO.PedidoVistaDTO;
 
 import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
 
@@ -15,18 +18,19 @@ import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
 @RequestMapping("/Pedido")
 public class ControladorPedido {
 
-	//ServicioPedido serviciopedido
+	@Autowired
+	ServicioPedido serviciopedido;
 	
 	@PostMapping("/GuardarPedido")
-	public String guardarpedido(@RequestBody PedidoFullDTO pedido,@RequestParam String nombreusuario) {
-	//serviciopedido.guardarpedido(nombreusuario,pedido);
-		return "";
+	public int guardarpedido(@RequestBody PedidoFullDTO pedido) {
+	int resultado = serviciopedido.guardarPedido(pedido);
+		return resultado;
 		
 	}
 	
 	@GetMapping("/MostrarPedido")
-	public String monstrarpedido() {
-		return null;
+	public List<PedidoVistaDTO> mostrarPedidos() {
+		return serviciopedido.listarPedidos();
 		
 	}
 	
