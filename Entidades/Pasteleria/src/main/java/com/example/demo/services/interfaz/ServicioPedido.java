@@ -1,4 +1,4 @@
-package com.example.demo.servicios;
+package com.example.demo.services.interfaz;
 import com.example.demo.dto.PedidosDTO.*;
 
 public interface ServicioPedido {

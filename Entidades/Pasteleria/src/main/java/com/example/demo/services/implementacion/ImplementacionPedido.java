@@ -1,11 +1,11 @@
-package com.example.demo.servicios.implementacion;
+package com.example.demo.services.implementacion;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
 import com.example.demo.entity.PedidoEntity;
 import com.example.demo.repository.RepositorioCliente;
-import com.example.demo.servicios.ServicioPedido;
+import com.example.demo.services.interfaz.ServicioPedido;
 
 
 
