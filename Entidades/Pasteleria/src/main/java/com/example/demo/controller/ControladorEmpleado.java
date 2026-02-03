@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.dto.EmpleadoDTO;
+import com.example.demo.dto.empleado.EmpleadoDTO;
 
 @Controller
 @RequestMapping("/Empleado")

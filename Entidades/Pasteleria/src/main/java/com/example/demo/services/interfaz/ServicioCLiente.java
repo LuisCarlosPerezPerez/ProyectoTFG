@@ -1,8 +1,8 @@
-package com.example.demo.servicios;
+package com.example.demo.services.interfaz;
 
 import com.example.demo.dto.ClientesDTO.*;
 
-public interface ServicioCliente {
+public interface ServicioCLiente {
 	
 	//-> Metodo para registrar un nuevo cliente
 	ClienteRegistroDTO RegistroCliente();

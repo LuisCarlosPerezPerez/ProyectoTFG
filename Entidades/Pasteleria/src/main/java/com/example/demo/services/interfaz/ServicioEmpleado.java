@@ -1,7 +1,7 @@
-package com.example.demo.servicios;
+package com.example.demo.services.interfaz;
 
-import com.example.demo.dto.EmpleadoDTO;
-import com.example.demo.dto.ProductosDTO;
+import com.example.demo.dto.empleado.*;
+import com.example.demo.dto.producto.*;
 
 public interface ServicioEmpleado {
 	

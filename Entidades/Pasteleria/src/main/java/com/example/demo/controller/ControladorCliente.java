@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.*;
 import com.example.demo.dto.ClientesDTO.*;
-import com.example.demo.servicios.*;
+import com.example.demo.services.*;
+import com.example.demo.services.implementacion.*;
+import com.example.demo.services.interfaz.*;
+
 import org.springframework.ui.Model;
 
 @Controller
@@ -19,7 +22,7 @@ import org.springframework.ui.Model;
 public class ControladorCliente {
 	
 	@Autowired
-	ServicioCliente serviciocliente;
+	ServicioCLiente serviciocliente;
 	@Autowired
 	ServicioPedido serviciopedido;
 	

@@ -1,4 +1,5 @@
-package com.example.demo.dto;
+package com.example.demo.dto.PedidoProductoDTO;
+import com.example.demo.dto.producto.*;
 
 import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
 
