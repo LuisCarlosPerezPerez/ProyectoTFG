@@ -17,7 +17,7 @@ import com.example.demo.services.interfaz.*;
 
 import org.springframework.ui.Model;
 
-@Controller
+@RestController
 @RequestMapping("/Cliente")
 public class ControladorCliente {
 	

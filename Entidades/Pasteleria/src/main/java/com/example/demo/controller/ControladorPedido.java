@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
 
-@Controller
+@RestController
 @RequestMapping("/Pedido")
 public class ControladorPedido {
 
