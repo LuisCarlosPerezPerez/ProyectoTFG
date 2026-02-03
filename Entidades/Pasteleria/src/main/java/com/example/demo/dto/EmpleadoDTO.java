@@ -1,6 +1,8 @@
-package com.example.demo.dto;
+package com.example.demo.dto.empleado;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -10,14 +12,14 @@ public class EmpleadoDTO {
 	    private String Usuario;
 	    private String Contraseña;
 	    private int Administrador;
-	    private Set<RegistroDTO> registros = new HashSet<RegistroDTO>();
-	    private Set<ProductosDTO> productos = new HashSet<ProductosDTO>();
+	    private List<Integer> registros = new ArrayList<Integer>();
+	    private List<Integer> productos = new ArrayList<Integer>();
 	    
 	    
 	    
 
 		public EmpleadoDTO(int iD_Empleado, String usuario, String contraseña, int administrador,
-				Set<RegistroDTO> registros, Set<ProductosDTO> productos) {
+				List<Integer> registros, List<Integer> productos) {
 			super();
 			this.ID_Empleado = iD_Empleado;
 			this.Usuario = usuario;
@@ -30,19 +32,19 @@ public class EmpleadoDTO {
 		public EmpleadoDTO() {
 		}
 
-		public Set<RegistroDTO> getRegistros() {
+		public List<Integer> getRegistros() {
 			return registros;
 		}
 
-		public void setRegistros(Set<RegistroDTO> registros) {
+		public void setRegistros(List<Integer> registros) {
 			this.registros = registros;
 		}
 
-		public Set<ProductosDTO> getProductos() {
+		public List<Integer> getProductos() {
 			return productos;
 		}
 
-		public void setProductos(Set<ProductosDTO> productos) {
+		public void setProductos(List<Integer> productos) {
 			this.productos = productos;
 		}
 
