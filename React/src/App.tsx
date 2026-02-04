@@ -4,6 +4,7 @@ import Navbar from './componentes/navbar/navbar';
 import ProductosPage from './paginas/paginasProductos';
 import IngredientesPage from './paginas/paginasIngredientes';
 import RecetasPage from './paginas/recetas'; 
+import './App.css';
 
 function App() {
   return (

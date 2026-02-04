@@ -40,3 +40,102 @@
 .read-the-docs {
   color: #888;
 }
+/* --- CONFIGURACIÓN GENERAL --- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #fdfaf5;
+}
+
+/* --- NAVBAR ESTILO LAMA --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  height: 80px; 
+  background-color: #f0f0f0; /* Fondo gris claro de la imagen */
+  border-bottom: 1px solid #ddd;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* CONTENEDOR DEL LOGO */
+.logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 12px;
+}
+
+.logo-img {
+  height: 55px;
+  width: auto;
+  border-radius: 50%;
+}
+
+.logo-text {
+  font-size: 24px;
+  font-weight: 800;
+  color: #000000; /* Negro para 'PASTELERÍA' */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.logo-text span {
+  color: #e6a756; /* Dorado para 'LAMA' */
+}
+
+/* ENLACES DE NAVEGACIÓN (Color Negro) */
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #000000; /* <--- Negro puro para contraste máximo */
+  font-size: 16px;
+  font-weight: 700; /* Un poco más de grosor para legibilidad */
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: #e6a756; /* Cambio a dorado al pasar el ratón */
+}
+
+/* BOTONES DE LA IMAGEN */
+.btn-fichar {
+  padding: 10px 20px;
+  background-color: #FFEAA8; /* Color crema amarillento */
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.user-btn {
+  background-color: #000000; /* El botón negro 'user Btn' */
+  color: #FFEAA8; /* Texto crema sobre fondo negro */
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.login-btn {
+  background-color: #FFEAA8; /* El 'loginBtn' de la imagen */
+  color: #000000;
+  padding: 8px 18px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  display: inline-block;
+}
