@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-down';
-
+import { useParams, useNavigate } from 'react-router-dom';
 const ModificarProducto = () => {
   const { id } = useParams(); // Obtenemos el ID del producto desde la URL
   const navigate = useNavigate();

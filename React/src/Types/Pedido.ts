@@ -1,4 +1,4 @@
-export type Pedido = {
+export interface Pedido {
     id: number;
     entrega: string;
     telefono: number;
