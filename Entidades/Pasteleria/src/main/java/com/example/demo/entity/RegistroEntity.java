@@ -33,7 +33,7 @@ public class RegistroEntity implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "ID_EMPLEADO", nullable = false)
-    private Optional<EmpleadoEntity> empleado;
+    private EmpleadoEntity empleado;
 
 	public int getID_Registro() {
 		return ID_Registro;
@@ -77,11 +77,11 @@ public class RegistroEntity implements Serializable {
 		this.total_horas = total_horas;
 	}
 
-	public Optional<EmpleadoEntity> getEmpleado() {
+	public EmpleadoEntity getEmpleado() {
 		return empleado;
 	}
 
-	public void setEmpleado(Optional<EmpleadoEntity> optional) {
+	public void setEmpleado(EmpleadoEntity optional) {
 		this.empleado = optional;
 	}
     

@@ -31,7 +31,7 @@ public class PedidoEntity implements Serializable {
 	@JoinColumn(name="ID_CLIENTE",nullable=false)
 	private ClienteEntity cliente;
 	
-	@OneToMany(mappedBy="Producto")
+	@OneToMany(mappedBy="pedido")
 	private Set<PedidoProductoEntity>productos=new HashSet<PedidoProductoEntity>();
 
 	public Set<PedidoProductoEntity> getProductos() {

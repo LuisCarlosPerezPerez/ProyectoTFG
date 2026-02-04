@@ -31,10 +31,10 @@ public class EmpleadoEntity implements Serializable {
 	@Column(name = "ADMININISTRADOR")
 	private int Administrador;
 
-	@OneToMany(mappedBy = "registro")
+	@OneToMany(mappedBy = "empleado")
 	Set<RegistroEntity> registros = new HashSet<RegistroEntity>();
 
-	@OneToMany(mappedBy = "productos")
+	@OneToMany(mappedBy = "empleado")
 	Set<ProductosEntity> productos = new HashSet<ProductosEntity>();
 
 	// Constructor para crear el EmpleadoEntity
