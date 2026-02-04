@@ -1,5 +1,5 @@
 import type { Pedido } from './Pedido';
-export type Cliente = {
+export interface Cliente {
     id_cliente?: number;
     usuario: string;
     contraseña: string;

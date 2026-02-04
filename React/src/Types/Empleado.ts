@@ -1,4 +1,4 @@
-export type Empleado = {
+export interface Empleado {
     id_empleado?: number;
     usuario: string;
     contraseña: string;
