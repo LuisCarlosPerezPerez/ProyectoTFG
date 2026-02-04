@@ -1,4 +1,4 @@
-export type Registro = {
+export interface Registro {
     ID_Registro: number,
     fecha: Date,
     fecha_entrada: string; 
