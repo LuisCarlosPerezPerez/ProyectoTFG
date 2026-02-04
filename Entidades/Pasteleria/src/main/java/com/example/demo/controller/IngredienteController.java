@@ -14,6 +14,8 @@ import com.example.demo.dto.producto.newProductoDTO;
 import com.example.demo.entity.IngredienteEntity;
 import com.example.demo.services.interfaz.IngredienteInterfaz;
 
+@RestController
+@RequestMapping("/Ingrediente")
 public class IngredienteController {
 	
 	@Autowired

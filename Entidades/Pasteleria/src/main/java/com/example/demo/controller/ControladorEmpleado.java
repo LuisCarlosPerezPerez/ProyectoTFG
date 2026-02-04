@@ -9,7 +9,7 @@ import com.example.demo.services.interfaz.*;
 import com.example.demo.dto.empleado.EmpleadoDTO;
 import com.example.demo.dto.producto.ProductosDTO;
 
-@Controller
+@RestController
 @RequestMapping("/Empleado")
 public class ControladorEmpleado {
 
