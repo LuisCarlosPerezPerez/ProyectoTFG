@@ -14,6 +14,7 @@ import com.example.demo.dto.PedidosDTO.PedidoVistaDTO;
 
 import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/Pedido")
 public class ControladorPedido {

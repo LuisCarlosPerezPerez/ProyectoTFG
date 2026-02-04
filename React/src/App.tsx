@@ -2,34 +2,44 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Navbar from './componentes/navbar/navbar';
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+return (
+  <div className="App">
+      {/* 1. El Navbar es el jefe: él contiene los enlaces y el botón de Fichar */}
+      <Navbar />
+
+      {/* 2. El contenido de la página */}
+      <main style={mainStyles}>
+        <section style={heroSection}>
+          <h1></h1>
+          <p></p>
+        </section>
+        
+        {/* Aquí es donde irían tus rutas en el futuro (Inicio, Productos, etc.) */}
+        <div style={{ marginTop: '50px' }}>
+           <p></p>
+        </div>
+      </main>
+    </div>
+  );
 }
+
+
+const mainStyles: React.CSSProperties = {
+  paddingTop: '80px', 
+  textAlign: 'center',
+  fontFamily: 'Arial, sans-serif'
+};
+
+const heroSection: React.CSSProperties = {
+  backgroundColor: '#fdf0d5',
+  padding: '50px',
+  borderRadius: '20px',
+  margin: '20px auto',
+  maxWidth: '800px'
+};
 
 export default App

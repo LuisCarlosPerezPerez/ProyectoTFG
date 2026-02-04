@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.example.demo.dto.producto.*;
 import com.example.demo.services.interfaz.ProductoInterfaz;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/Producto")
 public class ProductoController {
