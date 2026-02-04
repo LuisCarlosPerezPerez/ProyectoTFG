@@ -21,7 +21,7 @@ public interface RegistroRepository extends JpaRepository <RegistroEntity, Integ
 	@Query("SELECT r FROM REGISTRO r WHERE r.FECHA =: Fecha AND r.ID_EMPLEADO =: ID_EMPLEADO")
 	RegistroEntity buscarRegistro(Date Fecha, int ID_EMPLEADO );
 	
-	@Query("Select TIMESTAMPDIFF(HOUR, r.FECHA_SALIDA, r.FECHA_ENTRADA) FROM REGISTRO r WHERE r.FECHA =: FECHA AND WHERE r.ID_EMPLEADO =: ID_EMPLEADO")
+	@Query("Select TIMESTAMPDIFF(HOUR, r.FECHA_ENTRADA, r.FECHA_SALIDA) FROM REGISTRO r WHERE r.FECHA =: FECHA AND r.ID_EMPLEADO =: ID_EMPLEADO")
 	int horasdeldiaTrabajadas(Date Fecha, int ID_EMPLEADO);
 	
 	@Query("SELECT r FROM REGISTRO r WHERE r.ID_EMPLEADO =: ID_EMPLEADO")

@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.*;
@@ -24,13 +25,13 @@ public class ClienteEntity implements Serializable {
 	private String contraseña;
 
 	@OneToMany(mappedBy = "Pedido")
-	private PedidoEntity pedido;
+	private List<PedidoEntity> pedido;
 
-	public PedidoEntity getPedido() {
+	public List<PedidoEntity> getPedido() {
 		return pedido;
 	}
 
-	public void setPedido(PedidoEntity pedido) {
+	public void setPedido(List<PedidoEntity> pedido) {
 		this.pedido = pedido;
 	}
 
