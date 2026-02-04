@@ -24,7 +24,7 @@ public class ClienteEntity implements Serializable {
 	@Column(name = "CONTRASEÑA")
 	private String contraseña;
 
-	@OneToMany(mappedBy = "Pedido")
+	@OneToMany(mappedBy = "cliente")
 	private List<PedidoEntity> pedido;
 
 	public List<PedidoEntity> getPedido() {
