@@ -10,6 +10,7 @@ import com.example.demo.entity.ProductosEntity;
 import com.example.demo.repository.ProductoRepository;
 import com.example.demo.services.interfaz.ProductoInterfaz;
 
+@Service
 public class ProductoImplementacion implements ProductoInterfaz{
 	
 	public static List<ProductosEntity> listaEntidadProducto = new ArrayList<ProductosEntity>();

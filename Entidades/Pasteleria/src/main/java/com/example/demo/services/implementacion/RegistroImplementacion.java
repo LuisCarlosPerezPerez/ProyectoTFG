@@ -11,7 +11,7 @@ import com.example.demo.repository.RegistroRepository;
 import com.example.demo.repository.RepositorioEmpleado;
 import com.example.demo.services.interfaz.RegistroInterfaz;
 
-
+@Service
 public class RegistroImplementacion implements RegistroInterfaz {
 	
 	public static int ID_EMPLEADO;
