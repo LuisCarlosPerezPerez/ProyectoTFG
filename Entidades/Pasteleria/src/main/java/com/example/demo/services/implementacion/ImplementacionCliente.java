@@ -30,7 +30,7 @@ public class ImplementacionCliente implements ServicioCLiente {
 	
 	@Override
 	public void ComprobarSesion(String usuario,String contraseña) {
-		ClienteEntity clienteentity=clienteRepository.findByUsuarioAndContrasena(usuario, contraseña);
+		ClienteEntity clienteentity=clienteRepository.BuscarPorUsuarioYContraseña(usuario, contraseña);
 		if(clienteentity!=null) {
 			System.out.println("Inicio de Sesion Correcto");
 		}else {

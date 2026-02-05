@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import org.springframework.data.jdbc.repository.query.Query;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -14,7 +14,7 @@ public interface RepositorioPedido extends JpaRepository<PedidoEntity,Integer> {
     // deleteById() - Eliminar por ID
 	
 	//Consulta para Obtener cierto Pedido
-	@Query("SELECT P.* FROM PedidoEntity P WHERE P.ID_PEDIDO = :id")
-    PedidoEntity findByPedido(@Param("id") int id);
+	@Query("SELECT P FROM PedidoEntity P WHERE P.id = :id")
+    PedidoEntity BuscarPedido(@Param("id") int id);
 	
 }
