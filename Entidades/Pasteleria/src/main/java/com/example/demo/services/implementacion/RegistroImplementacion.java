@@ -37,7 +37,7 @@ public class RegistroImplementacion implements RegistroInterfaz {
 		registrar.setFecha(registro.getFecha());
 		registrar.setFecha_entrada(registro.getFecha_entrada());
 		registrar.setTotal_horas(0);
-		registrar.setEmpleado(empleadosql.findById(registro.getId_empleado()).orElse(null));
+		registrar.setEmpleado(empleadosql.findById(registro.getId_empleado()));
 		r = registrosql.save(registrar);
 		return r.getID_Registro();
 	}

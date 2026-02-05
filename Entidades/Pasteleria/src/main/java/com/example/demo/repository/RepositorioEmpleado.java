@@ -10,6 +10,6 @@ public interface RepositorioEmpleado extends JpaRepository<EmpleadoEntity,Intege
 	
 	
 	//Consulta para Obtener cierto Empleado
-	@Query("SELECT E FROM EmpleadoEntity E WHERE E.ID_EMPLEADO = :id")
-	 EmpleadoEntity BuscarPorId(@Param("id") int id);
+	@Query("SELECT E FROM EmpleadoEntity E WHERE E.ID_Empleado = :ID_Empleado")
+	 EmpleadoEntity findById(@Param("ID_Empleado") int ID_Empleado);
 }
