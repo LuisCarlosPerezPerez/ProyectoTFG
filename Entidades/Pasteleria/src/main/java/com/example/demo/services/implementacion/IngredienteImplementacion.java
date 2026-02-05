@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.IngredientesDTO.*;
 import com.example.demo.dto.productoingrediente.ProductosIngredientesDTO;
@@ -11,6 +12,7 @@ import com.example.demo.entity.IngredienteEntity;
 import com.example.demo.repository.IngredienteRepository;
 import com.example.demo.services.interfaz.IngredienteInterfaz;
 
+@Service
 public class IngredienteImplementacion implements IngredienteInterfaz {
 	
 	public static List<IngredienteEntity> listaingrediente = new ArrayList<IngredienteEntity>();

@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.registro.*;
 import com.example.demo.entity.RegistroEntity;
@@ -11,7 +12,7 @@ import com.example.demo.repository.RegistroRepository;
 import com.example.demo.repository.RepositorioEmpleado;
 import com.example.demo.services.interfaz.RegistroInterfaz;
 
-
+@Service
 public class RegistroImplementacion implements RegistroInterfaz {
 	
 	public static int ID_EMPLEADO;
