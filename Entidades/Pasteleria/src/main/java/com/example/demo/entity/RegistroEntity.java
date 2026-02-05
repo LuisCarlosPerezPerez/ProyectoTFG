@@ -4,7 +4,6 @@ package com.example.demo.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Optional;
 
 import jakarta.persistence.*;
 
