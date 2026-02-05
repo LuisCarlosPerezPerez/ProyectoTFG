@@ -15,6 +15,6 @@ public interface RepositorioPedido extends JpaRepository<PedidoEntity,Integer> {
 	
 	//Consulta para Obtener cierto Pedido
 	@Query("SELECT P.* FROM PedidoEntity P WHERE P.ID_PEDIDO = :id")
-    PedidoEntity BuscarPedido(@Param("id") int id);
+    PedidoEntity findByPedido(@Param("id") int id);
 	
 }

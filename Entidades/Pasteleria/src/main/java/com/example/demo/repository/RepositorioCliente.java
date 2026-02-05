@@ -14,11 +14,7 @@ public interface RepositorioCliente extends JpaRepository<ClienteEntity, Integer
     // findById() - Leer por ID
     // findAll() - Leer todos
     // deleteById() - Eliminar por ID
-	
-	//Consulta para Obtener cierto Producto
-	@Query("SELECT C.* FROM CLienteEntity C WHERE C.id = :id")
-    ClienteEntity BuscarPorId(@Param("id") int id);
 
-    @Query("SELECT C.* FROM ClienteEntity C WHERE C.usuario = :usuario AND C.contraseña = :contraseña")
-    ClienteEntity BuscarPorUsuarioYContraseña(@Param("usuario") String usuario, @Param("contraseña") String contraseña);
+    @Query("SELECT C.* FROM ClienteEntity C WHERE C.usuario = :usuario AND C.contrasena = :contrasena")
+    ClienteEntity findByUsuarioAndContrasena(@Param("usuario") String usuario, @Param("contrasena") String contrasena);
 }

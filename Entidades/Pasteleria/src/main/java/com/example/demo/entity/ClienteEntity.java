@@ -1,9 +1,7 @@
 package com.example.demo.entity;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import jakarta.persistence.*;
 
@@ -22,7 +20,7 @@ public class ClienteEntity implements Serializable {
 	private String usuario;
 
 	@Column(name = "CONTRASEÑA")
-	private String contraseña;
+	private String contrasena;
 
 	@OneToMany(mappedBy = "cliente")
 	private List<PedidoEntity> pedido;
@@ -51,12 +49,14 @@ public class ClienteEntity implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
+
+
 
 }

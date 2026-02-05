@@ -22,7 +22,7 @@ public class ImplementacionCliente implements ServicioCLiente {
 	public int guardarcliente(ClienteRegistroDTO cliente) {
 		ClienteEntity clienteentity=null;
 		ClienteEntity entidad = new ClienteEntity();
-		entidad.setContraseña(cliente.getContraseña());
+		entidad.setContrasena(cliente.getContraseña());
 		entidad.setUsuario(cliente.getUsuario());
 		clienteentity=clienteRepository.save(entidad);
 		return clienteentity.getId();
@@ -30,7 +30,7 @@ public class ImplementacionCliente implements ServicioCLiente {
 	
 	@Override
 	public void ComprobarSesion(String usuario,String contraseña) {
-		ClienteEntity clienteentity=clienteRepository.BuscarPorUsuarioYContraseña(usuario, contraseña);
+		ClienteEntity clienteentity=clienteRepository.findByUsuarioAndContrasena(usuario, contraseña);
 		if(clienteentity!=null) {
 			System.out.println("Inicio de Sesion Correcto");
 		}else {

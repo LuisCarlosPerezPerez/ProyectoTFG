@@ -32,7 +32,7 @@ public class PedidoEntity implements Serializable {
 	private ClienteEntity cliente;
 	
 	@OneToMany(mappedBy="pedido")
-	private Set<PedidoProductoEntity>productos=new HashSet<PedidoProductoEntity>();
+	private Set<PedidoProductoEntity>productos;
 
 	public Set<PedidoProductoEntity> getProductos() {
 		return productos;
