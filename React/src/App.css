@@ -139,3 +139,30 @@ body {
   font-weight: 600;
   display: inline-block;
 }
+
+/* src/index.css */
+:root {
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  /* Evita que aparezca el scroll horizontal si algo se pasa un pixel */
+  overflow-x: hidden; 
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #ffffff;
+}
+
+/* Ajuste para que el contenedor de las páginas no tenga límites de ancho */
+.full-width-container {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}

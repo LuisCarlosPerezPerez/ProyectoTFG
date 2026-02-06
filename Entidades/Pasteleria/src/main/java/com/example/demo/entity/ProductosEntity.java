@@ -31,7 +31,7 @@ public class ProductosEntity implements Serializable{
     private int precio;
     
     @ManyToOne
-    @JoinColumn(name = "ID_EMPLEADO", nullable = false)
+    @JoinColumn(name = "ID_EMPLEADO", nullable = true)
     private EmpleadoEntity empleado;
     
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)

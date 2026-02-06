@@ -34,7 +34,7 @@ public class ImplementacionEmpleado implements ServicioEmpleado {
 
 	@Override
 	public int modificarProducto(ProductosDTO producto) {
-		ProductosEntity entidad = productoRepository.findById(producto.getID_producto()).orElse(null);
+		ProductosEntity entidad = productoRepository.findById(producto.getId_producto()).orElse(null);
 		if (entidad != null) {
 			entidad.setNombre(producto.getNombre());
 			entidad.setStock(producto.getStock());
@@ -44,9 +44,6 @@ public class ImplementacionEmpleado implements ServicioEmpleado {
 		}
 		return entidad.getID_producto();
 	}
-	@Override
-	public void eliminarProducto(int idProducto) {
-		productoRepository.deleteById(idProducto);
-	}
+
 
 }

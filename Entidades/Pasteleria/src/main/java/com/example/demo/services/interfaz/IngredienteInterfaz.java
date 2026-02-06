@@ -11,5 +11,6 @@ public interface IngredienteInterfaz {
 	List<IngredienteMostrarDTO> listarIngredientes();
 	IngredienteCrearDTO crearIngrediente();
 	int GuardarIngrediente(IngredienteCrearDTO ingrediente);
+	void eliminarIngrediente(int id);
 
 }

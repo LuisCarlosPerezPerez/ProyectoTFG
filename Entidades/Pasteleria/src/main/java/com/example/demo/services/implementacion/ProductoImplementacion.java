@@ -1,8 +1,6 @@
 package com.example.demo.services.implementacion;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,49 +10,57 @@ import com.example.demo.repository.ProductoRepository;
 import com.example.demo.services.interfaz.ProductoInterfaz;
 
 @Service
-public class ProductoImplementacion implements ProductoInterfaz{
-	
-	public static List<ProductosEntity> listaEntidadProducto = new ArrayList<ProductosEntity>();
+public class ProductoImplementacion implements ProductoInterfaz {
 
-	@Autowired
-	ProductoRepository RepoProducto;
-	
-	@Override
-	public List<VerProductosDTO> listarProductos() {
-		return listaEntidadProducto.stream()
-	            .map(a -> new VerProductosDTO(
-	            		a.getNombre(),
-	            		a.getStock(),
-	            		a.getReceta(),
-	            		a.getPrecio(),
-	            	    a.getIngredientes().stream()
-	            			.map(i ->
-	            					i.getIngrediente().getId())
-	            						.toList()
-	            ))
-	            .toList();
-	}
+    @Autowired
+    ProductoRepository RepoProducto;
 
-	@Override
-	public newProductoDTO crearProductos() {
-		return new newProductoDTO();
-	}
+    @Override
+    public List<VerProductosDTO> listarProductos() {
+        // Consultamos directamente a MySQL
+        return RepoProducto.findAll().stream()
+                .map(a -> new VerProductosDTO(
+                        a.getID_producto(),
+                        a.getNombre(),
+                        a.getStock(),
+                        a.getReceta(),
+                        a.getPrecio(),
+                        a.getIngredientes().stream()
+                                .map(i -> i.getIngrediente().getId())
+                                .toList()
+                ))
+                .toList();
+    }
 
-	@Override
-	public int GuardarProducto(newProductoDTO producto) {
-		ProductosEntity p = null;
-		if(listaEntidadProducto.stream()
-				.filter(a  -> a.getNombre().equals(producto.getNombre()))
-				.findAny().isEmpty()) {
-			ProductosEntity productos = new ProductosEntity();
-			productos.setNombre(producto.getNombre());
-			productos.setPrecio(producto.getPrecio());
-			productos.setReceta(producto.getReceta());
-			productos.setStock(producto.getStock());
-			p = RepoProducto.save(productos);
-		}
-		return p.getID_producto();
-	}
-	
+    @Override
+    public int GuardarProducto(newProductoDTO productoDTO) {
+        // Ahora devuelve la entidad o null
+        ProductosEntity existente = RepoProducto.findByNombre(productoDTO.getNombre());
+        
+        // Si es null, significa que el producto no existe y podemos crearlo
+        if (existente == null) {
+            ProductosEntity nuevaEntidad = new ProductosEntity();
+            nuevaEntidad.setNombre(productoDTO.getNombre());
+            nuevaEntidad.setPrecio(productoDTO.getPrecio());
+            nuevaEntidad.setReceta(productoDTO.getReceta());
+            nuevaEntidad.setStock(productoDTO.getStock());
+            
+            ProductosEntity guardado = RepoProducto.save(nuevaEntidad);
+            return guardado.getID_producto();
+        }
+        
+        // Si 'existente' no es null, el producto ya está en la base de datos
+        return 0; 
+    }
 
+    @Override
+    public void eliminarProducto(int idProducto) {
+        // Borrado físico en la base de datos
+        RepoProducto.deleteById(idProducto);
+    }
+
+    @Override
+    public newProductoDTO crearProductos() {
+        return new newProductoDTO();
+    }
 }

@@ -9,4 +9,5 @@ public interface ProductoIngredienteInterfaz {
 	newProductoIngrediente crearRelacion();
 	int GuardarRelacion(newProductoIngrediente relacion);
 	List<ProductosIngredientesDTO> listarIngredientesProductos();
+	void eliminarRelacion(int id);
 }

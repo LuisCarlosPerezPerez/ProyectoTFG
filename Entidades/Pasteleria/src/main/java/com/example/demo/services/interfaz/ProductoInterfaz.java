@@ -11,4 +11,5 @@ public interface ProductoInterfaz {
 	List<VerProductosDTO> listarProductos();
 	newProductoDTO crearProductos();
 	int GuardarProducto(newProductoDTO producto);
+	void eliminarProducto(int idProducto);
 }
