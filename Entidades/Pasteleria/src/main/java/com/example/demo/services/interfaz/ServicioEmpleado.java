@@ -8,6 +8,5 @@ public interface ServicioEmpleado {
 	EmpleadoDTO crearEmpleado();
 	void guardarEmpleado(EmpleadoDTO empleado);
 	int modificarProducto(ProductosDTO producto);
-	void eliminarProducto(int idProducto);
 	
 }

@@ -4,6 +4,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +16,8 @@ import com.example.demo.services.interfaz.ProductoInterfaz;
 
 
 @RestController
-@RequestMapping("/Producto")
+@RequestMapping("/api/productos")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ProductoController {
 	
 	@Autowired
@@ -30,6 +32,12 @@ public class ProductoController {
 	@GetMapping("MostrarProductos")
 	public List<VerProductosDTO> MostrarProductos() {
 		return ProductoServicio.listarProductos();
+	}
+	
+	@PostMapping("EliminarProducto")
+	public void eliminarProducto(@RequestBody int id) {
+	    // Aquí llamamos al método que me acabas de pasar
+	    ProductoServicio.eliminarProducto(id); 
 	}
 	
 	

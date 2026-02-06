@@ -22,10 +22,6 @@ public class ControladorEmpleado {
 		
 	}
 	
-	@PostMapping("/EliminarProducto")
-	public void eliminarproducto(@RequestBody int idProducto) {
-	servicioempleado.eliminarProducto(idProducto);
-	}
 	
 	@PostMapping("/ModificarProducto")
 	public void modificarproducto(@RequestBody ProductosDTO nombreproducto) {

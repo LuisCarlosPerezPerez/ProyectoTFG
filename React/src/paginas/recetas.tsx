@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import productoService from '../services/productoService';
 import ingredienteService from '../services/ingredienteService';
 import relacionService from '../services/ProductoIngredienteService';
-import type { Producto } from '../types/producto';
-import type { Ingrediente } from '../types/ingrediente';
+import type { Producto } from '../Types/producto';
+import type { Ingrediente } from '../Types/ingrediente';
 
 const RecetasPage = () => {
     const [productos, setProductos] = useState<Producto[]>([]);

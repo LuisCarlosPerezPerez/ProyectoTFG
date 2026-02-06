@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ingredienteService from '../services/ingredienteService';
-import type { Ingrediente } from '../types/ingrediente';
+import type { Ingrediente } from '../Types/ingrediente';
 
 const IngredientesPage = () => {
     const [ingredientes, setIngredientes] = useState<Ingrediente[]>([]);

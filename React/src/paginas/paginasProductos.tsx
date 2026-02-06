@@ -1,119 +1,141 @@
 import React, { useEffect, useState } from 'react';
 import productoService from '../services/productoService';
-import type { Producto } from '../types/producto';
+import type { Producto, VerProductosDTO } from '../Types/producto';
 
 const ProductosPage = () => {
-    // ESTADOS
-    const [productos, setProductos] = useState<Producto[]>([]);
+    // Usamos VerProductosDTO para la lista porque es lo que trae el ID de la base de datos
+    const [productos, setProductos] = useState<VerProductosDTO[]>([]);
     const [mostrarForm, setMostrarForm] = useState(false);
+    const [editando, setEditando] = useState(false);
     const [cargando, setCargando] = useState(true);
 
-    // Estado para el formulario de nuevo producto
-    const [nuevoProducto, setNuevoProducto] = useState({
+    const estadoInicial: Producto = {
+        id_producto: 0,
         nombre: '',
         stock: 0,
         receta: '',
-        precio: 0
-    });
+        precio: 0,
+        empleado: { id_empleado: 1 }, 
+        ingredientes: [],
+        pedidos: []
+    };
 
-    // 1. CARGAR PRODUCTOS (Al montar el componente)
+    const [form, setForm] = useState<Producto>(estadoInicial);
+
     useEffect(() => {
-        fetchProductos();
+        cargar();
     }, []);
 
-    const fetchProductos = async () => {
+    const cargar = async () => {
         try {
             const data = await productoService.listar();
             setProductos(data);
         } catch (error) {
-            console.error("Error cargando productos:", error);
+            console.error("Error al cargar la vitrina:", error);
         } finally {
             setCargando(false);
         }
     };
 
-    // 2. GUARDAR PRODUCTO (Llama a tu GuardarProducto en Java)
     const handleGuardar = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            // Llamamos al servicio (que usa fetch)
-            await productoService.guardar(nuevoProducto);
-            alert("¡Dulce guardado en Pastelería Lama!");
-            
-            // Limpiamos y refrescamos
-            setMostrarForm(false);
-            setNuevoProducto({ nombre: '', stock: 0, receta: '', precio: 0 });
-            fetchProductos(); 
+            const productoFinal: Producto = {
+                ...form,
+                precio: Number(form.precio),
+                stock: Number(form.stock)
+            };
+
+            if (editando) {
+                await productoService.modificar(productoFinal);
+                alert("¡Receta actualizada!");
+            } else {
+                await productoService.guardar(productoFinal);
+                alert("¡Dulce horneado y guardado!");
+            }
+            cerrarFormulario();
+            cargar();
         } catch (error) {
-            alert("Error al guardar. Puede que el nombre ya exista.");
+            alert("Error al conectar con el horno (Backend)");
         }
     };
 
-    // 3. ELIMINAR PRODUCTO (Lógica de búsqueda por nombre)
-    const handleEliminar = async (nombre: string) => {
-        const confirmar = window.confirm(`¿Seguro que quieres eliminar "${nombre}"?`);
-        if (confirmar) {
+    const handleEliminar = async (id: number) => {
+        // Ahora id nunca será undefined porque viene de VerProductosDTO
+        if (window.confirm(`¿Seguro que quieres eliminar el producto #${id}?`)) {
             try {
-                // AQUÍ: Deberás tener el @DeleteMapping en Java que use el nombre
-                // Por ahora simulamos la recarga:
-                alert(`Eliminando ${nombre}... (Asegúrate de tener el Delete en Java)`);
-                // fetchProductos(); 
+                await productoService.eliminar(id);
+                await cargar(); // Recarga la lista para que desaparezca de la tabla
+                alert("Producto eliminado");
             } catch (error) {
-                alert("No se pudo eliminar.");
+                alert("No se pudo eliminar. Revisa si tiene pedidos pendientes.");
             }
         }
     };
 
-    if (cargando) return <div style={{padding: '100px'}}>Cargando el horno...</div>;
+    const prepararEdicion = (p: VerProductosDTO) => {
+        // Mapeamos lo que viene de la tabla al formulario
+        setForm({
+            ...estadoInicial,
+            id_producto: p.id_producto,
+            nombre: p.nombre,
+            stock: p.stock,
+            receta: p.receta,
+            precio: p.precio
+        });
+        setEditando(true);
+        setMostrarForm(true);
+    };
+
+    const cerrarFormulario = () => {
+        setMostrarForm(false);
+        setEditando(false);
+        setForm(estadoInicial);
+    };
+
+    if (cargando) return <div style={{ textAlign: 'center', marginTop: '50px', color: '#5d4037' }}>Abriendo la pastelería...</div>;
+
+    // --- TUS ESTILOS ORIGINALES ---
+    const containerStyle: React.CSSProperties = { padding: '40px', maxWidth: '950px', margin: 'auto' };
+    const headerStyle: React.CSSProperties = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' };
+    const tableStyle: React.CSSProperties = { width: '100%', borderCollapse: 'collapse', backgroundColor: 'white', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' };
+    const thStyle: React.CSSProperties = { padding: '15px', textAlign: 'left', borderBottom: '2px solid #5d4037', color: '#5d4037' };
+    const tdStyle: React.CSSProperties = { padding: '15px', borderBottom: '1px solid #eee' };
+    const formContainerStyle: React.CSSProperties = { backgroundColor: '#fffaf0', padding: '25px', borderRadius: '12px', marginBottom: '30px', border: '1px solid #bc6c25' };
+    const btnAddStyle = { padding: '10px 20px', backgroundColor: '#bc6c25', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' };
+    const btnCancelStyle = { ...btnAddStyle, backgroundColor: '#6c757d' };
+    const btnIcon = { background: 'none', border: 'none', cursor: 'pointer', fontSize: '18px', padding: '0 8px' };
 
     return (
         <div style={containerStyle}>
             <div style={headerStyle}>
-                <h2>Gestión de Inventario - Pastelería Lama</h2>
-                <button 
-                    onClick={() => setMostrarForm(!mostrarForm)} 
-                    style={mostrarForm ? btnCancelStyle : btnAddStyle}
-                >
+                <h2 style={{ color: '#5d4037', margin: 0 }}>Productos :</h2>
+                <button onClick={() => mostrarForm ? cerrarFormulario() : setMostrarForm(true)} style={mostrarForm ? btnCancelStyle : btnAddStyle}>
                     {mostrarForm ? 'Cancelar' : '+ Añadir Producto'}
                 </button>
             </div>
 
-            {/* FORMULARIO DE CREACIÓN */}
             {mostrarForm && (
                 <div style={formContainerStyle}>
-                    <h3>Nuevo Producto</h3>
-                    <form onSubmit={handleGuardar} style={formStyle}>
-                        <input 
-                            type="text" placeholder="Nombre del dulce" 
-                            onChange={e => setNuevoProducto({...nuevoProducto, nombre: e.target.value})}
-                            required style={inputStyle}
-                        />
-                        <div style={{display: 'flex', gap: '10px'}}>
-                            <input 
-                                type="number" placeholder="Precio (€)" 
-                                onChange={e => setNuevoProducto({...nuevoProducto, precio: parseInt(e.target.value)})}
-                                required style={inputStyle}
-                            />
-                            <input 
-                                type="number" placeholder="Stock" 
-                                onChange={e => setNuevoProducto({...nuevoProducto, stock: parseInt(e.target.value)})}
-                                required style={inputStyle}
-                            />
+                    <h3 style={{ color: '#bc6c25', marginTop: 0 }}>{editando ? 'Editar Dulce' : 'Nuevo Dulce'}</h3>
+                    <form onSubmit={handleGuardar} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                        <input type="text" placeholder="Nombre del dulce" value={form.nombre} onChange={e => setForm({...form, nombre: e.target.value})} required style={{ padding: '10px', borderRadius: '5px', border: '1px solid #ddd' }} />
+                        <div style={{ display: 'flex', gap: '10px' }}>
+                            <input type="number" placeholder="Precio (€)" value={form.precio || ''} onChange={e => setForm({...form, precio: parseFloat(e.target.value)})} required style={{ padding: '10px', flex: 1, borderRadius: '5px', border: '1px solid #ddd' }} />
+                            <input type="number" placeholder="Stock disponible" value={form.stock || ''} onChange={e => setForm({...form, stock: parseInt(e.target.value)})} required style={{ padding: '10px', flex: 1, borderRadius: '5px', border: '1px solid #ddd' }} />
                         </div>
-                        <textarea 
-                            placeholder="Receta y descripción" 
-                            onChange={e => setNuevoProducto({...nuevoProducto, receta: e.target.value})}
-                            required style={{...inputStyle, height: '80px'}}
-                        />
-                        <button type="submit" style={btnSubmitStyle}>Confirmar e Insertar</button>
+                        <textarea placeholder="Ingredientes y preparación..." value={form.receta} onChange={e => setForm({...form, receta: e.target.value})} style={{ padding: '10px', height: '80px', borderRadius: '5px', border: '1px solid #ddd' }} />
+                        <button type="submit" style={{ padding: '12px', backgroundColor: '#5d4037', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontSize: '16px' }}>
+                            {editando ? 'Actualizar Vitrina' : 'Guardar en Inventario'}
+                        </button>
                     </form>
                 </div>
             )}
 
-            {/* TABLA DE DATOS */}
             <table style={tableStyle}>
                 <thead>
-                    <tr style={{backgroundColor: '#f2e8cf'}}>
+                    <tr style={{ backgroundColor: '#f2e8cf' }}>
+                        <th style={thStyle}>ID</th>
                         <th style={thStyle}>Nombre</th>
                         <th style={thStyle}>Stock</th>
                         <th style={thStyle}>Precio</th>
@@ -121,41 +143,24 @@ const ProductosPage = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {productos.length > 0 ? productos.map((prod, index) => (
-                        <tr key={index} style={{borderBottom: '1px solid #eee'}}>
-                            <td style={tdStyle}>{prod.nombre}</td>
-                            <td style={tdStyle}>{prod.stock} uds</td>
-                            <td style={tdStyle}>{prod.precio} €</td>
+                    {productos.length > 0 ? productos.map((p) => (
+                        <tr key={p.id_producto}>
+                            <td style={tdStyle}>{p.id_producto}</td>
+                            <td style={{ ...tdStyle, fontWeight: 'bold' }}>{p.nombre}</td>
+                            <td style={tdStyle}>{p.stock} uds</td>
+                            <td style={tdStyle}>{p.precio} €</td>
                             <td style={tdStyle}>
-                                <button 
-                                    onClick={() => handleEliminar(prod.nombre)}
-                                    style={btnDeleteStyle}
-                                >
-                                    🗑️ Eliminar
-                                </button>
+                                <button onClick={() => prepararEdicion(p)} style={btnIcon} title="Editar">✏️</button>
+                                <button onClick={() => handleEliminar(p.id_producto)} style={{ ...btnIcon, color: '#e63946' }} title="Eliminar">🗑️</button>
                             </td>
                         </tr>
                     )) : (
-                        <tr><td colSpan={4} style={{padding: '20px', textAlign: 'center'}}>No hay productos en el mostrador.</td></tr>
+                        <tr><td colSpan={5} style={{ padding: '30px', textAlign: 'center', color: '#999' }}>No hay dulces en la vitrina todavía.</td></tr>
                     )}
                 </tbody>
             </table>
         </div>
     );
 };
-
-// --- ESTILOS ---
-const containerStyle: React.CSSProperties = { padding: '100px 40px', maxWidth: '1000px', margin: 'auto' };
-const headerStyle: React.CSSProperties = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' };
-const tableStyle: React.CSSProperties = { width: '100%', borderCollapse: 'collapse', backgroundColor: 'white', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' };
-const thStyle: React.CSSProperties = { padding: '15px', textAlign: 'left', color: '#5d4037' };
-const tdStyle: React.CSSProperties = { padding: '15px' };
-const formContainerStyle: React.CSSProperties = { backgroundColor: '#fff', padding: '20px', borderRadius: '8px', marginBottom: '30px', border: '1px solid #f2e8cf' };
-const formStyle: React.CSSProperties = { display: 'flex', flexDirection: 'column', gap: '15px' };
-const inputStyle: React.CSSProperties = { padding: '10px', borderRadius: '4px', border: '1px solid #ddd', width: '100%', boxSizing: 'border-box' };
-const btnAddStyle = { padding: '10px 20px', backgroundColor: '#bc6c25', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' as 'bold' };
-const btnCancelStyle = { ...btnAddStyle, backgroundColor: '#6c757d' };
-const btnSubmitStyle = { padding: '12px', backgroundColor: '#5d4037', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer', fontWeight: 'bold' as 'bold' };
-const btnDeleteStyle = { background: 'none', border: 'none', color: '#e63946', cursor: 'pointer', fontWeight: 'bold' as 'bold' };
 
 export default ProductosPage;

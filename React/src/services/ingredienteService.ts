@@ -1,6 +1,6 @@
-import type { Ingrediente } from "../types/ingrediente";
+import type { Ingrediente } from "../Types/ingrediente";
 
-const API_URL = "http://localhost:8080/Ingrediente";
+const API_URL = "http://localhost:9090/Ingrediente";
 
 const ingredienteService = {
     listar: async (): Promise<Ingrediente[]> => {
