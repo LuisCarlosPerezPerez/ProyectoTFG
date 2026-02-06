@@ -15,7 +15,6 @@ import com.example.demo.services.interfaz.ProductoIngredienteInterfaz;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
 @RequestMapping("/ProductoIngrediente")
 public class ProductoIngredienteController {
 	

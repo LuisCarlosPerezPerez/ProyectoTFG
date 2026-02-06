@@ -1,6 +1,6 @@
 import type { Producto, VerProductosDTO } from '../Types/producto';
 
-const API_URL = 'http://localhost:9090/api/productos';
+const API_URL = '/api/productos';
 
 const productoService = {
     // Al listar, ahora recibimos el objeto que SI tiene id_producto

@@ -16,8 +16,7 @@ import com.example.demo.services.interfaz.ProductoInterfaz;
 
 
 @RestController
-@RequestMapping("/api/productos")
-@CrossOrigin(origins = "http://localhost:5173")
+@RequestMapping("/productos")
 public class ProductoController {
 	
 	@Autowired

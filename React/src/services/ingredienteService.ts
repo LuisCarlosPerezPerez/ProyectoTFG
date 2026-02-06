@@ -1,6 +1,6 @@
 import type { Ingrediente } from "../Types/ingrediente";
 
-const API_URL = "http://localhost:9090/Ingrediente";
+const API_URL = "/api/Ingrediente";
 
 const ingredienteService = {
     // 1. Listar (Coincide con tu @GetMapping("/MostarIngredientes"))
