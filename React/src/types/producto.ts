@@ -9,7 +9,7 @@ export interface Producto {
         id_empleado: number;
     };
     ingredientes: number[];
-    pedidos: number[];
+    pedidos?: any[];
 }
 
 export interface NuevoProductoDTO  {

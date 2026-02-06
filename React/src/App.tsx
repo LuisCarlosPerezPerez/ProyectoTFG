@@ -53,6 +53,7 @@ function App() {
             <Route path="/recetas" element={<RecetasPage />} />
             <Route path="/pedidos" element={<ListarPedidos />} />
             <Route path="/modificar-producto" element={<ModificarProducto />} />
+            <Route path="/relacion-pro-ing" element={<RecetasPage />} />
 
             {/* --- RUTA EXCLUSIVA ADMIN (Añadir/Quitar Empleados) --- */}
             <Route path="/gestion-empleados" element={<RegistrarEmpleado />} />
