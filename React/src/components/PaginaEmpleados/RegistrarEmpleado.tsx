@@ -17,6 +17,7 @@ const Registro = () => {
       ...emple,
       [name]: value
     }));
+    };
 
   // 3. Función para enviar los datos a Spring Boot
   const enviarFormulario = async (e:React.SubmitEvent) => {
@@ -70,6 +71,6 @@ const Registro = () => {
       </form>
       </div>
   );
-};
+
 };
 export default Registro;

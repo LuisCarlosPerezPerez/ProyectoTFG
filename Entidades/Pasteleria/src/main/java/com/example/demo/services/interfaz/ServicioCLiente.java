@@ -10,5 +10,5 @@ public interface ServicioCLiente {
 	int guardarcliente(ClienteRegistroDTO cliente);
 	
 	//-> Metodo para iniciar sesion como cliente
-	void ComprobarSesion(String usuario,String contraseña);
+	ClienteFullDTO ComprobarSesion(String usuario,String contraseña);
 }
