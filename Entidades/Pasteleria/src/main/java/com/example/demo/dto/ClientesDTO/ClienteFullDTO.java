@@ -2,20 +2,22 @@
 package com.example.demo.dto.ClientesDTO;
 import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
 
+import java.util.List;
+
 public class ClienteFullDTO {
 	private int id;
 	private String usuario;
 	private String contraseña;
 	private String email;
-	private PedidoFullDTO pedido;
+	private List<PedidoFullDTO>listapedidos;
 
 	//Constructor completo
-	public ClienteFullDTO(int id, String usuario, String contraseña, String email, PedidoFullDTO pedido) {
+	public ClienteFullDTO(int id, String usuario, String contraseña, String email, List<PedidoFullDTO> list) {
 		this.id = id;
 		this.usuario = usuario;
 		this.email = email;
 		this.contraseña = contraseña;
-		this.pedido = pedido;
+		this.listapedidos= list;
 	}
 
 	//Constructor vacio
@@ -31,12 +33,14 @@ public class ClienteFullDTO {
 		this.email = email;
 	}
 
-	public PedidoFullDTO getPedido() {
-		return pedido;
+	
+
+	public List<PedidoFullDTO> getListapedidos() {
+		return listapedidos;
 	}
 
-	public void setPedido(PedidoFullDTO pedido) {
-		this.pedido = pedido;
+	public void setListapedidos(List<PedidoFullDTO> listapedidos) {
+		this.listapedidos = listapedidos;
 	}
 
 	public int getId() {

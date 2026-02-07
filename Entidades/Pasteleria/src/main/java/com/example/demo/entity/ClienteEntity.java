@@ -21,9 +21,20 @@ public class ClienteEntity implements Serializable {
 
 	@Column(name = "CONTRASEÑA")
 	private String contrasena;
+	
+	@Column(name = "GMAIL")
+	private String gmail;
 
 	@OneToMany(mappedBy = "cliente")
 	private List<PedidoEntity> pedido;
+
+	public String getGmail() {
+		return gmail;
+	}
+
+	public void setGmail(String gmail) {
+		this.gmail = gmail;
+	}
 
 	public List<PedidoEntity> getPedido() {
 		return pedido;

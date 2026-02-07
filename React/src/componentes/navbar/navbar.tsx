@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import RegistroModal from '../registro/registroComponente';
 
@@ -56,4 +56,4 @@ const btnFicharStyle = { padding: '8px 16px', backgroundColor: '#bc6c25', color:
 const userBadgeStyle = { backgroundColor: '#fdfaf5', padding: '6px 14px', borderRadius: '20px', color: '#bc6c25', border: '1px solid #bc6c25' };
 const loginBtnStyle = { textDecoration: 'none', color: '#5d4037', border: '1px solid #5d4037', padding: '5px 15px', borderRadius: '5px' };
 
-export default Navbar;
+export default Navbar;*/
