@@ -1,5 +1,8 @@
 package com.example.demo.services.implementacion;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,19 +19,13 @@ public class ImplementacionEmpleado implements ServicioEmpleado {
 
 	@Autowired
 	private RepositorioEmpleado repositorioEmpleado;
-	
+
 	@Autowired
 	private ProductoRepository productoRepository;
-	
-	@Override
-	public EmpleadoDTO crearEmpleado() {
-		return new EmpleadoDTO();
-	}
-
 	@Override
 	public void guardarEmpleado(EmpleadoDTO empleado) {
-		EmpleadoEntity entidad = new EmpleadoEntity(empleado.getID_Empleado(), empleado.getUsuario(), empleado.getContraseña(),
-				empleado.getAdministrador());
+		EmpleadoEntity entidad = new EmpleadoEntity(empleado.getID_Empleado(), empleado.getUsuario(),
+				empleado.getContraseña(), empleado.getAdministrador());
 		repositorioEmpleado.save(entidad);
 	}
 
@@ -44,9 +41,25 @@ public class ImplementacionEmpleado implements ServicioEmpleado {
 		}
 		return entidad.getID_producto();
 	}
+
 	@Override
 	public void eliminarProducto(int idProducto) {
 		productoRepository.deleteById(idProducto);
+	}
+
+	@Override
+	public EmpleadoDTO inicarsesion(newEmpleadoDTO empleadoSesion) {
+		EmpleadoEntity entidad = repositorioEmpleado.FinbyUsuario(empleadoSesion.getUsuario(),
+				empleadoSesion.getContraseña());
+		EmpleadoDTO empleado = new EmpleadoDTO(entidad.getID_Empleado(), entidad.getUsuario(), entidad.getContraseña(), entidad.getAdministrador());
+
+		return empleado;
+	}
+
+	@Override
+	public EmpleadoDTO crearEmpleado() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
