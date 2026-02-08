@@ -1,39 +1,29 @@
 package com.example.demo.dto.empleado;
 
 public class newEmpleadoDTO {
-	
-	private String Usuario;
-    private String Contraseña;
-    private int Administrador;
-    
-	public newEmpleadoDTO() {
-		super();
+
+	private String usuario;
+	private String contraseña;
+
+	public newEmpleadoDTO(String usuario, String contraseña) {
+		this.usuario = usuario;
+		this.contraseña = contraseña;
 	}
-	public newEmpleadoDTO(String usuario, String contraseña, int administrador) {
-		super();
-		Usuario = usuario;
-		Contraseña = contraseña;
-		Administrador = administrador;
-	}
+
 	public String getUsuario() {
-		return Usuario;
+		return usuario;
 	}
+
 	public void setUsuario(String usuario) {
-		Usuario = usuario;
+		this.usuario = usuario;
 	}
+
 	public String getContraseña() {
-		return Contraseña;
+		return contraseña;
 	}
+
 	public void setContraseña(String contraseña) {
-		Contraseña = contraseña;
+		this.contraseña = contraseña;
 	}
-	public int getAdministrador() {
-		return Administrador;
-	}
-	public void setAdministrador(int administrador) {
-		Administrador = administrador;
-	}
-    
-    
 
 }

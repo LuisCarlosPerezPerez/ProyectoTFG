@@ -16,7 +16,11 @@ const Registro = () => {
       ...prev,
       [name]: value
     }));
-  }; // <-- Faltaba cerrar esta llave
+
+  }; 
+
+    };
+
 
   // 3. Función para enviar (Tipo de evento corregido a FormEvent)
   const enviarFormulario = async (e: React.FormEvent) => {
@@ -84,11 +88,16 @@ const Registro = () => {
       </form>
     </div>
   );
+
 };
 
 // Estilos básicos
 const formStyle = { display: 'flex', flexDirection: 'column' as const, gap: '15px', textAlign: 'left' as const };
 const inputStyle = { width: '100%', padding: '8px', marginTop: '5px', boxSizing: 'border-box' as const };
 const btnStyle = { padding: '10px', backgroundColor: '#bc6c25', color: 'white', border: 'none', cursor: 'pointer', fontWeight: 'bold' as const };
+
+=======
+
+};
 
 export default Registro;

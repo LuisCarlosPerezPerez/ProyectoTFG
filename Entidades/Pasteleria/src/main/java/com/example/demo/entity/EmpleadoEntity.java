@@ -47,6 +47,9 @@ public class EmpleadoEntity implements Serializable {
 		this.productos = new HashSet<ProductosEntity>();
 	}
 
+	public EmpleadoEntity() {
+	}
+
 	public Set<ProductosEntity> getProductos() {
 		return productos;
 	}
