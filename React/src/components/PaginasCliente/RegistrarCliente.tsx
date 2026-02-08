@@ -35,13 +35,18 @@ const Registro = () => {
         const data = await respuesta.json();
         const token = data;
         localStorage.setItem('token', token);
+
+         if (respuesta.status === 500) {
+        throw new Error('Cliente Existente');
+        }
+
         alert("¡Cuenta creada con éxito! Ahora puedes iniciar sesión.");
         console.log(token);
         navegarIniciarSesion('/IniciarSesionCliente');
 
     } catch (error) {
       console.error("Hubo un error:", error);
-      alert("No se pudo conectar con el servidor");
+      alert("No se pudo registrar el cliente");
     }
   };
 

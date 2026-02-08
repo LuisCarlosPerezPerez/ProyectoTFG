@@ -23,6 +23,7 @@ const IniciarSesionCliente = () => {
       console.log("Status del servidor:", respuesta.status);
       const data = await respuesta.json();
       const token = data;
+   
       localStorage.setItem('token', token);
       alert("¡Inicio de sesión exitoso!");
       console.log(token);

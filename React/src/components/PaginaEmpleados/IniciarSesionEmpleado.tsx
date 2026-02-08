@@ -24,29 +24,25 @@ const LoginEmpleado = () => {
   const iniciarSesion = async (e: React.SubmitEvent) => {
     e.preventDefault();
     try {
-      const respuesta = await fetch('/api/Empleado/Login', { // Ajusta la URL según tu API
+      const respuesta = await fetch('/api/Empleado/IniciarSesionEmpleado', { 
         method: 'POST', 
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(empleado),
       });
-
-      if (respuesta.status === 401) {
-        throw new Error('Credenciales de empleado incorrectas');
-      }
-
-      if (!respuesta.ok) throw new Error('Error en el servidor');
-
+      console.log("Status del servidor:", respuesta.status);
       const data = await respuesta.json();
+      console.log(data);
+      if (data==null) throw new Error('Error en el servidor');
+
       localStorage.setItem('token', data.token);
       
       alert("¡Acceso concedido al sistema de gestión!");
       navegar('/Dashboard'); // Redirige al panel de control del empleado
 
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error al iniciar sesión:", error);
-      alert(error.message || "Error de conexión");
     }
   };
 
