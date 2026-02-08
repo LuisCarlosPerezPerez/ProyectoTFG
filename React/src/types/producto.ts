@@ -4,7 +4,12 @@ export interface Producto {
     stock: number;
     receta: string;
     precio: number;
-    ingredientes?: number[];
+    // Cambiamos id_empleado por un objeto que coincida con Java
+    empleado?: {
+        id_empleado: number;
+    };
+    ingredientes: number[];
+    pedidos?: any[];
 }
 
 export interface NuevoProductoDTO  {
@@ -15,6 +20,7 @@ export interface NuevoProductoDTO  {
 }
 
 export interface VerProductosDTO {
+    id_producto: number;
     nombre: string;
     stock: number;
     receta: string;

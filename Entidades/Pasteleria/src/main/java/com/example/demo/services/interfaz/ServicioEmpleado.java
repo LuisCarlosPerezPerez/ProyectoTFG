@@ -9,6 +9,5 @@ public interface ServicioEmpleado {
 	EmpleadoDTO inicarsesion(newEmpleadoDTO empleadoSesion);
 	void guardarEmpleado(EmpleadoDTO empleado);
 	int modificarProducto(ProductosDTO producto);
-	void eliminarProducto(int idProducto);
 	
 }

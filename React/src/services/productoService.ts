@@ -1,27 +1,39 @@
-import type { Producto } from "../types/producto";
+import type { Producto, VerProductosDTO } from '../Types/producto';
 
-const API_URL = "http://localhost:8080/Producto";
+const API_URL = '/api/productos';
 
 const productoService = {
-    // GET: MostrarProductos
-    listar: async (): Promise<Producto[]> => {
-        const res = await fetch(`${API_URL}/MostrarProductos`);
-        if (!res.ok) throw new Error("Error al listar productos");
-        return await res.json();
+    // Al listar, ahora recibimos el objeto que SI tiene id_producto
+    listar: async (): Promise<VerProductosDTO[]> => {
+        const resp = await fetch(`${API_URL}/MostrarProductos`);
+        if (!resp.ok) throw new Error("Error al obtener productos");
+        return await resp.json();
     },
 
-    // POST: GuardarProducto
-    guardar: async (nuevo: Producto): Promise<number> => {
-        const res = await fetch(`${API_URL}/GuardarProducto`, {
+    guardar: async (producto: Producto): Promise<void> => {
+        await fetch(`${API_URL}/GuardarProducto`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(nuevo)
+            body: JSON.stringify(producto)
         });
-        if (!res.ok) throw new Error("Error al guardar");
-        return await res.json();
+    },
+
+    eliminar: async (id: number): Promise<void> => {
+        const resp = await fetch(`${API_URL}/EliminarProducto`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(id) // Enviamos el ID al backend
+        });
+        if (!resp.ok) throw new Error("No se pudo eliminar");
+    },
+
+    modificar: async (producto: Producto): Promise<void> => {
+        await fetch(`${API_URL}/ModificarProducto`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(producto)
+        });
     }
-    
-    // Aquí añadirás el de eliminar cuando pongas el @DeleteMapping en Java
 };
 
 export default productoService;

@@ -18,7 +18,7 @@ public class IngredienteEntity implements Serializable {
 	@Column(name="ID_INGREDIENTE")
 	private int id;
 	
-	@Column(name="NOMRE")
+	@Column(name="NOMBRE")
 	private String nombre;
 	
 	@Column(name="STOCK")

@@ -1,52 +1,40 @@
+import React, { useState, useEffect } from 'react';
+import { authService } from '../../services/authService';
+import NavbarEmpleado from '../navbars/NavbarEmpleado';
+import NavbarCliente from '../navbars/NavbarCliente';
+import NavbarAnonimo from '../navbars/NavbarAnonimo';
 /*import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import RegistroModal from '../registro/registroComponente';
 
 const Navbar = () => {
-    const [verFichar, setVerFichar] = useState(false);
+    // Estado para guardar al usuario actual
+    const [usuario, setUsuario] = useState<any>(null);
 
-    // Lógica para detectar si es empleado (Goldie/Harper)
-    const sesionRaw = localStorage.getItem("empleado") || localStorage.getItem("cliente");
-    const sesion = sesionRaw ? JSON.parse(sesionRaw) : null;
-    const esEmpleado = sesion && sesion.id_empleado !== undefined;
+    useEffect(() => {
+        // 1. Al cargar la web, miramos el LocalStorage
+        const userStored = authService.getUsuario();
+        setUsuario(userStored);
+    }, []);
 
-    return (
-        <nav style={navStyle}>
-            <Link to="/" style={logoStyle}>PASTELERÍA LAMA</Link>
+    // 2. Lógica de selección de Navbar
+    if (!usuario) {
+        return <NavbarAnonimo />;
+    }
 
-            <div style={linksWrapperStyle}>
-                <Link to="/" style={navBtnStyle}>Inicio</Link>
-                <Link to="/productos" style={navBtnStyle}>Productos</Link>
-                
-                {esEmpleado && (
-                    <>
-                        <Link to="/ingredientes" style={navBtnStyle}>Ingredientes</Link>
-                        <Link to="/recetas" style={navBtnStyle}>Recetas</Link>
-                    </>
-                )}
-                
-                <Link to="/sobre-nosotros" style={navBtnStyle}>Nosotros</Link>
-            </div>
+    if (usuario.rol === 'admin' || usuario.rol === 'empleado') {
+        return <NavbarEmpleado usuario={usuario} />;
+    }
 
-            <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
-                {esEmpleado && (
-                    <button onClick={() => setVerFichar(true)} style={btnFicharStyle}>🕒 Fichar</button>
-                )}
+    if (usuario.rol === 'cliente') {
+        return <NavbarCliente usuario={usuario} />;
+    }
 
-                {sesion ? (
-                    <div style={userBadgeStyle}>👤 {sesion.usuario || sesion.nombre}</div>
-                ) : (
-                    <Link to="/login" style={loginBtnStyle}>Entrar</Link>
-                )}
-            </div>
-
-            {verFichar && sesion && (
-                <RegistroModal empleado={sesion} onClose={() => setVerFichar(false)} />
-            )}
-        </nav>
-    );
+    // Por defecto, si algo falla, anónimo
+    return <NavbarAnonimo />;
 };
 
+export default Navbar;
 // Estilos del Navbar
 const navStyle: React.CSSProperties = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 40px', height: '70px', backgroundColor: '#fff', borderBottom: '2px solid #f2e8cf', position: 'fixed', top: 0, width: '100%', zIndex: 1000, boxSizing: 'border-box' };
 const logoStyle: React.CSSProperties = { fontSize: '20px', fontWeight: 'bold', color: '#5d4037', textDecoration: 'none' };

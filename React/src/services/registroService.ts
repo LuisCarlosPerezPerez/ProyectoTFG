@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/Registro";
+const API_URL = "/api/Registro";
 
 const registroService = {
     listarRegistros: async () => {

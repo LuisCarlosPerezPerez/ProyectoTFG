@@ -22,5 +22,8 @@ public interface ProductoRepository extends JpaRepository<ProductosEntity, Integ
     // Consulta para obtener productos por ID (o el campo que necesites)
     @Query("SELECT p FROM ProductosEntity p WHERE p.id = :id")
     Set<ProductosEntity> Obtenerciertosproductos(@Param("id") int id);
+    
+    @Query("SELECT p FROM ProductosEntity p WHERE p.nombre = :nombre")
+    ProductosEntity findByNombre(@Param("nombre") String nombre);
 
 }
