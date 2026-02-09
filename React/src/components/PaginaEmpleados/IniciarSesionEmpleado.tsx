@@ -1,154 +1,160 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import type { Empleado } from '../../Types/Empleado';
+import { authService } from '../../services/authService';
 
-const LoginEmpleado = () => {
-  const navegar = useNavigate();
+const IniciarSesionEmpleado = () => {
+    const navegar = useNavigate();
+    const [credenciales, setCredenciales] = useState({ usuario: '', contraseña: '' });
 
-  // 1. Estado inicial organizado (minúsculas para la instancia)
-  const [empleado, setEmpleado] = useState<Empleado>({
-    usuario: '',
-    contraseña: '',
-  });
+    const manejarCambio = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setCredenciales({ ...credenciales, [e.target.name]: e.target.value });
+    };
 
-  // 2. Manejo de cambios
-  const manejarCambio = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setEmpleado(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+    const loginEmpleado = async (e: React.FormEvent) => {
+        e.preventDefault();
+        try {
+            const respuesta = await fetch('/api/Empleado/IniciarSesionEmpleado', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(credenciales),
+            });
 
-  // 3. Lógica de envío (Corregida a POST y validaciones)
-  const iniciarSesion = async (e: React.SubmitEvent) => {
-    e.preventDefault();
-    try {
-      const respuesta = await fetch('/api/Empleado/IniciarSesionEmpleado', { 
-        method: 'POST', 
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(empleado),
-      });
-      console.log("Status del servidor:", respuesta.status);
-      const data = await respuesta.json();
-      console.log(data);
-      if (data==null) throw new Error('Error en el servidor');
+            if (respuesta.ok) {
+                const data = await respuesta.json();
+                
+                // --- LÓGICA DE ROLES SEGÚN TU BASE DE DATOS ---
+                // Importante: Usamos 'admininistrador' con la errata exacta de tu DB
+                const esAdmin = data.admininistrador == 1;
 
-      localStorage.setItem('token', data.token);
-      
-      alert("¡Acceso concedido al sistema de gestión!");
-      navegar('/Dashboard'); // Redirige al panel de control del empleado
+                const usuarioLogueado = {
+                    ...data,
+                    // Normalizamos un poco los datos para que el resto de la app sea más fácil de leer
+                    rol: esAdmin ? 'admin' : 'empleado',
+                    admininistrador: esAdmin ? 1 : 0 
+                };
 
-    } catch (error) {
-      console.error("Error al iniciar sesión:", error);
+                // Guardamos en el localStorage a través del servicio
+                authService.login(usuarioLogueado);
+
+                alert(esAdmin ? "Acceso concedido: Panel de Administrador" : "Bienvenido al equipo, " + data.usuario);
+                
+                // Redirigimos a la vitrina
+                navegar('/productos');
+                
+                // Forzamos recarga para que el Navbar detecte al nuevo usuario logueado
+                window.location.reload();
+            } else {
+                alert("Credenciales de staff incorrectas o usuario no encontrado.");
+            }
+        } catch (error) {
+            console.error("Error en el login de empleado:", error);
+            alert("Error de conexión con el servidor de Pastelería Lama.");
+        }
+    };
+
+    return (
+        <div style={styles.container}>
+            <div style={styles.card}>
+                <div style={styles.logoCircle}>👨‍🍳</div>
+                <h2 style={styles.titulo}>Pastelería Lama</h2>
+                <p style={styles.subtitulo}>Panel de Gestión Staff</p>
+                
+                <form onSubmit={loginEmpleado} style={styles.form}>
+                    <div style={styles.group}>
+                        <label style={styles.label}>Nombre de Usuario</label>
+                        <input 
+                            type="text" 
+                            name="usuario" 
+                            placeholder="Tu usuario" 
+                            onChange={manejarCambio} 
+                            style={styles.input}
+                            required
+                        />
+                    </div>
+                    
+                    <div style={styles.group}>
+                        <label style={styles.label}>Contraseña Secreta</label>
+                        <input 
+                            type="password" 
+                            name="contraseña" 
+                            placeholder="••••••••" 
+                            onChange={manejarCambio} 
+                            style={styles.input}
+                            required
+                        />
+                    </div>
+
+                    <button type="submit" style={styles.button}>Acceder al Obrador</button>
+                </form>
+                
+                <button onClick={() => navegar('/')} style={styles.btnVolver}>
+                    ← Volver a la vitrina pública
+                </button>
+            </div>
+        </div>
+    );
+};
+
+const styles = {
+    container: { 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        minHeight: '100vh', 
+        backgroundColor: '#fdfaf5' 
+    },
+    card: { 
+        padding: '40px', 
+        backgroundColor: 'white', 
+        borderRadius: '20px', 
+        boxShadow: '0 10px 30px rgba(93, 64, 55, 0.15)', 
+        width: '350px', 
+        textAlign: 'center' as const,
+        border: '1px solid #f2e8cf'
+    },
+    logoCircle: { fontSize: '3.5rem', marginBottom: '10px' },
+    titulo: { color: '#3e2723', margin: '0', fontSize: '1.8rem', fontWeight: 'bold' as const },
+    subtitulo: { color: '#bc6c25', marginBottom: '30px', fontSize: '0.9rem', fontWeight: 600 },
+    form: { textAlign: 'left' as const },
+    group: { marginBottom: '20px' },
+    label: { 
+        display: 'block', 
+        color: '#5d4037', 
+        fontWeight: 'bold' as const, 
+        marginBottom: '8px', 
+        fontSize: '0.85rem' 
+    },
+    input: { 
+        width: '100%', 
+        padding: '12px', 
+        borderRadius: '8px', 
+        border: '1px solid #d7ccc8', 
+        boxSizing: 'border-box' as const, 
+        fontSize: '1rem',
+        outlineColor: '#bc6c25'
+    },
+    button: { 
+        width: '100%', 
+        padding: '14px', 
+        backgroundColor: '#3e2723', 
+        color: '#f2e8cf', 
+        border: 'none', 
+        borderRadius: '8px', 
+        cursor: 'pointer', 
+        fontWeight: 'bold' as const, 
+        marginTop: '10px', 
+        fontSize: '1rem',
+        transition: 'background 0.3s'
+    },
+    btnVolver: { 
+        marginTop: '25px', 
+        background: 'none', 
+        border: 'none', 
+        color: '#8d6e63', 
+        cursor: 'pointer', 
+        textDecoration: 'underline', 
+        fontSize: '0.85rem' 
     }
-  };
-
-  return (
-    <div style={Estilos.contenedor}>
-      <div style={Estilos.tarjeta}>
-        <div style={Estilos.banner}>ÁREA INTERNA</div>
-        <h2 style={Estilos.titulo}>Acceso Empleados</h2>
-        
-        <form onSubmit={iniciarSesion}>
-          <div style={Estilos.grupo}>
-            <label style={Estilos.etiqueta}>Usuario Corporativo</label>
-            <input 
-              type="text" 
-              name="usuario" 
-              style={Estilos.input}
-              value={empleado.usuario} 
-              onChange={manejarCambio} 
-              required 
-            />
-          </div>
-
-          <div style={Estilos.grupo}>
-            <label style={Estilos.etiqueta}>Contraseña</label>
-            <input 
-              type="password" 
-              name="contraseña" 
-              style={Estilos.input}
-              value={empleado.contraseña} 
-              onChange={manejarCambio} 
-              required 
-            />
-          </div>
-
-          <button type="submit" style={Estilos.boton}>
-            Validar Identidad
-          </button>
-        </form>
-      </div>
-    </div>
-  );
 };
 
-// --- ESTILOS PROFESIONALES (Diferentes al de Cliente) ---
-const Estilos: { [key: string]: React.CSSProperties } = {
-  contenedor: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: '80vh',
-    backgroundColor: '#f4f7f6'
-  },
-  tarjeta: {
-    backgroundColor: '#ffffff',
-    padding: '30px',
-    borderRadius: '8px',
-    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-    width: '100%',
-    maxWidth: '380px',
-    textAlign: 'center',
-    borderTop: '5px solid #3e2723' // Franja café oscuro para distinguir
-  },
-  banner: {
-    fontSize: '0.7rem',
-    fontWeight: 'bold',
-    color: '#8d6e63',
-    letterSpacing: '2px',
-    marginBottom: '10px'
-  },
-  titulo: {
-    color: '#3e2723',
-    marginBottom: '25px',
-    fontSize: '1.5rem'
-  },
-  grupo: {
-    marginBottom: '20px',
-    textAlign: 'left'
-  },
-  etiqueta: {
-    display: 'block',
-    fontSize: '0.85rem',
-    color: '#555',
-    marginBottom: '5px',
-    fontWeight: '600'
-  },
-  input: {
-    width: '100%',
-    padding: '12px',
-    borderRadius: '4px',
-    border: '1px solid #ddd',
-    fontSize: '1rem',
-    boxSizing: 'border-box',
-    outline: 'none'
-  },
-  boton: {
-    width: '100%',
-    padding: '12px',
-    backgroundColor: '#3e2723',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    marginTop: '10px',
-    transition: 'background 0.3s'
-  }
-};
-
-export default LoginEmpleado; 
+export default IniciarSesionEmpleado;

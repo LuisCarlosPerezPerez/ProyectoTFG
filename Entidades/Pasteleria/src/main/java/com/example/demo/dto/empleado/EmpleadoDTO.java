@@ -32,7 +32,10 @@ public class EmpleadoDTO {
 		this.registros = new ArrayList<Integer>();
 		this.productos = new ArrayList<Integer>();
 	}
-
+	
+	public EmpleadoDTO() {
+		
+	}
 
 	public List<Integer> getRegistros() {
 		return registros;

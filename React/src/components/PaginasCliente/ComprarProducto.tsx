@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { producto } from '../../Types/producto';
+import type { Producto } from '../../Types/producto';
 //Cuando Se cree el tipo Producto ya se modificará este import
 
 const ComprarProducto = ({ productoId }: { productoId: number }) => {

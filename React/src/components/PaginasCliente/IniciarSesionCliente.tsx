@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { authService } from '../../services/authService'; // Asegúrate de que la ruta sea correcta
 import type { Cliente } from '../../Types/Cliente';
 
 const IniciarSesionCliente = () => {
@@ -10,30 +11,48 @@ const IniciarSesionCliente = () => {
     setCliente({ ...cliente, [e.target.name]: e.target.value });
   };
 
-  const iniciarSesion = async (e: React.SubmitEvent) => { 
+  const iniciarSesion = async (e: React.FormEvent) => { 
     e.preventDefault();
     try {
+      // Llamada al endpoint de tu backend
       const respuesta = await fetch('/api/Cliente/InicioSesion', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(cliente),
       });
-      console.log("Cuerpo del envío:", JSON.stringify(cliente));
 
       console.log("Status del servidor:", respuesta.status);
-      const data = await respuesta.json();
-      const token = data;
-   
-      localStorage.setItem('token', token);
-      alert("¡Inicio de sesión exitoso!");
-      console.log(token);
-      navegar("/productos");
+
+      if (respuesta.status === 200) {
+        const data = await respuesta.json();
+        
+        // --- SOLUCIÓN AL PROBLEMA DEL ROL ---
+        // Como vimos en tus logs, el servidor no envía el campo 'rol'.
+        // Lo añadimos manualmente para que ProductosPage reconozca al cliente.
+        const usuarioConRol = { 
+            ...data, 
+            rol: 'cliente' 
+        };
+
+        // Guardamos en 'usuario_sesion' usando tu servicio
+        authService.login(usuarioConRol);
+
+        alert("¡Bienvenido a Pastelería Lama!");
+        
+        // Redirigimos a la vitrina de productos
+        navegar("/productos");
+
+        // Forzamos el refresco para actualizar el Navbar y mostrar el botón de comprar
+        window.location.reload();
+      } else {
+        alert("Usuario o contraseña incorrectos");
+      }
 
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
-      alert("Usuario o contraseña incorrectos");
+      alert("Error al conectar con el servidor de la pastelería");
     }
-  }; // <--- Aquí termina iniciarSesion
+  };
 
   return (
     <div style={Estilos.pantallaCompleta}>
@@ -79,9 +98,9 @@ const IniciarSesionCliente = () => {
       </div>
     </div>
   );
-}; // <--- Aquí termina el componente
+};
 
-// ESTILOS CORREGIDOS
+// --- ESTILOS ---
 const Estilos: { [key: string]: React.CSSProperties } = {
   pantallaCompleta: {
     display: 'flex',
@@ -122,9 +141,6 @@ const Estilos: { [key: string]: React.CSSProperties } = {
     padding: '12px',
     borderRadius: '8px',
     border: '2px solid #d7ccc8',
-    backgroundColor: '#ffffff',
-    color: '#3e2723',
-    fontSize: '1rem',
     boxSizing: 'border-box',
   },
   botonEntrar: {
