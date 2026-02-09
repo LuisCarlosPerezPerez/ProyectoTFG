@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-
+import { Link} from 'react-router-dom';
 // Componentes Base
 import Navbar from './componentes/navbar/navbar';
 
@@ -19,12 +19,6 @@ import IniciarSesionEmpleado from './components/PaginaEmpleados/IniciarSesionEmp
 import RegistrarEmpleado from './components/PaginaEmpleados/RegistrarEmpleado.tsx';
 import ModificarProducto from './components/PaginaEmpleados/ModificarProducto.tsx';
 import ListarPedidos from './components/PaginaEmpleados/ListarPedidos.tsx';
-
-import { BrowserRouter as Router, Routes, Route, Navigate, Link } from 'react-router-dom';
-import IniciarSesionEmpleado from './components/PaginaEmpleados/IniciarSesionEmpleado'
-import IniciarSesionCliente from './components/PaginasCliente/IniciarSesionCliente'
-import RegistrarCliente from './components/PaginasCliente/RegistrarCliente'
-import RegistrarEmpleado from './components/PaginaEmpleados/RegistrarEmpleado'
 import './App.css';
 
 function App() {
