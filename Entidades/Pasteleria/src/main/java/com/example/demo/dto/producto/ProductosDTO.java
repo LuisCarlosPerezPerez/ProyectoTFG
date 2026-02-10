@@ -14,10 +14,6 @@ public class ProductosDTO {
     private List<Integer> ingredientes = new ArrayList<>();
     private List<Integer> pedidos = new ArrayList<>(); // Corregido a minúscula
     
-    public ProductosDTO() {
-        super();
-    }
-
     public ProductosDTO(int id_producto, String nombre, int stock, String receta, int precio, int id_empleado,
             List<Integer> ingredientes, List<Integer> pedidos) {
         super();

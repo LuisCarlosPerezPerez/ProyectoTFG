@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authService } from '../../services/authService';
 
@@ -18,6 +17,7 @@ const NavbarCliente = ({ usuario }: { usuario: any }) => {
             <div style={navS.menu}>
                 <Link to="/productos" style={navS.link}>Productos</Link>
                 <Link to="/mis-pedidos" style={navS.link}>Mis Pedidos</Link>
+                <Link to="/FinalizarPedido" style={navS.link}>Realizar Pedido</Link>
             </div>
 
             <div style={navS.userArea}>
@@ -26,6 +26,7 @@ const NavbarCliente = ({ usuario }: { usuario: any }) => {
             </div>
         </nav>
     );
+    
 };
 
 const navS = {

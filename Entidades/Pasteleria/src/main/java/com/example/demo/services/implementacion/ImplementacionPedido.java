@@ -31,7 +31,7 @@ public class ImplementacionPedido implements ServicioPedido {
 	@Override
 	public int guardarPedido(PedidoFullDTO pedidoFullDTO) {
 		PedidoEntity entidad = new PedidoEntity();
-		entidad.setCliente(repositorioCliente.findById(pedidoFullDTO.getCliente().getId()).orElse(null));
+		entidad.setCliente(repositorioCliente.BuscarPorId(pedidoFullDTO.getId_cliente()));
 		repositorioPedido.save(entidad);
 		return entidad.getId();
 	}

@@ -18,7 +18,7 @@ import VerRegistrosAdmin from './paginas/verRegistrosAdmin';
 import IniciarSesionCliente from './components/PaginasCliente/IniciarSesionCliente';
 import RegistrarCliente from './components/PaginasCliente/RegistrarCliente';
 import ComprarProducto from './components/PaginasCliente/ComprarProducto';
-
+import FinalizarPedido from './components/PaginasCliente/TerminarPedido';
 // Páginas de Empleado
 import IniciarSesionEmpleado from './components/PaginaEmpleados/IniciarSesionEmpleado';
 import RegistrarEmpleado from './components/PaginaEmpleados/RegistrarEmpleado';
@@ -44,9 +44,9 @@ function App() {
             {/* --- RUTAS DE CLIENTE --- */}
             <Route path="/IniciarSesionCliente" element={<IniciarSesionCliente />} />
             <Route path="/RegistrarCliente" element={<RegistrarCliente />} />
-            
+            <Route path="/FinalizarPedido" element={<FinalizarPedido/>}/> 
             {/* RUTA DE COMPRA CON ID DINÁMICO */}
-            <Route path="/comprar/:id" element={<ComprarProducto productoId={0} />} />
+            <Route path="/comprar/:id" element={<ComprarProducto/>} />
 
             {/* --- RUTAS DE EMPLEADO / GESTIÓN --- */}
             <Route path="/IniciarSesionEmpleado" element={<IniciarSesionEmpleado />} />

@@ -1,6 +1,5 @@
 //-------------------------Objeto Full (Peticion)-------------------------
 package com.example.demo.dto.PedidosDTO;
-import com.example.demo.dto.ClientesDTO.ClienteFullDTO;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,15 +11,15 @@ public class PedidoFullDTO {
 	private int telefono;
 	private String estado;
 	private Set<Integer>productos = new HashSet<Integer>();
-	private ClienteFullDTO cliente;
+	private int id_cliente;
 	
-	public PedidoFullDTO(int id, Date entrega, int telefono,ClienteFullDTO cliente) {
+	public PedidoFullDTO(int id, Date entrega, int telefono,int id_cliente) {
 		this.id = id;
 		this.entrega = entrega;
 		this.telefono = telefono;
 		this.estado = "Pendiente";
 		this.productos = new HashSet<Integer>();
-		this.cliente = cliente;
+		this.id_cliente = id_cliente;
 	}
 
 	public Set<Integer> getProductos() {
@@ -35,15 +34,16 @@ public class PedidoFullDTO {
 		
 	}
 
-	public ClienteFullDTO getCliente() {
-		return cliente;
-	}
-
-
-	public void setCliente(ClienteFullDTO cliente) {
-		this.cliente = cliente;
-	}
 	
+	
+	public int getId_cliente() {
+		return id_cliente;
+	}
+
+	public void setId_cliente(int id_cliente) {
+		this.id_cliente = id_cliente;
+	}
+
 	public int getId() {
 		return id;
 	}

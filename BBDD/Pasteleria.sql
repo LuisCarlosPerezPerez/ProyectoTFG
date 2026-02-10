@@ -55,7 +55,7 @@ Create Table CLIENTE (
 
 CREATE TABLE PEDIDO (
     ID_PEDIDO INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador del Pedido',
-    ENTREGA DATE NOT NULL COMMENT 'Fecha del Pedido',
+    ENTREGA DATE NULL COMMENT 'Fecha del Pedido',
     TELEFONO INT NOT NULL COMMENT 'Telefono del cliente para el pedido',
     ESTADO VARCHAR(20) NULL COMMENT 'Estado del Pedido',
     ID_CLIENTE INT NULL COMMENT 'Identificador del Cliente',

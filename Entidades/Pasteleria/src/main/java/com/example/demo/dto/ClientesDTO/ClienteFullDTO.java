@@ -1,7 +1,7 @@
 //-------------------------Objeto Full-------------------------
 package com.example.demo.dto.ClientesDTO;
-import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteFullDTO {
@@ -9,10 +9,10 @@ public class ClienteFullDTO {
 	private String usuario;
 	private String contraseña;
 	private String email;
-	private List<PedidoFullDTO>listapedidos;
+	private List<Integer> listapedidos=new ArrayList<>();
 
 	//Constructor completo
-	public ClienteFullDTO(int id, String usuario, String contraseña, String email, List<PedidoFullDTO> list) {
+	public ClienteFullDTO(int id, String usuario, String contraseña, String email, List<Integer> list) {
 		this.id = id;
 		this.usuario = usuario;
 		this.email = email;
@@ -20,9 +20,8 @@ public class ClienteFullDTO {
 		this.listapedidos= list;
 	}
 
-	//Constructor vacio
 	public ClienteFullDTO() {
-		
+	    // Constructor vacío necesario para que Jackson (JSON) funcione
 	}
 	
 	public String getEmail() {
@@ -35,11 +34,11 @@ public class ClienteFullDTO {
 
 	
 
-	public List<PedidoFullDTO> getListapedidos() {
+	public List<Integer> getListapedidos() {
 		return listapedidos;
 	}
 
-	public void setListapedidos(List<PedidoFullDTO> listapedidos) {
+	public void setListapedidos(List<Integer> listapedidos) {
 		this.listapedidos = listapedidos;
 	}
 
