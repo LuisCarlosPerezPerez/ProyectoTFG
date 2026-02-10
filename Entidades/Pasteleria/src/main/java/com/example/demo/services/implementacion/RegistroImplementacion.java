@@ -1,7 +1,9 @@
 package com.example.demo.services.implementacion;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +17,6 @@ import com.example.demo.services.interfaz.RegistroInterfaz;
 @Service
 public class RegistroImplementacion implements RegistroInterfaz {
 	
-	public static int ID_EMPLEADO;
-	
-	public static List<RegistroEntity> listaEntidadRegistro = new ArrayList<RegistroEntity>();
-	
 	@Autowired
 	RegistroRepository registrosql;
 	
@@ -31,37 +29,71 @@ public class RegistroImplementacion implements RegistroInterfaz {
 	}
 	
 	@Override
-	public int GuardarRegistro(newRegistroDTO registro) {
-		RegistroEntity r = null;
-		RegistroEntity registrar = new RegistroEntity();
-		registrar.setFecha(registro.getFecha());
-		registrar.setFecha_entrada(registro.getFecha_entrada());
-		registrar.setTotal_horas(0);
-		registrar.setEmpleado(empleadosql.findById(registro.getId_empleado()));
-		r = registrosql.save(registrar);
-		return r.getID_Registro();
-	}
+    public int GuardarRegistro(newRegistroDTO registro) {
+        RegistroEntity registrar = new RegistroEntity();
+        registrar.setFecha(registro.getFecha());
+        registrar.setFecha_entrada(registro.getFecha_entrada());
+        registrar.setTotal_horas(0);
+        
+        registrar.setEmpleado(empleadosql.findById(registro.getId_empleado()));
+        
+        RegistroEntity r = registrosql.save(registrar);
+        return r.getID_Registro();
+    }
 
 	@Override
-	public void RegistrarSalida() {
-		RegistroEntity registro = registrosql.buscarRegistro(new Date(), ID_EMPLEADO);
-		registrosql.ActualizarHoraSalida(LocalDateTime.now(), ID_EMPLEADO, registro.getFecha());
-		int horas = registrosql.horasdeldiaTrabajadas(new Date(), ID_EMPLEADO);
-		registrosql.ActualizarHorasTotales(horas, ID_EMPLEADO, registro.getFecha());
+	public void RegistrarSalida(int idEmpleado) {
+	    // 1. Buscamos el registro abierto (el que tiene salida NULL)
+	    RegistroEntity registro = registrosql.buscarRegistroAbierto(idEmpleado);
+	    
+	    if (registro != null) {
+	        int idReg = registro.getID_Registro(); // Obtenemos su ID único
+	        
+	        // 2. Ponemos la hora de salida
+	        registrosql.ActualizarHoraSalida(LocalDateTime.now(), idReg);
+	        
+	        // 3. Calculamos horas con Double
+	        Double horas = registrosql.calcularHorasPorId(idReg);
+	        
+	        // 4. Guardamos el total
+	        if (horas != null) {
+	            registrosql.ActualizarHorasTotales(horas, idReg);
+	        }
+	    }
 	}
 
-	@Override
-	public List<RegistroDTO> listarRegistros() {
-		return listaEntidadRegistro.stream()
-	            .map(a -> new RegistroDTO(
-	            		a.getID_Registro(),
-	            		a.getFecha(),
-	            		a.getFecha_entrada(),
-	            		a.getFecha_salida(),
-	            		a.getTotal_horas(),
-	            		a.getEmpleado().getID_Empleado()
-	            ))
-	            .toList();
-	}
+    @Override
+    public List<RegistroDTO> listarRegistros() {
+
+        return registrosql.findAll().stream()
+            .map(a -> new RegistroDTO(
+                a.getID_Registro(),
+                a.getFecha(),
+                a.getFecha_entrada(),
+                a.getFecha_salida(),
+                a.getTotal_horas(),
+                a.getEmpleado().getID_Empleado() 
+            ))
+            .toList();
+    }
+
+    @Override
+    public List<RegistroDTO> listarTodosLosRegistros() {
+        // Llamamos a la nueva query nativa del repositorio
+        List<RegistroEntity> listaCompleta = registrosql.listarTodosLosRegistros();
+        
+        return listaCompleta.stream()
+            .map(a -> new RegistroDTO(
+                a.getID_Registro(),
+                a.getFecha(),
+                a.getFecha_entrada(),
+                a.getFecha_salida(),
+                a.getTotal_horas(),
+                a.getEmpleado() != null ? a.getEmpleado().getID_Empleado() : 0
+            ))
+            .collect(Collectors.toList());
+    }
+    
+    
 
 }

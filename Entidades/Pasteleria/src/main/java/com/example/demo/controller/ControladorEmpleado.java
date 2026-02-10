@@ -33,10 +33,6 @@ public class ControladorEmpleado {
 	
 
 	
-	@PostMapping("/ModificarProducto")
-	public void modificarproducto(@RequestBody ProductosDTO nombreproducto) {
-	servicioempleado.modificarProducto(nombreproducto);
-	}
 	
 	
 	

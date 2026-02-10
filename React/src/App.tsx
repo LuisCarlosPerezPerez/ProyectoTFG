@@ -10,6 +10,10 @@ import ProductosPage from './paginas/paginasProductos';
 import IngredientesPage from './paginas/paginasIngredientes';
 import RecetasPage from './paginas/recetas';
 
+// --- NUEVA PÁGINA DE FICHAR ---
+import PaginaRegistros from './paginas/paginaRegistros'; 
+import VerRegistrosAdmin from './paginas/verRegistrosAdmin';
+
 // Páginas de Cliente
 import IniciarSesionCliente from './components/PaginasCliente/IniciarSesionCliente';
 import RegistrarCliente from './components/PaginasCliente/RegistrarCliente';
@@ -51,6 +55,10 @@ function App() {
             <Route path="/recetas" element={<RecetasPage />} />
             <Route path="/pedidos" element={<ListarPedidos />} />
 
+            {/* --- NUEVA RUTA DE CONTROL DE HORARIO --- */}
+            <Route path="/registros" element={<PaginaRegistros />} />
+            <Route path='/ver-Registros' element={<VerRegistrosAdmin/>} />
+
             {/* Redirección por defecto */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
@@ -61,7 +69,7 @@ function App() {
 }
 
 const mainContainerStyle: React.CSSProperties = { 
-  paddingTop: '80px', // Evita que el Navbar tape el contenido
+  paddingTop: '80px', 
   minHeight: 'calc(100vh - 80px)',
   display: 'flex',
   flexDirection: 'column',
