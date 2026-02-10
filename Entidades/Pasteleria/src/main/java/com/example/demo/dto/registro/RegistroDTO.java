@@ -15,10 +15,10 @@ public class RegistroDTO {
     private Date fecha;
     private LocalDateTime fecha_entrada;
     private LocalDateTime fecha_salida;
-    private int total_horas;
+    private Double total_horas;
     private int id_empleado;
     
-	public RegistroDTO(int iD_Registro, Date fecha, LocalDateTime fecha_entrada, LocalDateTime fecha_salida, int total_horas,
+	public RegistroDTO(int iD_Registro, Date fecha, LocalDateTime fecha_entrada, LocalDateTime fecha_salida, Double total_horas,
 			int id_empleado) {
 		super();
 		this.ID_Registro = iD_Registro;
@@ -55,10 +55,10 @@ public class RegistroDTO {
 	public void setFecha_salida(LocalDateTime fecha_salida) {
 		this.fecha_salida = fecha_salida;
 	}
-	public int getTotal_horas() {
+	public Double getTotal_horas() {
 		return total_horas;
 	}
-	public void setTotal_horas(int total_horas) {
+	public void setTotal_horas(Double total_horas) {
 		this.total_horas = total_horas;
 	}
 	public int getEmpleado() {

@@ -12,4 +12,5 @@ public interface ProductoInterfaz {
 	newProductoDTO crearProductos();
 	int GuardarProducto(newProductoDTO producto);
 	void eliminarProducto(int idProducto);
+	void actualizarProducto(int id, newProductoDTO productoDTO);
 }

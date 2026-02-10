@@ -48,19 +48,25 @@ const ProductosPage = () => {
         e.preventDefault();
         try {
             if (editandoId) {
-                // Usamos tu servicio modificar
-                await productoService.modificar({
-                    id_producto: editandoId,
-                    ...formData
+                // Sincronizado con tu Controller: @PutMapping("/ActualizarProducto")
+                // Pasamos el ID por separado como espera el @RequestParam del Backend
+                await productoService.actualizarProducto(editandoId, {
+                    nombre: formData.nombre,
+                    precio: formData.precio,
+                    stock: formData.stock,
+                    receta: formData.receta
                 });
+                alert("✅ Producto actualizado en la vitrina");
             } else {
-                // Usamos tu servicio guardar
+                // Flujo para crear nuevo producto
                 await productoService.guardar(formData);
+                alert("✅ Nuevo dulce añadido");
             }
             setMostrarForm(false);
-            cargar(); // Recargar la lista
+            cargar(); // Refrescar la lista de productos
         } catch (error) {
-            alert("Error al procesar el producto: " + error);
+            console.error("Error en la operación:", error);
+            alert("Error al procesar el producto. Revisa la consola.");
         }
     };
 

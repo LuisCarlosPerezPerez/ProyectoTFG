@@ -29,7 +29,7 @@ public class RegistroEntity implements Serializable {
     private LocalDateTime fecha_salida;
     
     @Column(name="TOTAL_HORAS")
-    private int total_horas;
+    private Double total_horas;
     
     @ManyToOne
     @JoinColumn(name = "ID_EMPLEADO", nullable = false)
@@ -69,11 +69,11 @@ public class RegistroEntity implements Serializable {
 		this.fecha_salida = fecha_salida;
 	}
 
-	public int getTotal_horas() {
+	public double getTotal_horas() {
 		return total_horas;
 	}
 
-	public void setTotal_horas(int total_horas) {
+	public void setTotal_horas(double total_horas) {
 		this.total_horas = total_horas;
 	}
 

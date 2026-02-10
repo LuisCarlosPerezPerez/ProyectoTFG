@@ -52,6 +52,16 @@ public class ProductoImplementacion implements ProductoInterfaz {
         // Si 'existente' no es null, el producto ya está en la base de datos
         return 0; 
     }
+    @Override
+    public void actualizarProducto(int id, newProductoDTO productoDTO) {
+        RepoProducto.actualizarProducto(
+            id, 
+            productoDTO.getNombre(), 
+            productoDTO.getPrecio(), 
+            productoDTO.getStock(), 
+            productoDTO.getReceta()
+        );
+    }
 
     @Override
     public void eliminarProducto(int idProducto) {

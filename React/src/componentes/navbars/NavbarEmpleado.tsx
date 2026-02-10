@@ -5,13 +5,12 @@ import { authService } from '../../services/authService';
 const NavbarEmpleado = ({ usuario }: any) => {
     const navigate = useNavigate();
 
-    // Utilizamos la lógica centralizada del servicio que ya reconoce el valor 1
+    // Lógica para mostrar opciones de administrador
     const esAdminPoderoso = authService.esAdmin();
 
     const handleLogout = () => {
         authService.logout();
         navigate('/');
-        // Recarga para limpiar completamente el estado de la sesión
         window.location.reload();
     };
 
@@ -23,20 +22,26 @@ const NavbarEmpleado = ({ usuario }: any) => {
             </div>
 
             <div style={s.menuGroup}>
+                {/* Nueva opción para que los empleados registren su entrada/salida */}
+                <Link to="/registros" style={s.fichajeLink}>🕒 Fichar</Link>
+                
                 <Link to="/productos" style={s.link}>Vitrina</Link>
                 <Link to="/ingredientes" style={s.link}>📦 Stock</Link>
                 <Link to="/recetas" style={s.link}>🥣 Mezclar</Link>
                 <Link to="/pedidos" style={s.link}>📋 Pedidos</Link>
                 
-                {/* El botón solo aparece si esAdmin() devuelve true (valor 1 en DB) */}
+                {/* Opción exclusiva de Administrador */}
                 {esAdminPoderoso && (
-                    <Link to="/RegistrarEmpleado" style={s.adminLink}>👤 + Nuevo Staff</Link>
+                    <>
+                        <Link to="/ver-registros" style={s.link}>📊 Registros Staff</Link>
+                        <Link to="/RegistrarEmpleado" style={s.adminLink}>👤 + Nuevo Staff</Link>
+                    </>
                 )}
             </div>
 
             <div style={s.userArea}>
                 <div style={s.userInfo}>
-                    <span style={s.userName}>{usuario?.usuario || 'Empleado'}</span>
+                    <span style={s.userName}>{usuario?.Usuario || usuario?.usuario || 'Empleado'}</span>
                     <span style={s.userRole}>
                         {esAdminPoderoso ? 'ADMINISTRADOR' : 'EMPLEADO'}
                     </span>
@@ -75,8 +80,21 @@ const s: { [key: string]: React.CSSProperties } = {
         fontWeight: 'bold',
         letterSpacing: '1px'
     },
-    menuGroup: { display: 'flex', gap: '25px', alignItems: 'center' },
+    menuGroup: { display: 'flex', gap: '20px', alignItems: 'center' },
     link: { textDecoration: 'none', color: '#f2e8cf', fontWeight: 500, fontSize: '0.9rem' },
+    
+    // Estilo especial para el botón de Fichar
+    fichajeLink: {
+        textDecoration: 'none',
+        color: '#2a9d8f', // Verde azulado para destacar
+        fontWeight: 'bold',
+        fontSize: '0.9rem',
+        backgroundColor: 'rgba(42, 157, 143, 0.1)',
+        padding: '5px 10px',
+        borderRadius: '5px',
+        border: '1px solid #2a9d8f'
+    },
+
     adminLink: { 
         backgroundColor: '#795548', 
         color: '#f2e8cf', 
