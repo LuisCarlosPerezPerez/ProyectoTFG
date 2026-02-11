@@ -10,4 +10,9 @@ class PasteleriaApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void Ingrediente(){
+			
+	}
+
 }
