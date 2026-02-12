@@ -10,6 +10,7 @@ export interface Producto {
     };
     ingredientes: number[];
     pedidos?: any[];
+    cantidad: number;
 }
 
 export interface NuevoProductoDTO  {

@@ -1,8 +1,9 @@
-import type { Pedido } from './Pedido';
 export interface Cliente {
     id_cliente?: number;
-    usuario: string;
-    contraseña: string;
+    usuario?: string;
+    contraseña?: string;
     email?: string;
-    pedido?: Pedido;
+    pedidos?: Array<{
+        id_pedidos?:number;
+    }>;
 };
