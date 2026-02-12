@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ClientesDTO.*;
-import com.example.demo.dto.PedidosDTO.PedidoFullDTO;
 import com.example.demo.entity.ClienteEntity;
 import com.example.demo.repository.RepositorioCliente;
 import com.example.demo.services.interfaz.*;
@@ -53,15 +55,29 @@ public class ControladorCliente {
 	    return ResponseEntity.ok(clienteActualizado);
 	}
 	
-	@PutMapping("/FinalizarPedido/{idPedido}")
-	public ResponseEntity<ClienteFullDTO> finalizarPedido(
-	        @PathVariable int idPedido, 
-	        @RequestParam int telefono,
-	        @RequestBody ClienteFullDTO clienteToken) { 
+	@GetMapping("/DetallesPedidoPendiente/{idCliente}")
+	public ResponseEntity<List<Map<String, Object>>> obtenerDetalles(@PathVariable int idCliente) {
+	    System.out.println("DEBUG: Consultando productos del pedido pendiente para cliente ID: " + idCliente);
 	    
-	    // El servicio se encarga de validar si ese ID de pedido pertenece al token
-	    ClienteFullDTO resultado = serviciocliente.actualizarEstadoPedido(idPedido, telefono, clienteToken);
+	    List<Map<String, Object>> respuesta = serviciocliente.obtenerProductosPedidoPendiente(idCliente);
+	    
+	    return ResponseEntity.ok(respuesta);
+	}
+	
+	@PutMapping("/FinalizarPedidoAutomatico")
+	public ResponseEntity<?> finalizarPedidoAuto(
+	        @RequestParam String fecha, 
+	        @RequestParam String telefono, 
+	        @RequestBody Map<String, Object> payload) { 
+	    
+	    // Pasamos todo al servicio
+	    ClienteFullDTO resultado = serviciocliente.finalizarPedidoAutomatico(fecha, telefono, payload);
 	    return ResponseEntity.ok(resultado);
+	}
+	
+	@GetMapping("/HistorialPedidos/{idCliente}")
+	public ResponseEntity<List<Map<String, Object>>> obtenerHistorial(@PathVariable int idCliente) {
+	    return ResponseEntity.ok(serviciocliente.obtenerHistorialPedidos(idCliente));
 	}
 
 }

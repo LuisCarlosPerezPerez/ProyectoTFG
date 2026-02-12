@@ -1,4 +1,7 @@
 package com.example.demo.services.interfaz;
+import java.util.List;
+import java.util.Map;
+
 import com.example.demo.dto.ClientesDTO.*;
 
 public interface ServicioCLiente {
@@ -12,6 +15,10 @@ public interface ServicioCLiente {
 	ClienteFullDTO ComprobarSesion(String usuario,String contraseña);
 
 	ClienteFullDTO comprarproducto(ClienteFullDTO clienteDto, int idProducto);
-	
-	ClienteFullDTO actualizarEstadoPedido(int idPedido, int telefono, ClienteFullDTO clienteToken);
+
+	List<Map<String, Object>> obtenerProductosPedidoPendiente(int idCliente);
+
+	ClienteFullDTO finalizarPedidoAutomatico(String fechaEntrega, String telefono, Map<String, Object> datos);
+
+	List<Map<String, Object>> obtenerHistorialPedidos(int idCliente);
 }

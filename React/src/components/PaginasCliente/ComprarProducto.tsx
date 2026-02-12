@@ -27,42 +27,50 @@ export const ComprarProducto = () => {
         }
     }, [navigate]);
 
-    // 4. FUNCIÓN PARA EJECUTAR LA COMPRA
     const ejecutarCompra = async () => {
-        if (!cliente || !idProducto) return;
+    if (!cliente || !idProducto) return;
 
-        setCargando(true);
-        setError(null);
+    setCargando(true);
+    setError(null);
 
-        // Construimos la URL con el idProducto como PathVariable
-        const url = `/api/Cliente/ComprarProducto/${idProducto}`;
+    console.group("%c🚀 INICIANDO COMPRA", "color: #e67e22; font-weight: bold;");
+    console.log("Token actual (antes):", cliente);
+    console.log("Producto a comprar ID:", idProducto);
 
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json' 
-                },
-                // Enviamos el DTO completo en el Body
-                body: JSON.stringify(cliente) 
-            });
+    try {
+        const response = await fetch(`/api/Cliente/ComprarProducto/${idProducto}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(cliente) 
+        });
 
-            if (response.ok) {
-                const data = await response.json();
-                console.log("Compra exitosa:", data);
-                alert("¡Gracias por tu compra en Pastelería Lama!");
-                navigate('/mis-pedidos'); // O a la página que prefieras
-            } else {
-                const mensajeError = await response.text();
-                setError(`Error en el servidor: ${mensajeError || 'Consulta fallida'}`);
-            }
-        } catch (err) {
-            console.error("Error de conexión:", err);
-            setError("No se pudo conectar con el servidor. Verifica que el Backend esté encendido.");
-        } finally {
-            setCargando(false);
+        if (response.ok) {
+            const clienteActualizado = await response.json();
+            
+            console.log("%c✅ COMPRA EXITOSA", "color: #27ae60; font-weight: bold;");
+            console.log("Nuevo Token recibido del servidor:", clienteActualizado);
+
+            // CORRECCIÓN: Guardar el objeto serializado como String
+            localStorage.setItem('usuario_sesion', JSON.stringify(clienteActualizado));
+            
+            // Actualizamos el estado local para que la UI refleje el cambio si fuera necesario
+            setCliente(clienteActualizado);
+
+            alert("Producto añadido al pedido correctamente.");
+            navigate('/mis-pedidos'); 
+        } else {
+            const mensajeError = await response.text();
+            console.error("Error en respuesta:", mensajeError);
+            setError(`Error: ${mensajeError}`);
         }
-    };
+    } catch (err) {
+        console.error("Fallo de red:", err);
+        setError("Error de conexión con el servidor.");
+    } finally {
+        console.groupEnd();
+        setCargando(false);
+    }
+};
 
     // 5. RENDERIZADO
     if (error && !cliente) return <div style={{ color: 'red', padding: '20px' }}>{error}</div>;

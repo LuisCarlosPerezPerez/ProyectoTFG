@@ -27,12 +27,24 @@ public class PedidoEntity implements Serializable {
 	@Column(name="ESTADO")
 	private String estado;
 	
+	@Column(name="PRECIOTOTAL")
+	private int preciototal;
+	
 	@ManyToOne
 	@JoinColumn(name="ID_CLIENTE",nullable=false)
 	private ClienteEntity cliente;
 	
 	@OneToMany(mappedBy="pedido")
 	private Set<PedidoProductoEntity>productos=new HashSet<>();
+
+	
+	public int getPreciototal() {
+		return preciototal;
+	}
+
+	public void setPreciototal(int preciototal) {
+		this.preciototal = preciototal;
+	}
 
 	public Set<PedidoProductoEntity> getProductos() {
 		return productos;

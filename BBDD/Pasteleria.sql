@@ -59,6 +59,7 @@ CREATE TABLE PEDIDO (
     TELEFONO INT NOT NULL COMMENT 'Telefono del cliente para el pedido',
     ESTADO VARCHAR(20) NULL COMMENT 'Estado del Pedido',
     ID_CLIENTE INT NULL COMMENT 'Identificador del Cliente',
+    TOTALPRECIO INT NULL COMMENT 'Precio Total del Pedido',
     CONSTRAINT PK_ID_PEDIDO PRIMARY KEY (ID_PEDIDO),
     CONSTRAINT FK_ID_CLIENTE FOREIGN KEY (ID_CLIENTE) REFERENCES CLIENTE(ID_CLIENTE)
 );
@@ -67,11 +68,16 @@ CREATE TABLE PEDIDO_PRODUCTO(
     ID_PEDIDO_PRODUCTO INT NOT NULL AUTO_INCREMENT COMMENT 'Identificador de pedido y producto',
     ID_PEDIDO INT NULL COMMENT 'Identificador del Pedido',
     ID_PRODUCTO INT NULL COMMENT 'Identificador del Producto',
+    CANTIDAD INT NULL COMMENT 'Cantidad del Pedido',
     CONSTRAINT PK_ID_PEDIDO_PRODUCTO PRIMARY KEY (ID_PEDIDO_PRODUCTO),
     CONSTRAINT FK_ID_PEDIDO FOREIGN KEY (ID_PEDIDO) REFERENCES PEDIDO(ID_PEDIDO),
     CONSTRAINT FK_ID_PRODUCTO FOREIGN KEY (ID_PRODUCTO) REFERENCES PRODUCTOS(ID_PRODUCTO)
 );
 
-select * from productos;
-
 INSERT INTO empleado ( usuario, contraseña, admininistrador) VALUES ('Admin', 'Pruebas', 1);
+
+-- Conusltas
+-- select * from productos;
+-- select * from pedido;
+-- select * from cliente;
+-- select * from pedido_producto;

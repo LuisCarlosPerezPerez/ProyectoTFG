@@ -19,10 +19,11 @@ import IniciarSesionCliente from './components/PaginasCliente/IniciarSesionClien
 import RegistrarCliente from './components/PaginasCliente/RegistrarCliente';
 import ComprarProducto from './components/PaginasCliente/ComprarProducto';
 import FinalizarPedido from './components/PaginasCliente/TerminarPedido';
+import MisPedidos from './components/PaginasCliente/MisPedidos';
 // Páginas de Empleado
 import IniciarSesionEmpleado from './components/PaginaEmpleados/IniciarSesionEmpleado';
 import RegistrarEmpleado from './components/PaginaEmpleados/RegistrarEmpleado';
-import ListarPedidos from './components/PaginaEmpleados/ListarPedidos';
+import GestionPedidosEmpleado from './components/PaginaEmpleados/MostrarPedidos';
 
 import './App.css';
 
@@ -47,13 +48,14 @@ function App() {
             <Route path="/FinalizarPedido" element={<FinalizarPedido/>}/> 
             {/* RUTA DE COMPRA CON ID DINÁMICO */}
             <Route path="/comprar/:id" element={<ComprarProducto/>} />
-
+            <Route path="/MisPedidos" element={<MisPedidos/>} />
             {/* --- RUTAS DE EMPLEADO / GESTIÓN --- */}
             <Route path="/IniciarSesionEmpleado" element={<IniciarSesionEmpleado />} />
             <Route path="/RegistrarEmpleado" element={<RegistrarEmpleado />} />
             <Route path="/ingredientes" element={<IngredientesPage />} />
             <Route path="/recetas" element={<RecetasPage />} />
-            <Route path="/pedidos" element={<ListarPedidos />} />
+            <Route path="/pedidos" element={<GestionPedidosEmpleado/>} />
+
 
             {/* --- NUEVA RUTA DE CONTROL DE HORARIO --- */}
             <Route path="/registros" element={<PaginaRegistros />} />

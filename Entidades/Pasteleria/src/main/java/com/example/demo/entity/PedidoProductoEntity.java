@@ -22,6 +22,19 @@ public class PedidoProductoEntity implements Serializable {
 	@JoinColumn(name = "ID_PRODUCTO", nullable = false)
 	private ProductosEntity producto;
 	
+	@Column(name= "CANTIDAD")
+	private int cantidad;
+	
+	
+	
+	public int getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
+	}
+
 	public int getId() {
 		return id;
 	}
