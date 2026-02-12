@@ -15,6 +15,24 @@ const ingredienteService = {
         }
     },
 
+    modificar: async (id: number, datos: Ingrediente): Promise<void> => {
+        const res = await fetch(`${API_URL}/ModificarIngrediente?id=${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                id: id, // Incluimos el ID dentro del body también por si el DTO lo requiere
+                nombre: datos.nombre,
+                stock: Number(datos.stock), // Forzamos que sea número
+                proveedor: datos.proveedor
+            })
+        });
+
+        if (!res.ok) {
+            const errorText = await res.text();
+            throw new Error(`Error 400: ${errorText}`);
+        }
+    },
+
     // 2. Guardar (Coincide con tu @PostMapping("/GuardarIngrediente"))
     guardar: async (nuevo: Ingrediente): Promise<number> => {
         const res = await fetch(`${API_URL}/GuardarIngrediente`, {

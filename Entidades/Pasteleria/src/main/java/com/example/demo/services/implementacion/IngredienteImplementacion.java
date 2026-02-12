@@ -51,4 +51,19 @@ public class IngredienteImplementacion implements IngredienteInterfaz {
             throw new RuntimeException("El ingrediente con ID " + id + " no existe en la despensa.");
         }
     }
+    
+    @Override
+    public void modificarIngrediente(int id, IngredienteFullDTO dto) {
+        // 1. Buscamos el ingrediente original en la DB
+        IngredienteEntity existente = RepoIngrediente.findById(id)
+            .orElseThrow(() -> new RuntimeException("Ingrediente no encontrado con ID: " + id));
+
+        // 2. Aplicamos los cambios que el Admin envió desde React
+        existente.setNombre(dto.getNombre());
+        existente.setStock(dto.getStock());
+        existente.setProveedor(dto.getProveedor());
+
+        // 3. Guardamos (JPA detecta que ya existe el ID y hace un UPDATE)
+        RepoIngrediente.save(existente);
+    }
 }
