@@ -14,5 +14,9 @@ class PasteleriaApplicationTests {
 	void Ingrediente(){
 			
 	}
+	@Test
+	void Cliente(){
+		
+	}
 
 }
