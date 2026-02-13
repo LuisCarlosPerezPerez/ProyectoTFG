@@ -52,6 +52,7 @@ const Footer = () => {
                     <span style={f.separator}>|</span>
                     <Link to="/cookies" style={f.legalItem}>Política de Cookies</Link>
                 </div>
+                
                 <p style={f.copyText}>
                     © {new Date().getFullYear()} Pastelería Lama - Todos los derechos reservados.
                 </p>
