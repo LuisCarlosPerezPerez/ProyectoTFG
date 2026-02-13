@@ -27,6 +27,7 @@ import RegistrarEmpleado from './components/PaginaEmpleados/RegistrarEmpleado';
 import GestionPedidosEmpleado from './components/PaginaEmpleados/MostrarPedidos';
 
 import './App.css';
+import Footer from './componentes/footer/footer';
 
 function App() {
   return (
@@ -66,8 +67,10 @@ function App() {
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
+
   );
 }
 
