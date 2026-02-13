@@ -26,12 +26,18 @@ import IniciarSesionEmpleado from './components/PaginaEmpleados/IniciarSesionEmp
 import RegistrarEmpleado from './components/PaginaEmpleados/RegistrarEmpleado';
 import GestionPedidosEmpleado from './components/PaginaEmpleados/MostrarPedidos';
 
+// --- NUEVAS IMPORTACIONES LEGALES ---
+import AvisoLegalPage from './paginas/AvisoLegal'; // Revisa que el nombre del archivo coincida
+import PoliticaPrivacidadPage from './paginas/PoliticaPrivacidad';
+import PoliticaCookiesPage from './paginas/PoliticasCookies';
+
 import './App.css';
+import Footer from './componentes/footer/footer';
 
 function App() {
   return (
     <Router>
-      <div className="App" style={{ backgroundColor: '#fdfaf5', minHeight: '100vh' }}>
+      <div className="App" style={{ backgroundColor: '#fdfaf5', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         
         <Navbar /> 
 
@@ -43,13 +49,19 @@ function App() {
             {/* --- VITRINA (Productos) --- */}
             <Route path="/productos" element={<ProductosPage />} />
             <Route path="/nosotros" element={<NosotrosPage />} />
+
+            {/* --- RUTAS LEGALES (Añadidas aquí) --- */}
+            <Route path="/aviso-legal" element={<AvisoLegalPage />} />
+            <Route path="/politica-privacidad" element={<PoliticaPrivacidadPage />} />
+            <Route path="/cookies" element={<PoliticaCookiesPage />} />
+
             {/* --- RUTAS DE CLIENTE --- */}
             <Route path="/IniciarSesionCliente" element={<IniciarSesionCliente />} />
             <Route path="/RegistrarCliente" element={<RegistrarCliente />} />
             <Route path="/FinalizarPedido" element={<FinalizarPedido/>}/> 
-            {/* RUTA DE COMPRA CON ID DINÁMICO */}
             <Route path="/comprar/:id" element={<ComprarProducto/>} />
             <Route path="/MisPedidos" element={<MisPedidos/>} />
+
             {/* --- RUTAS DE EMPLEADO / GESTIÓN --- */}
             <Route path="/IniciarSesionEmpleado" element={<IniciarSesionEmpleado />} />
             <Route path="/RegistrarEmpleado" element={<RegistrarEmpleado />} />
@@ -57,8 +69,7 @@ function App() {
             <Route path="/recetas" element={<RecetasPage />} />
             <Route path="/pedidos" element={<GestionPedidosEmpleado/>} />
 
-
-            {/* --- NUEVA RUTA DE CONTROL DE HORARIO --- */}
+            {/* --- CONTROL DE HORARIO --- */}
             <Route path="/registros" element={<PaginaRegistros />} />
             <Route path='/ver-Registros' element={<VerRegistrosAdmin/>} />
 
@@ -66,6 +77,8 @@ function App() {
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
+
+        <Footer />
       </div>
     </Router>
   );
