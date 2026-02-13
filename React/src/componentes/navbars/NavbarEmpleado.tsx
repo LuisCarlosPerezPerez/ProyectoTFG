@@ -17,7 +17,7 @@ const NavbarEmpleado = ({ usuario }: any) => {
     return (
         <nav style={s.nav}>
             <div style={s.brandGroup}>
-                <Link to="/" style={s.logo}>🌙 La Dulce Noche</Link>
+                <Link to="/" style={s.logo}> Pasteleria Lama</Link>
                 <span style={s.staffBadge}>PANEL CONTROL</span>
             </div>
 

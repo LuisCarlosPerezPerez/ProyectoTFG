@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const NavbarAnonimo = () => {
     return (
         <nav style={navStyle}>
-            <Link to="/" style={logoStyle}>🥐 Goldie & Harper</Link>
+            <Link to="/" style={logoStyle}>🥐 Pasteleria Lama</Link>
             
             <div style={linksWrapperStyle}>
                 <Link to="/productos" style={navBtnStyle}>Vitrina</Link>
