@@ -118,127 +118,226 @@ export const FinalizarPedido = () => {
     const totalCalculado = productos.reduce((acc, p) => acc + (p.precio * p.cantidad), 0);
 
     return (
-        <div style={styles.container}>
-            <div style={styles.card}>
-                <div style={styles.header}>
-                    <h2 style={styles.title}>Finalizar Pedido</h2>
-                    <p style={styles.subtitle}>Revisa tus productos y detalles de entrega</p>
-                    <div style={styles.headerLine}></div>
-                </div>
+        <main style={Estilos.pantalla}>
+            <section style={Estilos.tarjeta} aria-labelledby="finalizar-titulo">
+                {/* Acento visual rosa de la marca */}
+                <div style={Estilos.barraRosa} aria-hidden="true"></div>
 
-                <div style={styles.productList}>
+                <header style={Estilos.encabezado}>
+                    <span style={Estilos.tagline} aria-hidden="true">TU SELECCIÓN GOURMET</span>
+                    <h1 style={Estilos.logo}>
+                        Pastelería <span style={{ color: '#E91E63' }}>Lama</span>
+                    </h1>
+                    <div style={Estilos.divisor} aria-hidden="true"></div>
+                    <h2 id="finalizar-titulo" style={Estilos.titulo}>CESTA DE PRODUCTOS</h2>
+                    <p style={Estilos.subtitulo}>Revise su selección antes de hornear su encargo</p>
+                </header>
+
+                <div style={Estilos.listaProductos} role="list" aria-label="Productos en el carrito">
                     {productos.map((prod) => (
-                        <div key={prod.id_producto} style={styles.productRow}>
-                            <div style={styles.productMain}>
-                                <span style={styles.productName}>{prod.nombre}</span>
-                                <span style={styles.productMeta}>
-                                    {prod.precio.toFixed(2)}€/ud · <span style={styles.stockText}>Stock: {prod.stock}</span>
+                        <article key={prod.id_producto} style={Estilos.filaProducto} role="listitem">
+                            <div style={Estilos.infoProducto}>
+                                <span style={Estilos.nombreProducto}>{prod.nombre}</span>
+                                <span style={Estilos.metaProducto}>
+                                    {prod.precio.toFixed(2)}€ · <span style={Estilos.stockTag}>Stock: {prod.stock}</span>
                                 </span>
                             </div>
                             
-                            <div style={styles.controlWrapper}>
+                            <div style={Estilos.controles}>
                                 <button 
-                                    style={styles.minusBtn} 
-                                    onClick={() => cambiarCantidad(prod.id_producto!, -1)}
+                                    aria-label={`Reducir cantidad de ${prod.nombre}`}
+                                    style={Estilos.btnAccion} 
+                                    onClick={() => cambiarCantidad(prod.stock, -1)}
                                 >
-                                    <span>−</span>
+                                    −
                                 </button>
-                                <span style={styles.qtyDisplay}>{prod.cantidad}</span>
+                                <span style={Estilos.cantidad}>{prod.cantidad}</span>
                                 <button 
-                                    style={styles.plusBtn} 
-                                    onClick={() => cambiarCantidad(prod.id_producto!, 1)}
+                                    aria-label={`Aumentar cantidad de ${prod.nombre}`}
+                                    style={Estilos.btnAccion} 
+                                    onClick={() => cambiarCantidad(prod.stock, 1)}
                                 >
-                                    <span>+</span>
+                                    +
                                 </button>
                             </div>
-                        </div>
+                        </article>
                     ))}
                 </div>
 
-                <div style={styles.footerSection}>
-                    <div style={styles.inputContainer}>
-                        <div style={styles.field}>
-                            <label style={styles.label}>📅 Entrega</label>
+                <div style={Estilos.seccionFinal}>
+                    <div style={Estilos.contenedorInputs}>
+                        <div style={Estilos.campo}>
+                            <label htmlFor="fecha" style={Estilos.etiqueta}>FECHA DE RECOGIDA</label>
                             <input 
+                                id="fecha"
                                 type="date" 
                                 min={obtenerFechaMinima()} 
-                                style={styles.customInput} 
+                                style={Estilos.input} 
                                 value={fecha}
                                 onChange={(e) => setFecha(e.target.value)}
-                                onKeyDown={(e) => e.preventDefault()} 
                             />
                         </div>
 
-                        <div style={styles.field}>
-                            <label style={styles.label}>📞 Teléfono</label>
+                        <div style={Estilos.campo}>
+                            <label htmlFor="tel" style={Estilos.etiqueta}>TELÉFONO DE CONTACTO</label>
                             <input 
+                                id="tel"
                                 type="tel" 
-                                placeholder="600000000" 
-                                style={styles.customInput} 
+                                placeholder="600 000 000" 
+                                style={Estilos.input} 
                                 value={telefono}
                                 onChange={(e) => setTelefono(e.target.value)}
                             />
                         </div>
                     </div>
 
-                    <div style={styles.summaryCard}>
-                        <div style={styles.summaryRow}>
-                            <span>Subtotal</span>
+                    <div style={Estilos.resumen}>
+                        <div style={Estilos.filaResumen}>
+                            <span>Base del pedido</span>
                             <span>{totalCalculado.toFixed(2)}€</span>
                         </div>
-                        <div style={styles.summaryRow}>
+                        <div style={Estilos.filaResumen}>
                             <span>Gastos de gestión</span>
-                            <span style={{ color: '#2ecc71', fontWeight: 'bold' }}>Gratis</span>
+                            <span style={{ color: '#E91E63', fontWeight: 'bold' }}>Bonificado</span>
                         </div>
-                        <div style={styles.totalRow}>
-                            <span>TOTAL</span>
+                        <div style={Estilos.filaTotal}>
+                            <span>TOTAL A PAGAR</span>
                             <span>{totalCalculado.toFixed(2)}€</span>
                         </div>
                     </div>
 
                     <button 
                         style={{
-                            ...styles.mainButton,
-                            backgroundColor: cargando ? '#a1887f' : '#2ecc71',
-                            opacity: cargando ? 0.7 : 1
+                            ...Estilos.botonPrincipal,
+                            backgroundColor: cargando ? '#F06292' : '#E91E63',
                         }} 
                         onClick={finalizarTodo} 
                         disabled={cargando}
                     >
-                        {cargando ? "Procesando..." : "CONFIRMAR Y DESCARGAR PDF"}
+                        {cargando ? "PROCESANDO ENCARGO..." : "CONFIRMAR Y DESCARGAR TICKET"}
                     </button>
                 </div>
-            </div>
-        </div>
+            </section>
+        </main>
     );
 };
 
-const styles: { [key: string]: React.CSSProperties } = {
-    container: { display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', backgroundColor: '#fdf8f5', padding: '20px', fontFamily: "'Segoe UI', sans-serif" },
-    card: { backgroundColor: '#ffffff', borderRadius: '30px', boxShadow: '0 20px 60px rgba(93, 64, 55, 0.15)', width: '100%', maxWidth: '480px', overflow: 'hidden', border: '1px solid #f1ece9' },
-    header: { padding: '40px 30px 20px 30px', textAlign: 'center' },
-    title: { color: '#4e342e', fontSize: '26px', fontWeight: '800', margin: '0 0 5px 0' },
-    subtitle: { color: '#a1887f', fontSize: '14px', margin: 0 },
-    headerLine: { width: '40px', height: '4px', backgroundColor: '#2ecc71', margin: '15px auto 0', borderRadius: '10px' },
-    productList: { padding: '0 30px', maxHeight: '240px', overflowY: 'auto' },
-    productRow: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '15px 0', borderBottom: '1px solid #f8f1ee' },
-    productMain: { display: 'flex', flexDirection: 'column', gap: '2px' },
-    productName: { fontWeight: '700', color: '#3e2723', fontSize: '16px' },
-    productMeta: { fontSize: '12px', color: '#8d7970' },
-    stockText: { color: '#27ae60', fontWeight: '600' },
-    controlWrapper: { display: 'flex', alignItems: 'center', gap: '10px', backgroundColor: '#fdf4f0', padding: '5px 10px', borderRadius: '12px' },
-    minusBtn: { width: '26px', height: '26px', border: 'none', backgroundColor: '#fff', color: '#d35400', borderRadius: '50%', cursor: 'pointer', fontWeight: 'bold', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' },
-    plusBtn: { width: '26px', height: '26px', border: 'none', backgroundColor: '#4e342e', color: '#fff', borderRadius: '50%', cursor: 'pointer', fontWeight: 'bold' },
-    qtyDisplay: { fontWeight: '800', color: '#4e342e', fontSize: '14px', minWidth: '18px', textAlign: 'center' },
-    footerSection: { padding: '30px' },
-    inputContainer: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '20px' },
-    field: { display: 'flex', flexDirection: 'column', gap: '6px' },
-    label: { fontSize: '10px', fontWeight: '800', color: '#a1887f', textTransform: 'uppercase' },
-    customInput: { padding: '10px', borderRadius: '10px', border: '2px solid #f2ece8', fontSize: '14px', outline: 'none', backgroundColor: '#fdfaf8' },
-    summaryCard: { backgroundColor: '#fdfaf8', padding: '18px', borderRadius: '20px', marginBottom: '20px', border: '1px dashed #e8dfd8' },
-    summaryRow: { display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: '#8d7970', marginBottom: '6px' },
-    totalRow: { display: 'flex', justifyContent: 'space-between', fontSize: '18px', fontWeight: '900', color: '#4e342e', marginTop: '10px', paddingTop: '10px', borderTop: '1px solid #e8dfd8' },
-    mainButton: { width: '100%', padding: '16px', color: 'white', border: 'none', borderRadius: '15px', fontSize: '14px', fontWeight: '800', cursor: 'pointer', transition: 'transform 0.2s' }
+const Estilos: { [key: string]: React.CSSProperties } = {
+    pantalla: { 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        minHeight: '100vh', 
+        backgroundColor: '#FFFFFF',
+        backgroundImage: 'radial-gradient(circle, #ffffff 0%, #fff5f8 100%)',
+        padding: '20px',
+        fontFamily: "'Montserrat', sans-serif"
+    },
+    tarjeta: { 
+        backgroundColor: '#ffffff', 
+        boxShadow: '0 20px 50px rgba(233, 30, 99, 0.1)', 
+        width: '100%', 
+        maxWidth: '550px', 
+        border: '1px solid #fce4ec',
+        borderRadius: '24px',
+        overflow: 'hidden'
+    },
+    barraRosa: {
+        height: '10px',
+        backgroundColor: '#E91E63',
+        width: '100%'
+    },
+    encabezado: { padding: '40px 40px 20px', textAlign: 'center' },
+    tagline: {
+        display: 'block',
+        letterSpacing: '3px',
+        fontSize: '0.75rem',
+        color: '#E91E63',
+        fontWeight: '700',
+        marginBottom: '10px'
+    },
+    logo: { color: '#333', fontSize: '2.2rem', margin: '0 0 5px 0', fontWeight: '800', letterSpacing: '-1px' },
+    divisor: { width: '40px', height: '4px', backgroundColor: '#E91E63', margin: '15px auto', borderRadius: '2px' },
+    titulo: { color: '#333', fontSize: '1.3rem', fontWeight: '700', margin: 0 },
+    subtitulo: { color: '#666', fontSize: '0.95rem', margin: '8px 0 0' },
+    listaProductos: { 
+        padding: '10px 40px', 
+        maxHeight: '300px', 
+        overflowY: 'auto'
+    },
+    filaProducto: { 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center', 
+        padding: '15px 0', 
+        borderBottom: '1px solid #fff5f8' 
+    },
+    infoProducto: { display: 'flex', flexDirection: 'column' },
+    nombreProducto: { fontWeight: '700', color: '#333', fontSize: '1.05rem' },
+    metaProducto: { fontSize: '0.9rem', color: '#666', marginTop: '4px' },
+    stockTag: { color: '#E91E63', fontWeight: '600' },
+    controles: { 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: '12px', 
+        backgroundColor: '#fff9fa',
+        padding: '6px 14px',
+        borderRadius: '12px',
+        border: '1px solid #fce4ec'
+    },
+    btnAccion: { 
+        background: 'none', 
+        border: 'none', 
+        cursor: 'pointer', 
+        fontSize: '1.3rem', 
+        color: '#E91E63',
+        padding: '0 5px',
+        fontWeight: 'bold'
+    },
+    cantidad: { fontWeight: '800', minWidth: '24px', textAlign: 'center', color: '#333' },
+    seccionFinal: { padding: '30px 40px 40px' },
+    contenedorInputs: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '25px' },
+    campo: { display: 'flex', flexDirection: 'column', gap: '8px' },
+    etiqueta: { fontSize: '0.75rem', fontWeight: '700', color: '#E91E63', letterSpacing: '0.5px' },
+    input: { 
+        padding: '14px', 
+        border: '2px solid #f0f0f0', 
+        fontSize: '0.95rem', 
+        borderRadius: '12px',
+        color: '#333',
+        backgroundColor: '#fafafa',
+        outline: 'none'
+    },
+    resumen: { 
+        backgroundColor: '#fff9fa', 
+        padding: '25px', 
+        borderRadius: '16px',
+        marginBottom: '25px',
+        border: '1px dashed #E91E63'
+    },
+    filaResumen: { display: 'flex', justifyContent: 'space-between', fontSize: '0.95rem', color: '#666', marginBottom: '10px' },
+    filaTotal: { 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        fontSize: '1.4rem', 
+        fontWeight: '800', 
+        color: '#333', 
+        marginTop: '15px', 
+        paddingTop: '15px', 
+        borderTop: '1px solid rgba(233, 30, 99, 0.1)' 
+    },
+    botonPrincipal: { 
+        width: '100%', 
+        padding: '20px', 
+        color: 'white', 
+        border: 'none', 
+        fontSize: '1rem', 
+        fontWeight: '700', 
+        cursor: 'pointer', 
+        borderRadius: '14px',
+        transition: 'all 0.3s ease',
+        boxShadow: '0 8px 25px rgba(233, 30, 99, 0.2)'
+    }
 };
 
 export default FinalizarPedido;

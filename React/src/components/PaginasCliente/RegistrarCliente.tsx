@@ -5,14 +5,14 @@ import type { Cliente } from '../../Types/Cliente';
 const Registro = () => {
   const navegarIniciarSesion = useNavigate();
 
-  // 1. Estado inicial con los campos exactos de tu DTO
+  // 1. Estado inicial
   const [cliente, setCliente] = useState<Cliente>({
     usuario: '',
     contraseña: '',
     email: '',
   });
 
-  // 2. Manejador de cambios en los inputs
+  // 2. Manejador de cambios
   const manejarCambio = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCliente(prev => ({
@@ -21,13 +21,12 @@ const Registro = () => {
     }));
   };
 
-  // 3. Envío al Backend usando el PROXY de Vite
+  // 3. Envío al Backend
   const enviarFormulario = async (e: React.FormEvent) => {
     e.preventDefault();
     
     try {
-      // Usamos '/api' para que Vite lo redirija al puerto 9090
-      // La ruta final en el servidor será: http://localhost:9090/Cliente/GuardarCliente
+      // Ajustado a la ruta completa del servidor para evitar fallos de resolución
       const respuesta = await fetch('/api/Cliente/GuardarCliente', {
         method: 'POST',
         headers: { 
@@ -36,30 +35,18 @@ const Registro = () => {
         body: JSON.stringify(cliente),
       });
 
-      console.log("Datos enviados:", JSON.stringify(cliente));
-      console.log("Status del servidor:", respuesta.status);
-
-      // Verificamos si la respuesta es correcta (status 200-299)
       if (!respuesta.ok) {
-        // Leemos el error como texto para evitar el fallo de "Unexpected end of JSON"
         const errorTexto = await respuesta.text();
         throw new Error(errorTexto || `Error del servidor: ${respuesta.status}`);
       }
 
-      // Si todo salió bien, procesamos la respuesta
-      const data = await respuesta.json();
-      console.log("Respuesta del servidor:", data);
-
-      alert("¡Cuenta creada con éxito! Bienvenido a Pastelería Lama.");
-      
-      // Redirigimos al login
+      alert("¡Cuenta creada con éxito! Bienvenido a Confitería Dama.");
       navegarIniciarSesion('/IniciarSesionCliente');
 
     } catch (error: any) {
       console.error("Detalle del fallo:", error);
-      // Si el error es 'Failed to fetch', es que el backend está apagado
       const mensaje = error.message.includes('Failed to fetch') 
-        ? "No se puede conectar con el servidor. ¿Está encendido el Backend?"
+        ? "No se puede conectar con el servidor del obrador."
         : error.message;
         
       alert("Error: " + mensaje);
@@ -67,18 +54,29 @@ const Registro = () => {
   };
 
   return (
-    <div style={Estilos.pantallaCompleta}>
-      <div style={Estilos.tarjeta}>
-        <h2 style={Estilos.titulo}>Crear Cuenta</h2>
-        <p style={Estilos.subtitulo}>Artesanos del dulce desde 2026</p>
+    <main style={Estilos.pantallaCompleta}>
+      <section style={Estilos.tarjeta} aria-labelledby="reg-title">
+        {/* Detalle visual de marca */}
+        <div style={Estilos.barraRosa} aria-hidden="true"></div>
 
-        <form onSubmit={enviarFormulario}>
+        <header style={Estilos.header}>
+          <span style={Estilos.tagline} aria-hidden="true">ÚNETE A NUESTRO OBRADOR</span>
+          <h1 id="reg-title" style={Estilos.logo}>
+            Pastelería <span style={{ color: '#E91E63' }}>Lama</span>
+          </h1>
+          <div style={Estilos.divisor} aria-hidden="true"></div>
+          <h2 style={Estilos.titulo}>CREAR CUENTA</h2>
+          <p style={Estilos.subtitulo}>Disfrute de ventajas exclusivas y pedidos personalizados</p>
+        </header>
+
+        <form onSubmit={enviarFormulario} aria-label="Formulario de registro de cliente nuevo">
           <div style={Estilos.campo}>
-            <label style={Estilos.etiqueta}>Nombre de Usuario</label>
+            <label htmlFor="usuario" style={Estilos.etiqueta}>NOMBRE DE USUARIO</label>
             <input
+              id="usuario"
               type="text"
               name="usuario"
-              placeholder="Tu nombre de usuario"
+              placeholder="Ej: gourmet_dulce"
               style={Estilos.input}
               value={cliente.usuario}
               onChange={manejarCambio}
@@ -87,11 +85,12 @@ const Registro = () => {
           </div>
 
           <div style={Estilos.campo}>
-            <label style={Estilos.etiqueta}>Correo Electrónico</label>
+            <label htmlFor="email" style={Estilos.etiqueta}>CORREO ELECTRÓNICO</label>
             <input
+              id="email"
               type="email"
               name="email"
-              placeholder="email@ejemplo.com"
+              placeholder="su-correo@ejemplo.com"
               style={Estilos.input}
               value={cliente.email}
               onChange={manejarCambio}
@@ -100,11 +99,12 @@ const Registro = () => {
           </div>
 
           <div style={Estilos.campo}>
-            <label style={Estilos.etiqueta}>Contraseña</label>
+            <label htmlFor="contraseña" style={Estilos.etiqueta}>CONTRASEÑA</label>
             <input
+              id="contraseña"
               type="password"
               name="contraseña"
-              placeholder="Crea una clave segura"
+              placeholder="Mínimo 8 caracteres"
               style={Estilos.input}
               value={cliente.contraseña}
               onChange={manejarCambio}
@@ -113,98 +113,147 @@ const Registro = () => {
           </div>
 
           <button type="submit" style={Estilos.botonCrear}>
-            Registrarme ahora
+            REGISTRARME AHORA
           </button>
 
-          <div style={{ marginTop: '20px' }}>
-            <span style={{ color: '#8d6e63', fontSize: '0.85rem' }}>
-              ¿Ya eres parte del club?{' '}
+          <nav style={Estilos.footerNav} aria-label="Navegación de retorno">
+            <p style={Estilos.textoFooter}>
+              ¿Ya tiene una cuenta?{' '}
               <span 
                 onClick={() => navegarIniciarSesion('/IniciarSesionCliente')}
                 style={Estilos.enlaceSimulado}
+                role="button"
+                tabIndex={0}
+                onKeyPress={(e) => e.key === 'Enter' && navegarIniciarSesion('/IniciarSesionCliente')}
               >
-                Inicia sesión aquí
+                Inicie sesión aquí
               </span>
-            </span>
-          </div>
+            </p>
+          </nav>
         </form>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
-// --- ESTILOS PROFESIONALES ---
 const Estilos: { [key: string]: React.CSSProperties } = {
   pantallaCompleta: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: '80vh',
+    minHeight: '100vh',
     width: '100%',
-    backgroundColor: '#fdfaf5',
+    backgroundColor: '#FFFFFF',
+    backgroundImage: 'linear-gradient(135deg, #ffffff 0%, #fff5f8 100%)',
+    fontFamily: "'Montserrat', sans-serif",
+    padding: '20px'
   },
   tarjeta: {
     backgroundColor: '#ffffff',
-    padding: '40px',
-    borderRadius: '20px',
-    boxShadow: '0 10px 25px rgba(93, 64, 55, 0.1)',
     width: '100%',
-    maxWidth: '400px',
-    textAlign: 'center',
-    border: '1px solid #efebe9',
+    maxWidth: '450px',
+    borderRadius: '24px',
+    boxShadow: '0 20px 50px rgba(233, 30, 99, 0.1)',
+    overflow: 'hidden',
+    border: '1px solid #fce4ec',
+    textAlign: 'center'
+  },
+  barraRosa: {
+    height: '10px',
+    backgroundColor: '#E91E63',
+    width: '100%'
+  },
+  header: {
+    padding: '40px 40px 10px 40px'
+  },
+  tagline: {
+    display: 'block',
+    letterSpacing: '3px',
+    fontSize: '0.7rem',
+    color: '#E91E63',
+    fontWeight: '700',
+    marginBottom: '8px'
+  },
+  logo: {
+    color: '#333',
+    fontSize: '2.2rem',
+    margin: '0',
+    fontWeight: '800',
+    letterSpacing: '-1px'
+  },
+  divisor: {
+    width: '40px',
+    height: '4px',
+    backgroundColor: '#E91E63',
+    margin: '15px auto',
+    borderRadius: '2px'
   },
   titulo: {
-    color: '#5d4037',
-    fontSize: '1.8rem',
-    margin: '0 0 10px 0',
+    color: '#333',
+    fontSize: '1.2rem',
+    fontWeight: '700',
+    margin: '10px 0'
   },
   subtitulo: {
-    color: '#bc6c25',
+    color: '#666',
     fontSize: '0.9rem',
     marginBottom: '30px',
-    fontStyle: 'italic',
   },
   campo: {
+    padding: '0 40px',
     textAlign: 'left',
     marginBottom: '20px',
   },
   etiqueta: {
     display: 'block',
     marginBottom: '8px',
-    color: '#5d4037',
-    fontWeight: '600',
-    fontSize: '0.85rem',
+    color: '#E91E63',
+    fontWeight: '700',
+    fontSize: '0.75rem',
+    letterSpacing: '0.5px'
   },
   input: {
     width: '100%',
-    padding: '12px',
-    borderRadius: '8px',
-    border: '1px solid #d7ccc8',
+    padding: '15px',
+    border: '2px solid #f0f0f0',
     fontSize: '1rem',
     boxSizing: 'border-box',
+    borderRadius: '12px',
+    backgroundColor: '#fafafa',
+    color: '#333',
     outline: 'none',
-    backgroundColor: '#fff',
-    color: '#333'
+    transition: 'border-color 0.3s ease'
   },
   botonCrear: {
-    width: '100%',
-    padding: '14px',
-    backgroundColor: '#5d4037',
+    width: 'calc(100% - 80px)',
+    margin: '10px 40px',
+    padding: '16px',
+    backgroundColor: '#E91E63',
     color: '#ffffff',
     border: 'none',
-    borderRadius: '8px',
     fontSize: '1rem',
-    fontWeight: 'bold',
+    fontWeight: '700',
     cursor: 'pointer',
-    marginTop: '10px',
-    transition: 'background 0.3s',
+    borderRadius: '14px',
+    transition: 'all 0.3s ease',
+    boxShadow: '0 8px 20px rgba(233, 30, 99, 0.2)'
+  },
+  footerNav: {
+    padding: '25px 40px 35px 40px',
+    backgroundColor: '#fff9fa',
+    marginTop: '25px',
+    borderTop: '1px solid #fce4ec'
+  },
+  textoFooter: {
+    color: '#666',
+    fontSize: '0.9rem',
+    margin: 0
   },
   enlaceSimulado: {
-    color: '#bc6c25',
+    color: '#E91E63',
     cursor: 'pointer',
-    fontWeight: 'bold',
+    fontWeight: '700',
     textDecoration: 'underline',
   }
 };
-
 export default Registro;

@@ -81,3 +81,4 @@ INSERT INTO empleado ( usuario, contraseña, admininistrador) VALUES ('Admin', '
 -- select * from pedido;
 -- select * from cliente;
 -- select * from pedido_producto;
+-- select * from pedido;
