@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import productoService from '../services/productoService';
 import ingredienteService from '../services/ingredienteService';
 import relacionService from '../services/ProductoIngredienteService';
-
+import { sLama } from '../styles/RecetaStyles';
 const RecetasPage = () => {
     const [productos, setProductos] = useState<any[]>([]);
     const [ingredientes, setIngredientes] = useState<any[]>([]);
@@ -83,50 +83,74 @@ const RecetasPage = () => {
     };
 
     return (
-        <div style={{ padding: '40px', width: '100%' }}>
-            <h2 style={{ color: '#3e2723' }}>🥣 Gestión de Recetas</h2>
+        <div style={sLama.container}>
+            <header style={sLama.header}>
+                <h2 style={sLama.tituloSeccion}>🥣 Gestión de Recetas</h2>
+                <p style={sLama.subtitulo}>Configura los ingredientes de la Pastelería Lama</p>
+            </header>
             
-            <div style={{ backgroundColor: '#fff', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 10px rgba(0,0,0,0.1)' }}>
-                <div style={{ display: 'flex', gap: '15px', marginBottom: '15px' }}>
-                    <select style={{ flex: 1, padding: '10px' }} value={seleccion.id_producto} onChange={e => setSeleccion({...seleccion, id_producto: Number(e.target.value)})}>
-                        <option value="0">Seleccionar Producto...</option>
-                        {productos.map(p => <option key={p.id_producto} value={p.id_producto}>{p.nombre}</option>)}
-                    </select>
-                    <select style={{ flex: 1, padding: '10px' }} value={seleccion.id_ingrediente} onChange={e => setSeleccion({...seleccion, id_ingrediente: Number(e.target.value)})}>
-                        <option value="0">Seleccionar Ingrediente...</option>
-                        {ingredientes.map(i => <option key={i.id} value={i.id}>{i.nombre}</option>)}
-                    </select>
+            <div style={sLama.cardAdmin}>
+                <div style={sLama.formRow}>
+                    <div style={{ flex: 1 }}>
+                        <label style={{ fontWeight: 'bold', color: '#ad1457', display: 'block', marginBottom: '8px' }}>Producto</label>
+                        <select 
+                            style={sLama.select}
+                            value={seleccion.id_producto} 
+                            onChange={e => setSeleccion({...seleccion, id_producto: Number(e.target.value)})}
+                        >
+                            <option value="0">Seleccionar Producto...</option>
+                            {productos.map(p => <option key={p.id_producto} value={p.id_producto}>{p.nombre}</option>)}
+                        </select>
+                    </div>
+
+                    <div style={{ flex: 1 }}>
+                        <label style={{ fontWeight: 'bold', color: '#ad1457', display: 'block', marginBottom: '8px' }}>Ingrediente</label>
+                        <select 
+                            style={sLama.select}
+                            value={seleccion.id_ingrediente} 
+                            onChange={e => setSeleccion({...seleccion, id_ingrediente: Number(e.target.value)})}
+                        >
+                            <option value="0">Seleccionar Ingrediente...</option>
+                            {ingredientes.map(i => <option key={i.id} value={i.id}>{i.nombre}</option>)}
+                        </select>
+                    </div>
                 </div>
-                <button onClick={handleVincular} style={{ width: '100%', padding: '12px', backgroundColor: '#bc6c25', color: 'white', border: 'none', cursor: 'pointer', fontWeight: 'bold' }}>
-                    Vincular a Receta
+                
+                <button onClick={handleVincular} style={{ ...sLama.btnSecundario, width: '100%' }}>
+                    + Vincular a Receta
                 </button>
             </div>
 
-            <h3 style={{ marginTop: '30px' }}>📜 Recetas Actuales</h3>
-            <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: 'white' }}>
-                <thead>
-                    <tr style={{ backgroundColor: '#f2e8cf' }}>
-                        <th style={{ padding: '12px', textAlign: 'left' }}>Producto</th>
-                        <th style={{ padding: '12px', textAlign: 'left' }}>Ingrediente</th>
-                        <th style={{ padding: '12px', textAlign: 'center' }}>Acción</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {relaciones.map((rel, index) => (
-                        <tr key={index} style={{ borderBottom: '1px solid #eee' }}>
-                            <td style={{ padding: '12px' }}>{getNombreP(rel)}</td>
-                            <td style={{ padding: '12px' }}>{getNombreI(rel)}</td>
-                            <td style={{ padding: '12px', textAlign: 'center' }}>
-                                <button onClick={() => handleEliminar(rel)} style={{ color: 'red', border: 'none', background: 'none', cursor: 'pointer' }}>
-                                    🗑️ Borrar
-                                </button>
-                            </td>
+            <h3 style={{ ...sLama.nombreTxt, fontSize: '1.8rem', marginBottom: '20px' }}>📜 Recetas Actuales</h3>
+            <div style={sLama.tablaWrapper}>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <thead style={sLama.thead}>
+                        <tr>
+                            <th style={sLama.th}>Producto</th>
+                            <th style={sLama.th}>Ingrediente</th>
+                            <th style={{ ...sLama.th, textAlign: 'center' }}>Acción</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {relaciones.map((rel, index) => (
+                            <tr key={index}>
+                                <td style={{ ...sLama.td, fontWeight: 'bold', color: '#ad1457' }}>{getNombreP(rel)}</td>
+                                <td style={sLama.td}>
+                                    <span style={sLama.badge}>{getNombreI(rel)}</span>
+                                </td>
+                                <td style={{ ...sLama.td, textAlign: 'center' }}>
+                                    <button onClick={() => handleEliminar(rel)} style={sLama.btnBorrar}>
+                                        🗑️ Borrar
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
+
 
 export default RecetasPage;
