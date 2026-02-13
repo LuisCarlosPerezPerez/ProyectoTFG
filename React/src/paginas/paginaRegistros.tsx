@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import registroService from '../services/registroService';
 import { authService } from '../services/authService';
+import { s } from '../styles/FichajeStyles';
 
 const PaginaRegistros = () => {
     const [registros, setRegistros] = useState<any[]>([]);
@@ -89,67 +90,59 @@ const PaginaRegistros = () => {
     };
 
     return (
-        <div style={{ padding: '40px', maxWidth: '850px', margin: '0 auto', textAlign: 'center' }}>
-            <h2>Sistema de Fichaje Automatizado</h2>
-            <p>Sesión activa: <b>Admin</b> (ID: {idEmpleado})</p>
+        <main style={s.container}>
+            <h2 style={s.titulo}>Sistema de Fichaje Automatizado</h2>
+            <p style={s.infoSesion}>Sesión activa: <b>Admin</b> (ID: {idEmpleado})</p>
             
-            <div style={{ 
-                margin: '20px auto', 
-                padding: '30px', 
-                backgroundColor: 'white', 
-                borderRadius: '12px', 
-                boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-                display: 'inline-block'
-            }}>
-                <div style={{ marginBottom: '15px' }}>
+            <section style={s.panelCentral} aria-label="Control de jornada">
+                <div style={s.estadoTexto}>
                     Estado actual: {enTurno ? 
-                        <b style={{color: '#d32f2f'}}>● JORNADA ACTIVA</b> : 
-                        <b style={{color: '#2a9d8f'}}>○ FUERA DE TURNO</b>
+                        <b style={{color: '#ad1457'}}>● JORNADA ACTIVA</b> : 
+                        <b style={{color: '#d81b60'}}>○ FUERA DE TURNO</b>
                     }
                 </div>
                 
                 <button 
                     onClick={manejarFichaje}
                     disabled={cargando}
-                    style={{
-                        padding: '15px 40px',
-                        fontSize: '1.1rem',
-                        fontWeight: 'bold',
-                        cursor: cargando ? 'not-allowed' : 'pointer',
-                        backgroundColor: enTurno ? '#e63946' : '#2a9d8f',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '8px'
-                    }}
+                    style={s.botonFichar(enTurno, cargando)}
+                    aria-live="polite"
                 >
                     {cargando ? "PROCESANDO..." : enTurno ? "FINALIZAR JORNADA" : "INICIAR JORNADA"}
                 </button>
-            </div>
+            </section>
 
-            <div style={{ marginTop: '40px' }}>
-                <h3>Historial de Registros</h3>
-                <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '10px' }}>
+            <div style={s.tablaContenedor}>
+                <h3 style={s.tablaTitulo}>Historial de Registros</h3>
+                <table style={s.tabla}>
                     <thead>
-                        <tr style={{ backgroundColor: '#2d1b18', color: '#f2e8cf' }}>
-                            <th style={{ padding: '12px' }}>Fecha</th>
-                            <th>Entrada</th>
-                            <th>Salida</th>
-                            <th>Horas Totales</th>
+                        <tr style={s.tablaCabecera}>
+                            <th scope="col" style={s.tablaCelda}>Fecha</th>
+                            <th scope="col" style={s.tablaCelda}>Entrada</th>
+                            <th scope="col" style={s.tablaCelda}>Salida</th>
+                            <th scope="col" style={s.tablaCelda}>Horas Totales</th>
                         </tr>
                     </thead>
                     <tbody>
                         {registros.map((r, i) => (
-                            <tr key={i} style={{ borderBottom: '1px solid #eee' }}>
-                                <td style={{ padding: '10px' }}>{new Date(r.fecha).toLocaleDateString()}</td>
-                                <td>{formatearHora(r.entrada)}</td>
-                                <td>{r.salida ? formatearHora(r.salida) : <span style={{color: 'orange', fontWeight: 'bold'}}>En curso</span>}</td>
-                                <td><strong>{r.horas.toFixed(2)}h</strong></td>
+                            <tr key={i} style={s.tablaFila}>
+                                <td style={s.tablaCelda}>{new Date(r.fecha).toLocaleDateString()}</td>
+                                <td style={s.tablaCelda}>{formatearHora(r.entrada)}</td>
+                                <td style={s.tablaCelda}>
+                                    {r.salida ? 
+                                        formatearHora(r.salida) : 
+                                        <span style={s.badgeEnCurso}>En curso</span>
+                                    }
+                                </td>
+                                <td style={s.tablaCelda}>
+                                    <strong style={{color: '#333'}}>{r.horas.toFixed(2)}h</strong>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-        </div>
+        </main>
     );
 };
 

@@ -1,0 +1,101 @@
+import type { CSSProperties } from 'react';
+
+export const s: { [key: string]: any } = {
+    container: {
+        padding: '120px 40px 60px',
+        width: '100%',
+        boxSizing: 'border-box',
+        position: 'relative',
+        maxWidth: '1200px',
+        margin: '0 auto',
+    },
+    header: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginBottom: '30px',
+        alignItems: 'center',
+    },
+    titulo: {
+        color: '#d81b60',
+        fontSize: '2.2rem',
+        fontWeight: '800',
+        margin: 0,
+    },
+    btnNuevo: {
+        padding: '12px 25px',
+        backgroundColor: '#d81b60',
+        color: 'white',
+        border: 'none',
+        borderRadius: '50px',
+        fontWeight: 'bold',
+        cursor: 'pointer',
+        boxShadow: '0 4px 12px rgba(216, 27, 96, 0.2)',
+    },
+    form: {
+        backgroundColor: '#fff0f5',
+        padding: '30px',
+        borderRadius: '30px',
+        marginBottom: '30px',
+        border: '1px solid #fce4ec',
+    },
+    input: {
+        padding: '12px 18px',
+        borderRadius: '12px',
+        border: '1px solid #fce4ec',
+        fontSize: '1rem',
+        flex: 1,
+    },
+    btnSubmit: {
+        padding: '12px 30px',
+        backgroundColor: '#e6a756', // Dorado Lama
+        color: '#000',
+        border: 'none',
+        borderRadius: '50px',
+        fontWeight: 'bold',
+        cursor: 'pointer',
+    },
+    tablaContenedor: {
+        backgroundColor: 'white',
+        borderRadius: '30px',
+        boxShadow: '0 10px 40px rgba(0,0,0,0.05)',
+        overflow: 'hidden',
+    },
+    table: {
+        width: '100%',
+        borderCollapse: 'collapse',
+    },
+    th: {
+        backgroundColor: '#fce4ec',
+        color: '#ad1457',
+        padding: '20px',
+        textAlign: 'left',
+        fontSize: '1rem',
+        fontWeight: '800',
+    },
+    td: {
+        padding: '18px 20px',
+        borderBottom: '1px solid #fce4ec',
+        color: '#333',
+    },
+    overlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 2000,
+        backdropFilter: 'blur(4px)',
+    },
+    modal: {
+        backgroundColor: 'white',
+        padding: '40px',
+        borderRadius: '40px',
+        maxWidth: '500px',
+        width: '90%',
+        boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+    }
+};

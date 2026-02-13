@@ -1,7 +1,8 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100% !important;
+  max-width: none !important; 
+  margin: 0 !important;
+  padding: 0 !important;
   text-align: center;
 }
 
@@ -41,10 +42,12 @@
   color: #888;
 }
 /* --- CONFIGURACIÓN GENERAL --- */
-body {
+html, body {
   margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background-color: #fdfaf5;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #ffffff;
 }
 
 /* --- NAVBAR ESTILO LAMA --- */
@@ -54,10 +57,11 @@ body {
   align-items: center;
   padding: 0 40px;
   height: 80px; 
-  background-color: #f0f0f0; /* Fondo gris claro de la imagen */
+  background-color: #f0f0f0; 
   border-bottom: 1px solid #ddd;
   position: fixed;
   top: 0;
+  left: 0; /* Aseguramos que pegue a la izquierda */
   width: 100%;
   z-index: 1000;
   box-sizing: border-box;

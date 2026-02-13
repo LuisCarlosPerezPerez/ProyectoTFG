@@ -1,37 +1,48 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { styles as s } from '../styles/PaginaInicio';
 
 const Inicio = () => {
     return (
-        <div style={s.container}>
-            <header style={s.hero}>
-                <h1 style={s.title}>¡Bienvenidos a Pastelería Lama!</h1>
-                <p style={s.subtitle}>Artesanos del dulce desde 2026. Los mejores sabores recién horneados.</p>
-                <div style={s.buttonGroup}>
-                    <Link to="/productos" style={s.ctaPrimary}>Explorar Vitrina 🥐</Link>
-                    <Link to="/sobre-nosotros" style={s.ctaSecondary}>Nuestra Historia</Link>
+        <main style={s.container} aria-labelledby="main-title">
+            <header style={s.hero} role="banner">
+                <div style={s.heroOverlay}>
+                    <h1 id="main-title" style={s.title}>Pastelería Lama</h1>
+                    <div style={s.divider} aria-hidden="true"></div>
+                    <p style={s.subtitle}>
+                        Postres de autor y pastelería creativa. <br />
+                        Endulzamos tus momentos más especiales con un toque moderno.
+                    </p>
+                    <nav style={s.buttonGroup} aria-label="Navegación principal">
+                        <Link to="/productos" style={s.ctaPrimary} aria-label="Ver productos">
+                            Ver Productos 🍰
+                        </Link>
+                        <Link to="/nosotros" style={s.ctaSecondary} aria-label="Sobre nosotros">
+                            Nuestra Historia
+                        </Link>
+                    </nav>
                 </div>
             </header>
-            
-            <section style={s.features}>
-                <div style={s.card}>✨ Ingredientes seleccionados</div>
-                <div style={s.card}>🕒 Siempre fresco</div>
-                <div style={s.card}>📦 Pedidos online</div>
-            </section>
-        </div>
-    );
-};
 
-const s = {
-    container: { padding: '40px', textAlign: 'center' as const, color: '#5d4037', marginTop: '60px' },
-    hero: { backgroundColor: '#fff', padding: '60px', borderRadius: '30px', boxShadow: '0 10px 30px rgba(93, 64, 55, 0.05)', border: '1px solid #efebe9' },
-    title: { fontSize: '3rem', margin: '0 0 10px 0', fontWeight: 'bold' as const },
-    subtitle: { fontSize: '1.2rem', marginBottom: '30px', color: '#8d6e63' },
-    buttonGroup: { display: 'flex', justifyContent: 'center', gap: '15px' },
-    ctaPrimary: { backgroundColor: '#bc6c25', color: 'white', padding: '15px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: 'bold' as const },
-    ctaSecondary: { backgroundColor: 'transparent', color: '#bc6c25', padding: '15px 30px', borderRadius: '50px', textDecoration: 'none', fontWeight: 'bold' as const, border: '2px solid #bc6c25' },
-    features: { display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '40px' },
-    card: { padding: '20px', border: '1px solid #d7ccc8', borderRadius: '15px', flex: 1, maxWidth: '200px', backgroundColor: '#fff' }
+            <section style={s.features} aria-label="Nuestros valores">
+                <article style={s.card}>
+                    <span style={s.cardIcon} aria-hidden="true">💖</span>
+                    <h2 style={s.cardTitle}>Hecho con Amor</h2>
+                    <p style={s.cardText}>Elaboramos cada pieza de forma artesanal cuidando cada detalle visual.</p>
+                </article>
+                <article style={s.card}>
+                    <span style={s.cardIcon} aria-hidden="true">🍓</span>
+                    <h2 style={s.cardTitle}>Sabor Natural</h2>
+                    <p style={s.cardText}>Frutas frescas y materias primas de proximidad para un sabor explosivo.</p>
+                </article>
+                <article style={s.card}>
+                    <span style={s.cardIcon} aria-hidden="true">🚀</span>
+                    <h2 style={s.cardTitle}>Diseño Moderno</h2>
+                    <p style={s.cardText}>Reinterpretamos los clásicos con una estética vanguardista y única.</p>
+                </article>
+            </section>
+        </main>
+    );
 };
 
 export default Inicio;
