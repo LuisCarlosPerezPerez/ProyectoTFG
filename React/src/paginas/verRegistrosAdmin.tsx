@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import registroService from '../services/registroService';
-
+import { sLama } from '../styles/RegistroFicharStyles';
 // Definimos una interfaz para que TypeScript sepa qué tiene un Registro
 interface Registro {
     id_reg: number;
@@ -51,46 +51,58 @@ const VerRegistrosAdmin = () => {
     };
 
     return (
-        <div style={{ padding: '100px 40px', maxWidth: '1000px', margin: '0 auto' }}>
-            <h2 style={{ color: '#2d1b18', borderBottom: '2px solid #bc6c25', paddingBottom: '10px' }}>
-                📊 Panel de Supervisión: Registros Staff
-            </h2>
+        <div style={sLama.container}>
+            {/* CABECERA */}
+            <header style={sLama.header}>
+                <h2 style={sLama.tituloSeccion}>📊 Panel de Supervisión</h2>
+                <p style={sLama.subtitulo}>Control de entradas, salidas y horas del staff</p>
+            </header>
             
-            <div style={{ margin: '20px 0', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <label style={{ fontWeight: 'bold' }}>Filtrar Empleado:</label>
+            {/* FILTRO BUSCADOR */}
+            <div style={sLama.searchContainer}>
+                <label style={{ ...sLama.label, margin: 0 }}>Filtrar Empleado:</label>
                 <input 
                     type="text" 
                     placeholder="Escribe el ID del empleado..." 
                     value={busqueda}
                     onChange={(e) => setBusqueda(e.target.value)}
-                    style={{ padding: '10px', width: '250px', borderRadius: '5px', border: '1px solid #ccc' }}
+                    style={sLama.inputSearch}
+                    onFocus={(e) => e.target.style.borderColor = '#d81b60'}
+                    onBlur={(e) => e.target.style.borderColor = '#f2e8cf'}
                 />
             </div>
 
-            <div style={{ overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: 'white', boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}>
-                    <thead>
-                        <tr style={{ backgroundColor: '#bc6c25', color: 'white' }}>
-                            <th style={st.th}>ID Reg</th>
-                            <th style={st.th}>Empleado</th>
-                            <th style={st.th}>Fecha</th>
-                            <th style={st.th}>Entrada</th>
-                            <th style={st.th}>Salida</th>
-                            <th style={st.th}>Total Horas</th>
+            {/* TABLA DE REGISTROS */}
+            <div style={sLama.tablaWrapper}>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <thead style={sLama.thead}>
+                        <tr>
+                            <th style={sLama.th}>ID Reg</th>
+                            <th style={sLama.th}>Empleado</th>
+                            <th style={sLama.th}>Fecha</th>
+                            <th style={sLama.th}>Entrada</th>
+                            <th style={sLama.th}>Salida</th>
+                            <th style={{ ...sLama.th, textAlign: 'center' }}>Total Horas</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {filtrados.map((r: Registro, i: number) => (
-                            <tr key={i} style={{ borderBottom: '1px solid #eee' }}>
-                                <td style={st.td}>#{r.id_reg}</td>
-                                <td style={st.td}><b>👤 ID: {r.id_emp}</b></td>
-                                <td style={st.td}>{new Date(r.fecha).toLocaleDateString()}</td>
-                                <td style={st.td}>{formatearHora(r.entrada)}</td>
-                                <td style={st.td}>
-                                    {r.salida ? formatearHora(r.salida) : <span style={{color: '#d32f2f', fontWeight: 'bold'}}>● En curso</span>}
+                        {filtrados.map((r: any, i: number) => (
+                            <tr key={i} style={{ borderBottom: '1px solid #fdf5f7' }}>
+                                <td style={{ ...sLama.td, color: '#999', fontSize: '0.85rem' }}>#{r.id_reg}</td>
+                                <td style={sLama.td}>
+                                    <span style={{ fontWeight: '800', color: '#ad1457' }}>👤 ID: {r.id_emp}</span>
                                 </td>
-                                <td style={st.td}>
-                                    <span style={{ backgroundColor: '#f8f9fa', padding: '5px 10px', borderRadius: '4px', border: '1px solid #ddd' }}>
+                                <td style={sLama.td}>{new Date(r.fecha).toLocaleDateString()}</td>
+                                <td style={sLama.td}>{formatearHora(r.entrada)}</td>
+                                <td style={sLama.td}>
+                                    {r.salida ? (
+                                        formatearHora(r.salida)
+                                    ) : (
+                                        <span style={sLama.statusEnCurso}>● En curso</span>
+                                    )}
+                                </td>
+                                <td style={{ ...sLama.td, textAlign: 'center' }}>
+                                    <span style={sLama.badgeHoras}>
                                         {r.horas.toFixed(2)}h
                                     </span>
                                 </td>
