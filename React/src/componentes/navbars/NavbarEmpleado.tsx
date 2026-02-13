@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { authService } from '../../services/authService';
+import type { CSSProperties } from 'react';
 
 const NavbarEmpleado = ({ usuario }: any) => {
     const navigate = useNavigate();
@@ -17,25 +18,31 @@ const NavbarEmpleado = ({ usuario }: any) => {
     return (
         <nav style={s.nav}>
             <div style={s.brandGroup}>
-                <Link to="/" style={s.logo}> Pasteleria Lama</Link>
-                <span style={s.staffBadge}>PANEL CONTROL</span>
+                <Link to="/" style={s.logo}>
+                    <span style={{ fontSize: '24px' }}>🥐</span> 
+                    <div style={{ lineHeight: '1' }}>
+                        <span style={{ display: 'block', fontSize: '16px', color: '#f2e8cf' }}>Staff</span>
+                        <span style={{ color: '#bc6c25', fontSize: '13px', fontWeight: '900' }}>LAMA</span>
+                    </div>
+                </Link>
+                <span style={s.staffBadge}>MODO OBRADOR</span>
             </div>
 
             <div style={s.menuGroup}>
-                {/* Nueva opción para que los empleados registren su entrada/salida */}
+                {/* Opción de Fichaje destacada */}
                 <Link to="/registros" style={s.fichajeLink}>🕒 Fichar</Link>
                 
                 <Link to="/productos" style={s.link}>Vitrina</Link>
-                <Link to="/ingredientes" style={s.link}>📦 Stock</Link>
-                <Link to="/recetas" style={s.link}>🥣 Mezclar</Link>
-                <Link to="/pedidos" style={s.link}>📋 Pedidos</Link>
+                <Link to="/ingredientes" style={s.link}>Stock</Link>
+                <Link to="/recetas" style={s.link}>Mezclar</Link>
+                <Link to="/pedidos" style={s.link}>Pedidos</Link>
                 
-                {/* Opción exclusiva de Administrador */}
+                {/* Opciones Administrativas */}
                 {esAdminPoderoso && (
-                    <>
-                        <Link to="/ver-registros" style={s.link}>📊 Registros Staff</Link>
-                        <Link to="/RegistrarEmpleado" style={s.adminLink}>👤 + Nuevo Staff</Link>
-                    </>
+                    <div style={{ display: 'flex', gap: '15px', marginLeft: '10px', paddingLeft: '15px', borderLeft: '1px solid #5d4037' }}>
+                        <Link to="/ver-registros" style={s.linkAdmin}>📊 Registros</Link>
+                        <Link to="/RegistrarEmpleado" style={s.adminBtn}>+ Staff</Link>
+                    </div>
                 )}
             </div>
 
@@ -46,77 +53,118 @@ const NavbarEmpleado = ({ usuario }: any) => {
                         {esAdminPoderoso ? 'ADMINISTRADOR' : 'EMPLEADO'}
                     </span>
                 </div>
-                <button onClick={handleLogout} style={s.logoutBtn}>Cerrar Sesión</button>
+                <button onClick={handleLogout} style={s.logoutBtn}>Cerrar</button>
             </div>
         </nav>
     );
 };
 
-const s: { [key: string]: React.CSSProperties } = {
+// --- ESTILOS EN EL MISMO ARCHIVO (TIPADOS PARA TS) ---
+const s: Record<string, CSSProperties> = {
     nav: { 
         display: 'flex', 
         justifyContent: 'space-between', 
         padding: '0 40px', 
-        height: '70px', 
+        height: '85px', 
         alignItems: 'center', 
-        backgroundColor: '#2d1b18', 
-        color: 'white', 
+        backgroundColor: '#2d1b18', // Marrón chocolate oscuro
         position: 'fixed', 
         top: 0, 
         left: 0,
         width: '100%', 
         zIndex: 1000, 
         boxSizing: 'border-box',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
+        boxShadow: '0 4px 15px rgba(0,0,0,0.4)',
+        fontFamily: "'Quicksand', sans-serif",
     },
-    brandGroup: { display: 'flex', alignItems: 'center', gap: '12px' },
-    logo: { textDecoration: 'none', color: '#f2e8cf', fontWeight: 'bold', fontSize: '1.4rem' },
+    brandGroup: { 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: '15px' 
+    },
+    logo: { 
+        textDecoration: 'none', 
+        display: 'flex', 
+        alignItems: 'center', 
+        gap: '10px' 
+    },
     staffBadge: { 
         backgroundColor: '#bc6c25', 
         color: 'white', 
-        fontSize: '0.65rem', 
-        padding: '3px 8px', 
+        fontSize: '0.6rem', 
+        padding: '4px 8px', 
         borderRadius: '4px', 
-        fontWeight: 'bold',
+        fontWeight: '900',
         letterSpacing: '1px'
     },
-    menuGroup: { display: 'flex', gap: '20px', alignItems: 'center' },
-    link: { textDecoration: 'none', color: '#f2e8cf', fontWeight: 500, fontSize: '0.9rem' },
-    
-    // Estilo especial para el botón de Fichar
+    menuGroup: { 
+        display: 'flex', 
+        gap: '20px', 
+        alignItems: 'center' 
+    },
+    link: { 
+        textDecoration: 'none', 
+        color: '#f2e8cf', 
+        fontWeight: '600', 
+        fontSize: '0.9rem',
+        transition: 'color 0.3s'
+    },
     fichajeLink: {
         textDecoration: 'none',
-        color: '#2a9d8f', // Verde azulado para destacar
+        color: '#f2e8cf',
         fontWeight: 'bold',
-        fontSize: '0.9rem',
-        backgroundColor: 'rgba(42, 157, 143, 0.1)',
-        padding: '5px 10px',
-        borderRadius: '5px',
-        border: '1px solid #2a9d8f'
-    },
-
-    adminLink: { 
-        backgroundColor: '#795548', 
-        color: '#f2e8cf', 
-        padding: '8px 15px', 
-        borderRadius: '6px', 
-        textDecoration: 'none', 
-        fontSize: '0.85rem', 
-        fontWeight: 'bold',
+        fontSize: '0.85rem',
+        backgroundColor: 'rgba(188, 108, 37, 0.2)',
+        padding: '8px 15px',
+        borderRadius: '50px',
         border: '1px solid #bc6c25'
     },
-    userArea: { display: 'flex', gap: '20px', alignItems: 'center' },
-    userInfo: { display: 'flex', flexDirection: 'column', alignItems: 'flex-end' },
-    userName: { color: '#f2e8cf', fontSize: '0.9rem', fontWeight: 'bold' },
-    userRole: { color: '#bc6c25', fontSize: '0.7rem', fontWeight: 'bold' },
-    logoutBtn: { 
-        backgroundColor: '#e63946', 
+    linkAdmin: {
+        textDecoration: 'none', 
+        color: '#d81b60', // Rosa para destacar gestión
+        fontWeight: 'bold', 
+        fontSize: '0.9rem'
+    },
+    adminBtn: { 
+        backgroundColor: '#ad1457', 
         color: 'white', 
-        border: 'none', 
-        padding: '8px 16px', 
-        borderRadius: '6px', 
-        cursor: 'pointer', 
+        padding: '6px 12px', 
+        borderRadius: '50px', 
+        textDecoration: 'none', 
+        fontSize: '0.8rem', 
+        fontWeight: 'bold'
+    },
+    userArea: { 
+        display: 'flex', 
+        gap: '15px', 
+        alignItems: 'center' 
+    },
+    userInfo: { 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'flex-end',
+        lineHeight: '1.2'
+    },
+    userName: { 
+        color: '#f2e8cf', 
+        fontSize: '0.9rem', 
         fontWeight: 'bold' 
+    },
+    userRole: { 
+        color: '#bc6c25', 
+        fontSize: '0.7rem', 
+        fontWeight: '900' 
+    },
+    logoutBtn: { 
+        backgroundColor: 'transparent', 
+        color: '#f2e8cf', 
+        border: '1px solid #f2e8cf', 
+        padding: '6px 12px', 
+        borderRadius: '50px', 
+        cursor: 'pointer', 
+        fontWeight: 'bold',
+        fontSize: '0.8rem',
+        transition: 'all 0.3s'
     }
 };
 
