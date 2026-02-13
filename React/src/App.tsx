@@ -9,6 +9,7 @@ import Inicio from './paginas/paginaInicio';
 import ProductosPage from './paginas/paginasProductos';
 import IngredientesPage from './paginas/paginasIngredientes';
 import RecetasPage from './paginas/recetas';
+import NosotrosPage from './paginas/NuestraPagina';
 
 // --- NUEVA PÁGINA DE FICHAR ---
 import PaginaRegistros from './paginas/paginaRegistros'; 
@@ -41,7 +42,7 @@ function App() {
 
             {/* --- VITRINA (Productos) --- */}
             <Route path="/productos" element={<ProductosPage />} />
-            
+            <Route path="/nosotros" element={<NosotrosPage />} />
             {/* --- RUTAS DE CLIENTE --- */}
             <Route path="/IniciarSesionCliente" element={<IniciarSesionCliente />} />
             <Route path="/RegistrarCliente" element={<RegistrarCliente />} />

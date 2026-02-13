@@ -17,7 +17,7 @@ const Inicio = () => {
                         <Link to="/productos" style={s.ctaPrimary} aria-label="Ver productos">
                             Ver Productos 🍰
                         </Link>
-                        <Link to="/sobre-nosotros" style={s.ctaSecondary} aria-label="Sobre nosotros">
+                        <Link to="/nosotros" style={s.ctaSecondary} aria-label="Sobre nosotros">
                             Nuestra Historia
                         </Link>
                     </nav>
