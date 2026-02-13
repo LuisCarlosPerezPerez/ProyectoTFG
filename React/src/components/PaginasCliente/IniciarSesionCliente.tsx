@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { authService } from '../../services/authService'; // Asegúrate de que la ruta sea correcta
+import { authService } from '../../services/authService';
 import type { Cliente } from '../../Types/Cliente';
 
 const IniciarSesionCliente = () => {
@@ -14,58 +14,52 @@ const IniciarSesionCliente = () => {
   const iniciarSesion = async (e: React.FormEvent) => { 
     e.preventDefault();
     try {
-      // Llamada al endpoint de tu backend
       const respuesta = await fetch('/api/Cliente/InicioSesion', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(cliente),
       });
 
-      console.log("Status del servidor:", respuesta.status);
-
       if (respuesta.status === 200) {
         const data = await respuesta.json();
+        const usuarioConRol = { ...data, rol: 'cliente' };
         
-        // --- SOLUCIÓN AL PROBLEMA DEL ROL ---
-        // Como vimos en tus logs, el servidor no envía el campo 'rol'.
-        // Lo añadimos manualmente para que ProductosPage reconozca al cliente.
-        const usuarioConRol = { 
-            ...data, 
-            rol: 'cliente' 
-        };
-
-        // Guardamos en 'usuario_sesion' usando tu servicio
         authService.login(usuarioConRol);
-
-        alert("¡Bienvenido a Pastelería Lama!");
-        
-        // Redirigimos a la vitrina de productos
+        alert("¡Bienvenido a Confitería Dama!");
         navegar("/productos");
-
-        // Forzamos el refresco para actualizar el Navbar y mostrar el botón de comprar
         window.location.reload();
       } else {
         alert("Usuario o contraseña incorrectos");
       }
-
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       alert("Error al conectar con el servidor de la pastelería");
     }
   };
 
-  return (
-    <div style={Estilos.pantallaCompleta}>
-      <div style={Estilos.tarjeta}>
-        <h2 style={Estilos.titulo}>Iniciar Sesión</h2>
-        <p style={Estilos.subtitulo}>¡Qué bueno verte de nuevo!</p>
+ return (
+    <main style={Estilos.pantallaCompleta}>
+      <section style={Estilos.tarjeta} aria-labelledby="login-title">
+        {/* Decoración superior: El rosa característico de Lama */}
+        <div style={Estilos.barraRosa} aria-hidden="true"></div>
 
-        <form onSubmit={iniciarSesion}>
+        <header style={Estilos.header}>
+          <h1 id="login-title" style={Estilos.logo}>
+            Pastelería <span style={{ color: '#E91E63' }}>Lama</span>
+          </h1>
+          <p style={Estilos.subtitulo}>
+            ¡Qué alegría verte de nuevo! Inicia sesión para disfrutar de nuestros dulces.
+          </p>
+        </header>
+
+        <form onSubmit={iniciarSesion} aria-label="Acceso de clientes">
           <div style={Estilos.campo}>
-            <label style={Estilos.etiqueta}>Usuario</label>
+            <label htmlFor="usuario" style={Estilos.etiqueta}>USUARIO</label>
             <input
+              id="usuario"
               type="text"
               name="usuario"
+              placeholder="Tu nombre de usuario"
               style={Estilos.input}
               value={cliente.usuario}
               onChange={manejarCambio}
@@ -74,10 +68,12 @@ const IniciarSesionCliente = () => {
           </div>
 
           <div style={Estilos.campo}>
-            <label style={Estilos.etiqueta}>Contraseña</label>
+            <label htmlFor="contraseña" style={Estilos.etiqueta}>CONTRASEÑA</label>
             <input
+              id="contraseña"
               type="password"
               name="contraseña"
+              placeholder="Tu contraseña secreta"
               style={Estilos.input}
               value={cliente.contraseña}
               onChange={manejarCambio}
@@ -86,79 +82,121 @@ const IniciarSesionCliente = () => {
           </div>
 
           <button type="submit" style={Estilos.botonEntrar}>
-            Entrar
+            INICIAR SESIÓN
           </button>
 
-          <div style={{ marginTop: '20px' }}>
-            <Link to="/RegistrarCliente" style={Estilos.enlace}>
-              ¿No tienes cuenta? Regístrate
+          <nav style={Estilos.footerNav} aria-label="Opciones de cuenta">
+            <span style={Estilos.textoLink}>¿Nuevo en la familia?</span>
+            <Link to="/RegistrarCliente" style={Estilos.linkResaltado}>
+              Crea tu cuenta aquí
             </Link>
-          </div>
+          </nav>
         </form>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
-// --- ESTILOS ---
 const Estilos: { [key: string]: React.CSSProperties } = {
   pantallaCompleta: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     minHeight: '100vh',
-    backgroundColor: '#fdf5e6',
+    // Fondo blanco puro con un toque sutil de rosa en el gradiente
+    backgroundColor: '#FFFFFF',
+    backgroundImage: 'linear-gradient(135deg, #fff5f8 0%, #ffffff 100%)',
+    padding: '20px',
+    fontFamily: "'Montserrat', 'Poppins', sans-serif"
   },
   tarjeta: {
     backgroundColor: '#ffffff',
-    padding: '40px',
-    borderRadius: '20px',
-    boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
-    width: '350px',
-    textAlign: 'center',
+    width: '100%',
+    maxWidth: '450px',
+    borderRadius: '24px', // Bordes mucho más redondeados y modernos
+    boxShadow: '0 20px 40px rgba(233, 30, 99, 0.12)', // Sombra con un toque rosa
+    overflow: 'hidden',
+    border: '1px solid #fce4ec',
+    textAlign: 'center'
   },
-  titulo: {
-    color: '#5d4037',
-    marginBottom: '5px',
-    fontSize: '2rem',
+  barraRosa: {
+    height: '8px',
+    backgroundColor: '#E91E63', // Rosa vibrante Lama
+    width: '100%'
+  },
+  header: {
+    padding: '40px 40px 20px 40px'
+  },
+  logo: {
+    fontSize: '2.5rem',
+    fontWeight: '800',
+    color: '#333',
+    margin: '0 0 10px 0',
+    letterSpacing: '-1px'
   },
   subtitulo: {
-    color: '#8d6e63',
-    marginBottom: '30px',
+    fontSize: '1rem',
+    color: '#666',
+    lineHeight: '1.5',
+    margin: '0 auto',
+    maxWidth: '300px'
   },
   campo: {
-    textAlign: 'left',
-    marginBottom: '15px',
+    padding: '0 40px',
+    marginBottom: '20px',
+    textAlign: 'left'
   },
   etiqueta: {
-    color: '#5d4037', 
-    fontWeight: 'bold',
+    fontSize: '0.75rem',
+    fontWeight: '700',
+    color: '#E91E63', // Etiquetas en rosa para accesibilidad y estilo
+    marginBottom: '8px',
     display: 'block',
-    marginBottom: '5px',
+    letterSpacing: '1px'
   },
   input: {
     width: '100%',
-    padding: '12px',
-    borderRadius: '8px',
-    border: '2px solid #d7ccc8',
+    padding: '16px',
+    borderRadius: '12px',
+    border: '2px solid #f0f0f0',
+    backgroundColor: '#fafafa',
+    fontSize: '1rem',
     boxSizing: 'border-box',
+    transition: 'all 0.3s ease',
+    outline: 'none',
+    // Al hacer focus, el borde cambia al rosa de la marca
   },
   botonEntrar: {
-    width: '100%',
-    padding: '12px',
-    backgroundColor: '#5d4037',
+    width: 'calc(100% - 80px)',
+    margin: '10px 40px',
+    padding: '16px',
+    backgroundColor: '#E91E63', // Botón vibrante
     color: '#ffffff',
     border: 'none',
-    borderRadius: '8px',
-    fontSize: '1.1rem',
-    fontWeight: 'bold',
+    borderRadius: '12px',
+    fontSize: '1rem',
+    fontWeight: '700',
     cursor: 'pointer',
-    marginTop: '10px',
+    transition: 'transform 0.2s ease, background-color 0.2s ease',
+    boxShadow: '0 8px 15px rgba(233, 30, 99, 0.3)'
   },
-  enlace: {
-    color: '#bc6c25',
+  footerNav: {
+    padding: '30px 40px',
+    backgroundColor: '#fff9fa',
+    marginTop: '20px',
+    borderTop: '1px solid #fce4ec'
+  },
+  textoLink: {
+    color: '#888',
+    fontSize: '0.9rem',
+    display: 'block',
+    marginBottom: '5px'
+  },
+  linkResaltado: {
+    color: '#E91E63',
+    fontWeight: '700',
     textDecoration: 'none',
-    fontWeight: '600',
+    fontSize: '0.95rem'
   }
 };
 
