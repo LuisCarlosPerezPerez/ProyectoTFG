@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react';
+
 
 export const s: { [key: string]: any } = {
     container: {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import productoService from '../services/productoService';
 import ingredienteService from '../services/ingredienteService';
 import relacionService from '../services/ProductoIngredienteService';

@@ -15,15 +15,24 @@ services:
   db:
     image: mysql:oraclelinux9
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pasteleria
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   server:
       build: 
         context: ./Entidades/Pasteleria
         dockerfile: ./Dockerfile
+      ports:
+      - 9090:9090
       depends_on:
-      - db
-
+        db:
+          condition: service_healthy
+      
 
 #  db:
 #    image: mongo

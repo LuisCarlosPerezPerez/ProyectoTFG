@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import registroService from '../services/registroService';
 import { authService } from '../services/authService';
 import { s } from '../styles/FichajeStyles';
