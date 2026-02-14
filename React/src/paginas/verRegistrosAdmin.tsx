@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import registroService from '../services/registroService';
 import { sLama } from '../styles/RegistroFicharStyles';
 // Definimos una interfaz para que TypeScript sepa qué tiene un Registro
@@ -114,10 +114,4 @@ const VerRegistrosAdmin = () => {
         </div>
     );
 };
-
-const st = {
-    th: { padding: '15px', textAlign: 'left' as const },
-    td: { padding: '12px' }
-};
-
 export default VerRegistrosAdmin;

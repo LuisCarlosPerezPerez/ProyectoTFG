@@ -1,4 +1,3 @@
-import React from 'react';
 import NavbarAnonimo from '../navbars/NavbarAnonimo';
 import NavbarCliente from '../navbars/NavbarCliente';
 import NavbarEmpleado from '../navbars/NavbarEmpleado';

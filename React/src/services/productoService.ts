@@ -1,4 +1,4 @@
-import type { Producto, VerProductosDTO } from '../Types/producto';
+import type { VerProductosDTO } from '../Types/producto';
 
 const API_URL = '/api/productos';
 
