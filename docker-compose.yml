@@ -14,24 +14,30 @@ services:
 
   db:
     image: mysql:oraclelinux9
+    command: --lower_case_table_names=1
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: pasteleria
+      TZ: "Europe/Madrid"
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p1234"]
       interval: 5s
       timeout: 5s
       retries: 10
+    volumes:
+      - ./BBDD/Pasteleria.sql:/docker-entrypoint-initdb.d/init.sql
 
   server:
+      environment:
+      - TZ=Europe/Madrid
       build: 
         context: ./Entidades/Pasteleria
         dockerfile: ./Dockerfile
       ports:
       - 9090:9090
       depends_on:
-        db:
-          condition: service_healthy
+       db:
+        condition: service_healthy
       
 
 #  db:

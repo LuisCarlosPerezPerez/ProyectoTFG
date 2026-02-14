@@ -21,7 +21,6 @@ import com.example.demo.dto.empleado.newEmpleadoDTO;
 
 @RestController
 @RequestMapping("/Empleado")
-@CrossOrigin(origins = "http://localhost:5173")
 public class ControladorEmpleado {
 
 	@Autowired
