@@ -36,9 +36,10 @@ export const FinalizarPedido = () => {
     }, [cliente?.id]);
 
     const cambiarCantidad = (id_producto: number, delta: number) => {
+        if (id_producto === undefined) return; // Si no hay ID, no hacemos nada
         setProductos(prev => prev.map(p => {
             if (p.id_producto === id_producto) {
-                const nuevaCant = p.cantidad + delta;
+                const nuevaCant = (p.cantidad || 0) + delta;
                 if (nuevaCant < 1) return p;
                 if (nuevaCant > p.stock) {
                     alert(`Solo hay ${p.stock} unidades de ${p.nombre} en stock.`);
@@ -71,7 +72,7 @@ export const FinalizarPedido = () => {
             head: [['Producto', 'Precio Unit.', 'Cantidad', 'Subtotal']],
             body: tableRows,
             theme: 'striped',
-            headStyles: { fillColor: [93, 64, 55] }
+            headStyles: { fillColor: [233, 30, 99] }
         });
 
         const totalFinal = productos.reduce((acc, p) => acc + (p.precio * p.cantidad), 0);
@@ -102,7 +103,7 @@ export const FinalizarPedido = () => {
                 const nuevoToken = await res.json();
                 generarPDF();
                 localStorage.setItem('usuario_sesion', JSON.stringify(nuevoToken));
-                alert("¡Pedido realizado con éxito!");
+                alert("¡Pedido realizado con éxito! Se ha descargado su ticket.");
                 navigate('/mis-pedidos');
             } else {
                 const errorMsg = await res.text();
@@ -144,17 +145,15 @@ export const FinalizarPedido = () => {
                             
                             <div style={Estilos.controles}>
                                 <button 
-                                    aria-label={`Reducir cantidad de ${prod.nombre}`}
                                     style={Estilos.btnAccion} 
-                                    onClick={() => cambiarCantidad(prod.stock, -1)}
+                                    onClick={() => cambiarCantidad(prod.id_producto!, -1)}
                                 >
                                     −
                                 </button>
                                 <span style={Estilos.cantidad}>{prod.cantidad}</span>
                                 <button 
-                                    aria-label={`Aumentar cantidad de ${prod.nombre}`}
                                     style={Estilos.btnAccion} 
-                                    onClick={() => cambiarCantidad(prod.stock, 1)}
+                                    onClick={() => cambiarCantidad(prod.id_producto!, 1)}
                                 >
                                     +
                                 </button>
