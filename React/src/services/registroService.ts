@@ -29,7 +29,6 @@ const registroService = {
     },
 
     registrarSalida: async (idEmpleado: number) => {
-        // Asegúrate de que el parámetro coincida con @RequestParam("idEmpleado") en Java
         const response = await fetch(`${API_URL}/GuardarHoraSalida?idEmpleado=${idEmpleado}`, {
             method: 'POST',
         });

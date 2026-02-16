@@ -12,8 +12,7 @@ import jakarta.transaction.Transactional;
 
 public interface RegistroRepository extends JpaRepository<RegistroEntity, Integer> {
 
-    // Cambiamos la lógica: Buscamos el ÚLTIMO registro abierto, sin importar la fecha exacta.
-    // Esto evita el error de "NonUniqueResultException" (el Error 500).
+
     @Query(value = "SELECT * FROM REGISTRO WHERE ID_EMPLEADO = :ID_EMPLEADO AND FECHA_SALIDA IS NULL ORDER BY ID_REGISTRO DESC LIMIT 1", nativeQuery = true)
     RegistroEntity buscarRegistroAbierto(@Param("ID_EMPLEADO") int ID_EMPLEADO);
 

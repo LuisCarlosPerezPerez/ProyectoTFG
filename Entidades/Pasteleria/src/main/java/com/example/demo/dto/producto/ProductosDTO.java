@@ -12,7 +12,7 @@ public class ProductosDTO {
     private int precio;
     private int id_empleado;
     private List<Integer> ingredientes = new ArrayList<>();
-    private List<Integer> pedidos = new ArrayList<>(); // Corregido a minúscula
+    private List<Integer> pedidos = new ArrayList<>(); 
     
     public ProductosDTO(int id_producto, String nombre, int stock, String receta, int precio, int id_empleado,
             List<Integer> ingredientes, List<Integer> pedidos) {
@@ -27,7 +27,6 @@ public class ProductosDTO {
         this.pedidos = pedidos;
     }
     
-    // GETTERS Y SETTERS CORREGIDOS (Todos en minúsculas)
     public int getId_producto() {
         return id_producto;
     }

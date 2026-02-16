@@ -5,14 +5,14 @@ import type { Cliente } from '../../Types/Cliente';
 const Registro = () => {
   const navegarIniciarSesion = useNavigate();
 
-  // 1. Estado inicial
+
   const [cliente, setCliente] = useState<Cliente>({
     usuario: '',
     contraseña: '',
     email: '',
   });
 
-  // 2. Manejador de cambios
+
   const manejarCambio = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCliente(prev => ({
@@ -21,12 +21,12 @@ const Registro = () => {
     }));
   };
 
-  // 3. Envío al Backend
+
   const enviarFormulario = async (e: React.FormEvent) => {
     e.preventDefault();
     
     try {
-      // Ajustado a la ruta completa del servidor para evitar fallos de resolución
+
       const respuesta = await fetch('/api/Cliente/GuardarCliente', {
         method: 'POST',
         headers: { 
@@ -56,7 +56,7 @@ const Registro = () => {
   return (
     <main style={Estilos.pantallaCompleta}>
       <section style={Estilos.tarjeta} aria-labelledby="reg-title">
-        {/* Detalle visual de marca */}
+
         <div style={Estilos.barraRosa} aria-hidden="true"></div>
 
         <header style={Estilos.header}>

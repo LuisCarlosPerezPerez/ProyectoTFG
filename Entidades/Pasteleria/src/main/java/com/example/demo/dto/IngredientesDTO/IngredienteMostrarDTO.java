@@ -1,4 +1,3 @@
-//-------------------------Objeto Mostrar(Respuesta)-------------------------
 package com.example.demo.dto.IngredientesDTO;
 
 public class IngredienteMostrarDTO {

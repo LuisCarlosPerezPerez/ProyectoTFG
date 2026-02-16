@@ -1,12 +1,12 @@
 import type{ CSSProperties } from 'react';
 
-// Tipado para que TypeScript reconozca las propiedades de CSS
+
 interface PasteleriaStyles {
     [key: string]: CSSProperties;
 }
 
 export const sLama: PasteleriaStyles = {
-    // --- ESTILOS GENERALES Y CONTENEDORES ---
+
     container: {
         padding: '120px 40px 60px',
         maxWidth: '1600px',
@@ -32,7 +32,7 @@ export const sLama: PasteleriaStyles = {
         marginTop: '10px',
     },
 
-    // --- GRID Y TARJETAS (PRODUCTOS) ---
+
     grid4: {
         display: 'grid',
         gridTemplateColumns: 'repeat(4, 1fr)',
@@ -68,7 +68,7 @@ export const sLama: PasteleriaStyles = {
         marginBottom: '20px',
     },
 
-    // --- GESTIÓN DE RECETAS (TABLAS Y FORMULARIOS) ---
+
     cardAdmin: {
         backgroundColor: '#fff',
         padding: '40px',
@@ -116,7 +116,7 @@ export const sLama: PasteleriaStyles = {
         color: '#444',
     },
 
-    // --- BOTONES ---
+
     btnPrincipal: {
         padding: '15px 35px',
         backgroundColor: '#d81b60',
@@ -130,7 +130,7 @@ export const sLama: PasteleriaStyles = {
     },
     btnSecundario: {
         padding: '15px 35px',
-        backgroundColor: '#bc6c25', // Marrón artesanal
+        backgroundColor: '#bc6c25',
         color: '#fff',
         border: 'none',
         borderRadius: '50px',

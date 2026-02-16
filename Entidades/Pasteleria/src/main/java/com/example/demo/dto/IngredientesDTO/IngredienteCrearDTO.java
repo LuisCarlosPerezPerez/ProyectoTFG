@@ -1,4 +1,3 @@
-//-------------------------Objeto Para Crear (Peticion)-------------------------
 package com.example.demo.dto.IngredientesDTO;
 
 public class IngredienteCrearDTO {

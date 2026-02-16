@@ -5,7 +5,6 @@ import type { CSSProperties } from 'react';
 const NavbarEmpleado = ({ usuario }: any) => {
     const navigate = useNavigate();
 
-    // Lógica para mostrar opciones de administrador
     const esAdminPoderoso = authService.esAdmin();
 
     const handleLogout = () => {
@@ -28,7 +27,6 @@ const NavbarEmpleado = ({ usuario }: any) => {
             </div>
 
             <div style={s.menuGroup}>
-                {/* Opción de Fichaje destacada */}
                 <Link to="/registros" style={s.fichajeLink}>🕒 Fichar</Link>
                 
                 <Link to="/productos" style={s.link}>Vitrina</Link>
@@ -36,7 +34,6 @@ const NavbarEmpleado = ({ usuario }: any) => {
                 <Link to="/recetas" style={s.link}>Mezclar</Link>
                 <Link to="/pedidos" style={s.link}>Pedidos</Link>
                 
-                {/* Opciones Administrativas */}
                 {esAdminPoderoso && (
                     <div style={{ display: 'flex', gap: '15px', marginLeft: '10px', paddingLeft: '15px', borderLeft: '1px solid #5d4037' }}>
                         <Link to="/ver-registros" style={s.linkAdmin}>📊 Registros</Link>
@@ -58,7 +55,7 @@ const NavbarEmpleado = ({ usuario }: any) => {
     );
 };
 
-// --- ESTILOS EN EL MISMO ARCHIVO (TIPADOS PARA TS) ---
+
 const s: Record<string, CSSProperties> = {
     nav: { 
         display: 'flex', 
@@ -66,7 +63,7 @@ const s: Record<string, CSSProperties> = {
         padding: '0 40px', 
         height: '85px', 
         alignItems: 'center', 
-        backgroundColor: '#2d1b18', // Marrón chocolate oscuro
+        backgroundColor: '#2d1b18', 
         position: 'fixed', 
         top: 0, 
         left: 0,
@@ -120,7 +117,7 @@ const s: Record<string, CSSProperties> = {
     },
     linkAdmin: {
         textDecoration: 'none', 
-        color: '#d81b60', // Rosa para destacar gestión
+        color: '#d81b60', 
         fontWeight: 'bold', 
         fontSize: '0.9rem'
     },

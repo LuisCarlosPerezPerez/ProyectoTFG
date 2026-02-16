@@ -4,7 +4,6 @@ export interface Producto {
     stock: number;
     receta: string;
     precio: number;
-    // Cambiamos id_empleado por un objeto que coincida con Java
     empleado?: {
         id_empleado: number;
     };

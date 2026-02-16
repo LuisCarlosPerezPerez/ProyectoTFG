@@ -24,7 +24,6 @@ const RegistrarEmpleado = () => {
   const manejarRegistro = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // MAPEAREMOS LOS DATOS EXACTAMENTE COMO TU CLASE JAVA:
       const datosParaBackend = {
         Usuario: nuevoEmpleado.usuario,
         Contraseña: nuevoEmpleado.contraseña,
@@ -32,7 +31,6 @@ const RegistrarEmpleado = () => {
         ID_Empleado: 0 
       };
 
-      // Nota: Asegúrate de usar la URL completa con el puerto 9090 si no hay proxy
       const respuesta = await fetch('http://localhost:9090/api/Empleado/GuardarEmpleado', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -55,7 +53,6 @@ const RegistrarEmpleado = () => {
   return (
     <main style={Estilos.pantalla}>
       <section style={Estilos.tarjeta} aria-labelledby="reg-title">
-        {/* Acento superior de marca */}
         <div style={Estilos.barraSuperior} aria-hidden="true"></div>
 
         <header style={Estilos.header}>
@@ -223,7 +220,7 @@ const Estilos: { [key: string]: React.CSSProperties } = {
     color: '#333',
     cursor: 'pointer',
     outline: 'none',
-    appearance: 'none' as any // Para limpiar estilos nativos
+    appearance: 'none' as any 
   },
   buttonGroup: {
     marginTop: '10px',

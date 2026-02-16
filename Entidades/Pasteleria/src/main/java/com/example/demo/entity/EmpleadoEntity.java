@@ -37,7 +37,6 @@ public class EmpleadoEntity implements Serializable {
 	@OneToMany(mappedBy = "empleado")
 	Set<ProductosEntity> productos = new HashSet<ProductosEntity>();
 
-	// Constructor para crear el EmpleadoEntity
 	public EmpleadoEntity(int iD_Empleado, String usuario, String contraseña, int administrador) {
 		this.ID_Empleado = iD_Empleado;
 		this.Usuario = usuario;

@@ -48,8 +48,7 @@ const ProductosPage = () => {
         e.preventDefault();
         try {
             if (editandoId) {
-                // Sincronizado con tu Controller: @PutMapping("/ActualizarProducto")
-                // Pasamos el ID por separado como espera el @RequestParam del Backend
+
                 await productoService.actualizarProducto(editandoId, {
                     nombre: formData.nombre,
                     precio: formData.precio,
@@ -63,7 +62,7 @@ const ProductosPage = () => {
                 alert("✅ Nuevo dulce añadido");
             }
             setMostrarForm(false);
-            cargar(); // Refrescar la lista de productos
+            cargar(); 
         } catch (error) {
             console.error("Error en la operación:", error);
             alert("Error al procesar el producto. Revisa la consola.");
@@ -74,7 +73,7 @@ const ProductosPage = () => {
         if (!window.confirm("¿Seguro que quieres quitar este producto de la vitrina?")) return;
         try {
             await productoService.eliminar(id);
-            cargar(); // Recargar la lista
+            cargar(); 
         } catch (error) {
             alert("Error al eliminar el producto.");
         }
@@ -92,7 +91,6 @@ const ProductosPage = () => {
                 )}
             </header>
 
-            {/* VITRINA EN 4 COLUMNAS */}
             <div style={s.grid}>
                 {productos.map((p) => (
                     <div key={p.id_producto} style={s.card}>
@@ -122,7 +120,7 @@ const ProductosPage = () => {
                 ))}
             </div>
 
-            {/* MODAL FORMULARIO (Añadir/Editar) */}
+
             {mostrarForm && (
                 <div style={s.modalOverlay}>
                     <form style={s.modalContent} onSubmit={manejarGuardar}>
@@ -145,7 +143,6 @@ const ProductosPage = () => {
                 </div>
             )}
 
-            {/* MODAL DETALLE (Ver Info + Acciones Admin) */}
             {productoDetalle && (
                 <div style={s.modalOverlay} onClick={() => setProductoDetalle(null)}>
                     <div style={s.modalContent} onClick={e => e.stopPropagation()}>
@@ -181,7 +178,7 @@ const s: { [key: string]: React.CSSProperties } = {
     
     grid: { 
         display: 'grid', 
-        gridTemplateColumns: 'repeat(4, 1fr)', // 4 Columnas Reales
+        gridTemplateColumns: 'repeat(4, 1fr)', 
         gap: '25px',
         width: '100%'
     },
@@ -199,7 +196,6 @@ const s: { [key: string]: React.CSSProperties } = {
     btnComprar: { backgroundColor: '#d81b60', color: 'white', border: 'none', borderRadius: '50px', padding: '12px', cursor: 'pointer', fontWeight: 'bold', fontSize: '1rem' },
     btnInfo: { border: '2px solid #d81b60', borderRadius: '50px', padding: '10px', cursor: 'pointer', backgroundColor: '#fff', color: '#d81b60', fontWeight: 'bold' },
     
-    // MODALES Y FORMULARIOS
     modalOverlay: { position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.6)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 3000, backdropFilter: 'blur(8px)' },
     modalContent: { backgroundColor: '#fff', padding: '40px', borderRadius: '40px', width: '90%', maxWidth: '550px', boxShadow: '0 20px 60px rgba(0,0,0,0.2)', textAlign: 'center' },
     modalTitulo: { color: '#ad1457', margin: '0 0 20px 0', fontSize: '2rem', fontWeight: '900' },

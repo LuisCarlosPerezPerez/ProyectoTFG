@@ -19,7 +19,7 @@ interface EstilosFichaje {
 
 export const s: EstilosFichaje = {
     container: {
-        padding: '120px 20px 60px', // Espacio para la navbar
+        padding: '120px 20px 60px', 
         width: '100%',
         maxWidth: '1000px',
         margin: '0 auto',
@@ -40,7 +40,7 @@ export const s: EstilosFichaje = {
     panelCentral: {
         margin: '20px auto',
         padding: '40px',
-        backgroundColor: '#fff0f5', // Rosa muy suave
+        backgroundColor: '#fff0f5', 
         borderRadius: '30px',
         boxShadow: '0 10px 30px rgba(216, 27, 96, 0.08)',
         display: 'inline-block',
@@ -63,10 +63,10 @@ export const s: EstilosFichaje = {
         fontSize: '1.2rem',
         fontWeight: 'bold',
         cursor: cargando ? 'not-allowed' : 'pointer',
-        backgroundColor: enTurno ? '#ad1457' : '#d81b60', // Rosas fuertes para contraste
+        backgroundColor: enTurno ? '#ad1457' : '#d81b60', 
         color: 'white',
         border: 'none',
-        borderRadius: '50px', // Estilo cápsula de Lama
+        borderRadius: '50px', 
         boxShadow: '0 4px 15px rgba(216, 27, 96, 0.3)',
         transition: 'all 0.3s ease',
         opacity: cargando ? 0.7 : 1,
@@ -87,7 +87,7 @@ export const s: EstilosFichaje = {
     tabla: {
         width: '100%',
         borderCollapse: 'separate',
-        borderSpacing: '0 10px', // Espaciado entre filas
+        borderSpacing: '0 10px', 
     },
     tablaCabecera: {
         backgroundColor: '#fce4ec',
@@ -103,7 +103,7 @@ export const s: EstilosFichaje = {
         borderBottom: '1px solid #fce4ec',
     },
     badgeEnCurso: {
-        color: '#e6a756', // Dorado de la marca para estados intermedios
+        color: '#e6a756', 
         fontWeight: 'bold',
         backgroundColor: '#fff9eb',
         padding: '4px 10px',

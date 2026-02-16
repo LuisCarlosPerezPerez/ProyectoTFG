@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import registroService from '../services/registroService';
 import { sLama } from '../styles/RegistroFicharStyles';
-// Definimos una interfaz para que TypeScript sepa qué tiene un Registro
 interface Registro {
     id_reg: number;
     id_emp: number;
@@ -23,7 +22,6 @@ const VerRegistrosAdmin = () => {
         try {
             const data = await registroService.listarTodosLosRegistros();
             
-            // Aquí tipamos 'r' como 'any' para que no de error al mapear desde la API
             const mapeados: Registro[] = data.map((r: any) => ({
                 id_reg: r.id_registro || r.ID_Registro,
                 id_emp: r.id_empleado || r.empleado, 
@@ -39,7 +37,6 @@ const VerRegistrosAdmin = () => {
         }
     };
 
-    // Tipamos 'r' como nuestra interfaz 'Registro'
     const filtrados = todosLosRegistros.filter((r: Registro) => 
         r.id_emp && r.id_emp.toString().includes(busqueda)
     );
@@ -52,13 +49,13 @@ const VerRegistrosAdmin = () => {
 
     return (
         <div style={sLama.container}>
-            {/* CABECERA */}
+      
             <header style={sLama.header}>
                 <h2 style={sLama.tituloSeccion}>📊 Panel de Supervisión</h2>
                 <p style={sLama.subtitulo}>Control de entradas, salidas y horas del staff</p>
             </header>
             
-            {/* FILTRO BUSCADOR */}
+           
             <div style={sLama.searchContainer}>
                 <label style={{ ...sLama.label, margin: 0 }}>Filtrar Empleado:</label>
                 <input 
@@ -72,7 +69,7 @@ const VerRegistrosAdmin = () => {
                 />
             </div>
 
-            {/* TABLA DE REGISTROS */}
+         
             <div style={sLama.tablaWrapper}>
                 <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                     <thead style={sLama.thead}>

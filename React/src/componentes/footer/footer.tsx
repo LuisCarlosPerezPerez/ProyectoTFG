@@ -6,7 +6,7 @@ const Footer = () => {
         <footer style={f.container}>
             <div style={f.content}>
                 
-                {/* COLUMNA 1: BRANDING Y REDES */}
+
                 <div style={f.column}>
                     <h3 style={f.logoText}>🥐 Pastelería Lama</h3>
                     <div style={f.socialGroup}>
@@ -15,14 +15,14 @@ const Footer = () => {
                     </div>
                 </div>
 
-                {/* COLUMNA 2: NAVEGACIÓN */}
+
                 <div style={f.column}>
                     <h4 style={f.colTitle}>Explora</h4>
                     <Link to="/productos" style={f.link}>La Vitrina</Link>
                     <Link to="/nosotros" style={f.link}>Nuestra Historia</Link>
                 </div>
 
-                {/* COLUMNA 3: CONTACTO */}
+
                 <div style={f.column}>
                     <h4 style={f.colTitle}>Contacto</h4>
                     <p style={f.infoItem}>📍 Carretera de Urda 1<br/>
@@ -33,7 +33,6 @@ const Footer = () => {
                     <p style={f.infoItem}>✉️ info@pastelerialama.es</p>
                 </div>
 
-                {/* COLUMNA 4: HORARIO */}
                 <div style={f.column}>
                     <h4 style={f.colTitle}>Horario</h4>
                     <p style={f.infoItem}>Lun - Vie: <br/> 10:00 a 14:30 | 17:00 a 20:00</p>
@@ -42,7 +41,6 @@ const Footer = () => {
 
             </div>
 
-            {/* BARRA INFERIOR: LEGAL Y COPYRIGHT */}
             <div style={f.bottomBar}>
                 <div style={f.legalLinks}>
                     <Link to="/aviso-legal" style={f.legalItem}>Aviso Legal</Link>

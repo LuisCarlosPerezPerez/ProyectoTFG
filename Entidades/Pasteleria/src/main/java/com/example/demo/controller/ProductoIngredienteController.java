@@ -33,6 +33,6 @@ public class ProductoIngredienteController {
 	
 	@PostMapping("/EliminarProductoIngrediente")
 	public void eliminar(@RequestBody int id) {
-	    RelacionaServicios.eliminarRelacion(id); // Debes crear este método en tu interfaz/implementación
+	    RelacionaServicios.eliminarRelacion(id); 
 	}
 }

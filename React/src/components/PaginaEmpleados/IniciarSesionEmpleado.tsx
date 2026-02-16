@@ -46,7 +46,7 @@ const IniciarSesionEmpleado = () => {
     return (
         <main style={Estilos.contenedor}>
             <section style={Estilos.tarjeta} aria-labelledby="staff-title">
-                {/* Acento superior de marca */}
+
                 <div style={Estilos.barraSuperior} aria-hidden="true"></div>
                 
                 <div style={Estilos.iconoContenedor} aria-hidden="true">
@@ -194,7 +194,7 @@ const Estilos: { [key: string]: React.CSSProperties } = {
     botonAcceso: { 
         width: '100%', 
         padding: '18px', 
-        backgroundColor: '#333', // Color oscuro para diferenciar el panel de Staff del de Cliente
+        backgroundColor: '#333', 
         color: '#ffffff', 
         border: 'none', 
         borderRadius: '14px', 

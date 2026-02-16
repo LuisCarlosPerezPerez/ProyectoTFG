@@ -28,11 +28,8 @@ export const authService = {
         return usuario?.rol ? usuario.rol.toLowerCase() : null;
     },
 
-    // --- CORRECCIÓN AQUÍ ---
-    // Ahora comprueba la errata de la base de datos O el rol de texto
     esAdmin: (): boolean => {
         const usuario = authService.getUsuario();
-        // Priorizamos 'Administrador' con A mayúscula que es el que viene con 1
         return (
             usuario?.Administrador == 1 || 
             usuario?.admininistrador == 1 || 
@@ -41,7 +38,6 @@ export const authService = {
     },
     esStaff: (): boolean => {
         const rol = authService.getRol();
-        // Un administrador (valor 1) también es parte del staff
         return rol === 'admin' || rol === 'empleado' || authService.esAdmin();
     },
 

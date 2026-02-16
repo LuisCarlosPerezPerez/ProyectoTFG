@@ -1,12 +1,11 @@
 import type { CSSProperties } from 'react';
 
-// Tipado para garantizar que TypeScript acepte las propiedades de CSS
 interface PasteleriaStyles {
     [key: string]: CSSProperties;
 }
 
 export const sLama: PasteleriaStyles = {
-    // --- CONTENEDOR PRINCIPAL ---
+
     container: {
         padding: '120px 40px 60px',
         maxWidth: '1200px',
@@ -32,7 +31,6 @@ export const sLama: PasteleriaStyles = {
         marginTop: '10px',
     },
 
-    // --- ELEMENTOS DE FORMULARIO Y BÚSQUEDA ---
     cardAdmin: {
         backgroundColor: '#fff',
         padding: '35px',
@@ -85,7 +83,6 @@ export const sLama: PasteleriaStyles = {
         fontFamily: 'inherit',
     },
 
-    // --- TABLAS ESTILO PREMIUM ---
     tablaWrapper: {
         background: 'white',
         borderRadius: '25px',
@@ -116,7 +113,6 @@ export const sLama: PasteleriaStyles = {
         fontSize: '0.95rem',
     },
 
-    // --- BOTONES Y BADGES ---
     btnPrincipal: {
         padding: '15px 35px',
         backgroundColor: '#d81b60',
@@ -174,7 +170,6 @@ export const sLama: PasteleriaStyles = {
         gap: '5px',
     },
 
-    // --- GRID PRODUCTOS ---
     grid4: {
         display: 'grid',
         gridTemplateColumns: 'repeat(4, 1fr)',

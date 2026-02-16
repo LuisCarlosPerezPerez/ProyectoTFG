@@ -33,7 +33,6 @@ const RecetasPage = () => {
             return;
         }
 
-        // BUSCAR DUPLICADOS (Normalizando nombres de propiedades y tipos)
         const yaExiste = relaciones.some(rel => {
             const relIdProd = Number(rel.id_producto || rel.producto);
             const relIdIng = Number(rel.id_ingrediente || rel.ingrediente);
@@ -50,7 +49,7 @@ const RecetasPage = () => {
             await relacionService.guardar(idProductoNuevo, idIngredienteNuevo);
             alert("✅ Vinculado con éxito");
             setSeleccion({ id_producto: 0, id_ingrediente: 0 });
-            await cargarTodo(); // Refrescar la lista
+            await cargarTodo(); 
         } catch (error) {
             console.error("Error al guardar:", error);
             alert("No se pudo guardar la relación en el servidor.");
@@ -58,7 +57,6 @@ const RecetasPage = () => {
     };
 
     const handleEliminar = async (rel: any) => {
-        // Busca el ID sin importar si Java lo manda como id_producto_ingrediente o ID_...
         const id = rel.id_producto_ingrediente || rel.ID_producto_ingrediente;
         
         if (window.confirm("¿Seguro que quieres quitar este ingrediente de la receta?")) {
@@ -69,7 +67,6 @@ const RecetasPage = () => {
         }
     };
 
-    // Funciones para limpiar los "undefined" de la tabla
     const getNombreP = (rel: any) => {
         const id = rel.id_producto || rel.producto;
         const p = productos.find(x => x.id_producto === id);

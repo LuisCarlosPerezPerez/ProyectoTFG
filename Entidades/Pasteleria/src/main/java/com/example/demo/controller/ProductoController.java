@@ -37,13 +37,12 @@ public class ProductoController {
 	
 	@PostMapping("EliminarProducto")
 	public void eliminarProducto(@RequestBody int id) {
-	    // Aquí llamamos al método que me acabas de pasar
 	    ProductoServicio.eliminarProducto(id); 
 	}
 	
 	@PutMapping("/ActualizarProducto")
     public void actualizarProducto(@RequestParam int id, @RequestBody newProductoDTO productoDTO) {
-        // Llamamos a la implementación que acabamos de crear
+
         ProductoServicio.actualizarProducto(id, productoDTO);
     }
 	

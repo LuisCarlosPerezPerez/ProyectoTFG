@@ -4,7 +4,7 @@ import type { CSSProperties } from 'react';
 const NavbarAnonimo = () => {
     return (
         <nav style={s.nav}>
-            {/* LOGO */}
+
             <Link to="/" style={s.logo}>
                 <span style={{ fontSize: '28px' }}>🥐</span> 
                 <div style={{ lineHeight: '1.1' }}>
@@ -13,16 +13,16 @@ const NavbarAnonimo = () => {
                 </div>
             </Link>
             
-            {/* LINKS CENTRALES */}
+
             <div style={s.navLinks}>
                 <Link to="/productos" style={s.navItem}>Vitrina</Link>
                 <Link to="/nosotros" style={s.navItem}>Nuestra Historia</Link>
             </div>
 
-            {/* ACCESOS (DERECHA) */}
+
             <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
                 
-                {/* ÁREA CLIENTES */}
+
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
                     <Link to="/IniciarSesionCliente" style={s.btnCliente}>
                         Entrar Cliente
@@ -32,10 +32,10 @@ const NavbarAnonimo = () => {
                     </Link>
                 </div>
 
-                {/* SEPARADOR VIRTUAL */}
+
                 <div style={{ width: '1px', height: '35px', backgroundColor: '#f2e8cf' }}></div>
 
-                {/* ÁREA STAFF */}
+
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
                     <Link to="/IniciarSesionEmpleado" style={s.btnStaff}>
                         Staff Login
@@ -50,7 +50,7 @@ const NavbarAnonimo = () => {
     );
 };
 
-// --- ESTILOS EN EL MISMO ARCHIVO (TIPADOS PARA TS) ---
+
 const s: Record<string, CSSProperties> = {
     nav: {
         display: 'flex',

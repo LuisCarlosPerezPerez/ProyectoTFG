@@ -17,7 +17,7 @@ public class ProductoImplementacion implements ProductoInterfaz {
 
     @Override
     public List<VerProductosDTO> listarProductos() {
-        // Consultamos directamente a MySQL
+
         return RepoProducto.findAll().stream()
                 .map(a -> new VerProductosDTO(
                         a.getID_producto(),
@@ -34,10 +34,10 @@ public class ProductoImplementacion implements ProductoInterfaz {
 
     @Override
     public int GuardarProducto(newProductoDTO productoDTO) {
-        // Ahora devuelve la entidad o null
+
         ProductosEntity existente = RepoProducto.findByNombre(productoDTO.getNombre());
         
-        // Si es null, significa que el producto no existe y podemos crearlo
+
         if (existente == null) {
             ProductosEntity nuevaEntidad = new ProductosEntity();
             nuevaEntidad.setNombre(productoDTO.getNombre());
@@ -49,7 +49,7 @@ public class ProductoImplementacion implements ProductoInterfaz {
             return guardado.getID_producto();
         }
         
-        // Si 'existente' no es null, el producto ya está en la base de datos
+
         return 0; 
     }
     @Override
@@ -65,7 +65,7 @@ public class ProductoImplementacion implements ProductoInterfaz {
 
     @Override
     public void eliminarProducto(int idProducto) {
-        // Borrado físico en la base de datos
+
         RepoProducto.deleteById(idProducto);
     }
 

@@ -12,7 +12,7 @@ public interface RepositorioCliente extends JpaRepository<ClienteEntity, Integer
 	@Query("SELECT c FROM ClienteEntity c WHERE c.id = :id")
     ClienteEntity BuscarPorId(@Param("id") int id);
 
-    // CORRECCIÓN: Usamos 'contrasena' (con n) para que coincida con tu Entity
+
     @Query("SELECT c FROM ClienteEntity c WHERE c.usuario = :usuario AND c.contrasena = :contrasena")
     ClienteEntity BuscarPorUsuarioYContraseña(@Param("usuario") String usuario, @Param("contrasena") String contrasena);
 }

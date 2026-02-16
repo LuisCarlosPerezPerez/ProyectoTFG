@@ -29,7 +29,6 @@ public class ControladorCliente {
 	@Autowired
 	RepositorioCliente repocliente;
 
-//--------------------- Iniciar Sesion ---------------------//
 
 	@PostMapping("GuardarCliente")
 	public ResponseEntity<ClienteSesionDTO> guardarcliente(@RequestBody ClienteRegistroDTO cliente) {
@@ -48,7 +47,7 @@ public class ControladorCliente {
 	@PostMapping("ComprarProducto/{id}")
 	public ResponseEntity<ClienteFullDTO> comprarProducto(
 	    @PathVariable("id") String idProducto, 
-	    @RequestBody ClienteFullDTO cliente) { // Spring sacará los datos del JSON aquí
+	    @RequestBody ClienteFullDTO cliente) { 
 	    
 	    int id_p = Integer.parseInt(idProducto);
 	    ClienteFullDTO clienteActualizado = serviciocliente.comprarproducto(cliente,id_p);
@@ -70,7 +69,7 @@ public class ControladorCliente {
 	        @RequestParam String telefono, 
 	        @RequestBody Map<String, Object> payload) { 
 	    
-	    // Pasamos todo al servicio
+	    
 	    ClienteFullDTO resultado = serviciocliente.finalizarPedidoAutomatico(fecha, telefono, payload);
 	    return ResponseEntity.ok(resultado);
 	}

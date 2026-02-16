@@ -9,7 +9,6 @@ const IngredientesPage = () => {
     const [editandoId, setEditandoId] = useState<number | null>(null);
     const [nuevo, setNuevo] = useState<Ingrediente>({ nombre: '', stock: 0, proveedor: '' });
 
-    // ESTADO PARA LA VENTANA DE CONSULTA (DETALLE)
     const [ingredienteSeleccionado, setIngredienteSeleccionado] = useState<Ingrediente | null>(null);
 
     useEffect(() => { cargar(); }, []);
@@ -50,8 +49,8 @@ const IngredientesPage = () => {
             stock: ingredienteSeleccionado.stock, 
             proveedor: ingredienteSeleccionado.proveedor 
         });
-        setIngredienteSeleccionado(null); // Cerramos el detalle
-        setMostrarForm(true); // Abrimos el formulario
+        setIngredienteSeleccionado(null); 
+        setMostrarForm(true); 
     };
 
     const handleEliminar = async (id: number | undefined) => {
@@ -78,7 +77,6 @@ const IngredientesPage = () => {
                 </button>
             </div>
 
-            {/* FORMULARIO DE ALTA/EDICIÓN */}
             {mostrarForm && (
                 <form onSubmit={handleGuardar} style={s.form}>
                     <h3 style={{ color: '#ad1457', marginTop: 0 }}>
@@ -117,7 +115,6 @@ const IngredientesPage = () => {
                 </form>
             )}
 
-            {/* TABLA PRINCIPAL */}
             <div style={s.tablaContenedor}>
                 <table style={s.table}>
                     <thead>
@@ -145,7 +142,6 @@ const IngredientesPage = () => {
                 </table>
             </div>
 
-            {/* VENTANA EMERGENTE DE CONSULTA (MODAL) */}
             {ingredienteSeleccionado && (
                 <div style={s.overlay}>
                     <div style={s.modal} role="dialog" aria-modal="true" aria-labelledby="modal-title">

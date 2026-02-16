@@ -47,7 +47,7 @@ export const s: { [key: string]: any } = {
     },
     btnSubmit: {
         padding: '12px 30px',
-        backgroundColor: '#e6a756', // Dorado Lama
+        backgroundColor: '#e6a756', 
         color: '#000',
         border: 'none',
         borderRadius: '50px',

@@ -3,13 +3,11 @@ import type { CSSProperties } from 'react';
 const NosotrosPage = () => {
     return (
         <div style={s.container}>
-            {/* SECCIÓN HERO */}
             <header style={s.hero}>
                 <h1 style={s.titulo}>Nuestra Historia</h1>
                 <p style={s.subtitulo}>Desde el corazón del obrador a vuestra mesa</p>
             </header>
 
-            {/* CONTENIDO PRINCIPAL */}
             <section style={s.contentSection}>
                 <div style={s.textBlock}>
                     <h2 style={s.h2}>Tradición Artesanal</h2>
@@ -25,7 +23,6 @@ const NosotrosPage = () => {
                     </p>
                 </div>
 
-                {/* DECORACIÓN VISUAL */}
                 <div style={s.statsGrid}>
                     <div style={s.statCard}>
                         <span style={s.statNum}>1994</span>
@@ -59,18 +56,17 @@ const NosotrosPage = () => {
     );
 };
 
-// --- ESTILOS EN EL MISMO ARCHIVO ---
 const s: Record<string, CSSProperties> = {
     container: {
-        paddingTop: '120px', // Espacio para el Navbar fijo
+        paddingTop: '120px', 
         minHeight: '100vh',
-        backgroundColor: '#fffcf9', // Color crema muy suave
+        backgroundColor: '#fffcf9', 
         fontFamily: "'Quicksand', sans-serif",
     },
     hero: {
         textAlign: 'center',
         padding: '60px 20px',
-        backgroundColor: '#fce4ec', // Rosa suave corporativo
+        backgroundColor: '#fce4ec',
         marginBottom: '50px',
     },
     titulo: {

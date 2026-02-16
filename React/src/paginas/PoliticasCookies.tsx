@@ -68,7 +68,6 @@ const PoliticaCookiesPage = () => {
     );
 };
 
-// --- ESTILOS ---
 const s: Record<string, CSSProperties> = {
     container: {
         paddingTop: '120px',

@@ -60,7 +60,6 @@ export const ComprarProducto = () => {
     return (
         <main style={Estilos.pantalla}>
             <section style={Estilos.tarjeta} aria-labelledby="confirm-title">
-                {/* Barra decorativa rosa vibrante */}
                 <div style={Estilos.barraRosa} aria-hidden="true"></div>
 
                 <header style={Estilos.header}>
@@ -204,7 +203,7 @@ const Estilos: { [key: string]: React.CSSProperties } = {
     },
     valorEstado: {
         fontSize: '0.85rem',
-        color: '#C2185B', // Rosa más oscuro para cumplir contraste WAVE
+        color: '#C2185B', 
         fontWeight: '800'
     },
     acciones: {

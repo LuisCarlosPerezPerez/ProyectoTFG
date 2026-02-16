@@ -50,7 +50,7 @@ html, body {
   background-color: #ffffff;
 }
 
-/* --- NAVBAR ESTILO LAMA --- */
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -61,13 +61,13 @@ html, body {
   border-bottom: 1px solid #ddd;
   position: fixed;
   top: 0;
-  left: 0; /* Aseguramos que pegue a la izquierda */
+  left: 0; 
   width: 100%;
   z-index: 1000;
   box-sizing: border-box;
 }
 
-/* CONTENEDOR DEL LOGO */
+
 .logo-container {
   display: flex;
   align-items: center;
@@ -84,16 +84,16 @@ html, body {
 .logo-text {
   font-size: 24px;
   font-weight: 800;
-  color: #000000; /* Negro para 'PASTELERÍA' */
+  color: #000000; 
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
 .logo-text span {
-  color: #e6a756; /* Dorado para 'LAMA' */
+  color: #e6a756; 
 }
 
-/* ENLACES DE NAVEGACIÓN (Color Negro) */
+
 .nav-links {
   display: flex;
   gap: 25px;
@@ -101,20 +101,20 @@ html, body {
 
 .nav-link {
   text-decoration: none;
-  color: #000000; /* <--- Negro puro para contraste máximo */
+  color: #000000; 
   font-size: 16px;
-  font-weight: 700; /* Un poco más de grosor para legibilidad */
+  font-weight: 700; 
   transition: color 0.2s;
 }
 
 .nav-link:hover {
-  color: #e6a756; /* Cambio a dorado al pasar el ratón */
+  color: #e6a756; 
 }
 
-/* BOTONES DE LA IMAGEN */
+
 .btn-fichar {
   padding: 10px 20px;
-  background-color: #FFEAA8; /* Color crema amarillento */
+  background-color: #FFEAA8; 
   color: #000;
   border: none;
   border-radius: 8px;
@@ -123,8 +123,8 @@ html, body {
 }
 
 .user-btn {
-  background-color: #000000; /* El botón negro 'user Btn' */
-  color: #FFEAA8; /* Texto crema sobre fondo negro */
+  background-color: #000000; 
+  color: #FFEAA8; 
   padding: 8px 18px;
   border-radius: 6px;
   border: none;
@@ -134,7 +134,7 @@ html, body {
 }
 
 .login-btn {
-  background-color: #FFEAA8; /* El 'loginBtn' de la imagen */
+  background-color: #FFEAA8; 
   color: #000000;
   padding: 8px 18px;
   border-radius: 6px;
@@ -144,7 +144,7 @@ html, body {
   display: inline-block;
 }
 
-/* src/index.css */
+
 :root {
   margin: 0;
   padding: 0;
@@ -155,7 +155,6 @@ html, body, #root {
   padding: 0;
   width: 100%;
   min-height: 100vh;
-  /* Evita que aparezca el scroll horizontal si algo se pasa un pixel */
   overflow-x: hidden; 
 }
 
@@ -164,7 +163,7 @@ body {
   background-color: #ffffff;
 }
 
-/* Ajuste para que el contenedor de las páginas no tenga límites de ancho */
+
 .full-width-container {
   width: 100%;
   margin: 0;

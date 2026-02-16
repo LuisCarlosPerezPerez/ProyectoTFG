@@ -11,7 +11,6 @@ export const MisPedidos = () => {
 
     useEffect(() => {
         if (cliente?.id) {
-            // Asegúrate de usar la URL completa si no tienes proxy configurado
             fetch(`/api/Cliente/HistorialPedidos/${cliente.id}`)
                 .then(res => res.json())
                 .then((data: Pedido[]) => {

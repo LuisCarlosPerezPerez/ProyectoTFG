@@ -13,7 +13,7 @@ const NavbarCliente = ({ usuario }: { usuario: any }) => {
 
     return (
         <nav style={navS.nav}>
-            {/* LOGO */}
+
             <Link to="/" style={navS.logo}>
                 <span style={{ fontSize: '28px' }}>🥐</span> 
                 <div style={{ lineHeight: '1.1' }}>
@@ -22,14 +22,13 @@ const NavbarCliente = ({ usuario }: { usuario: any }) => {
                 </div>
             </Link>
             
-            {/* MENÚ CLIENTE */}
+
             <div style={navS.menu}>
                 <Link to="/productos" style={navS.link}>Productos</Link>
                 <Link to="/MisPedidos" style={navS.link}>Mis Pedidos</Link>
                 <Link to="/FinalizarPedido" style={navS.link}>Realizar Pedido</Link>
             </div>
 
-            {/* ÁREA DE USUARIO */}
             <div style={navS.userArea}>
                 <div style={{ textAlign: 'right' }}>
                     <span style={navS.welcome}>Bienvenido/a,</span>
@@ -45,7 +44,7 @@ const NavbarCliente = ({ usuario }: { usuario: any }) => {
     );
 };
 
-// --- ESTILOS EN EL MISMO ARCHIVO ---
+
 const navS: Record<string, CSSProperties> = {
     nav: { 
         display: 'flex', 

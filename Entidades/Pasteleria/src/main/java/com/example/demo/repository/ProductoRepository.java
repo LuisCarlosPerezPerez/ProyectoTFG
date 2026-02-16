@@ -13,15 +13,13 @@ import com.example.demo.entity.ProductosEntity;
 
 public interface ProductoRepository extends JpaRepository<ProductosEntity, Integer> {
     
-    // Si usas JPQL (nombres de clase), la consulta es así:
     @Query("SELECT p FROM ProductosEntity p WHERE p.id = :id")
     ProductosEntity BuscarPorId(@Param("id") int id);
     
-    // Para traer todos en JPQL:
     @Query("SELECT p FROM ProductosEntity p")
     Set<ProductosEntity> ObtenerTodoslosProductos();
     
-    // Consulta para obtener productos por ID (o el campo que necesites)
+
     @Query("SELECT p FROM ProductosEntity p WHERE p.id = :id")
     Set<ProductosEntity> Obtenerciertosproductos(@Param("id") int id);
     
@@ -34,7 +32,7 @@ public interface ProductoRepository extends JpaRepository<ProductosEntity, Integ
     void actualizarProducto(
         @Param("id") int id, 
         @Param("nombre") String nombre, 
-        @Param("precio") int precio, // Cambiado a int para coincidir con tu entidad
+        @Param("precio") int precio, 
         @Param("stock") int stock, 
         @Param("receta") String receta
     );

@@ -71,7 +71,7 @@ public class ImplementacionEmpleado implements ServicioEmpleado {
 	            .orElseThrow(() -> new RuntimeException("No existe el pedido " + idPedido));
 	    
 	    pedido.setEstado("Terminado");
-	    pedido.setTelefono(0); // Borramos el rastro del teléfono
+	    pedido.setTelefono(0); 
 	    pedidorepository.save(pedido);
 	}
 
@@ -85,15 +85,15 @@ public class ImplementacionEmpleado implements ServicioEmpleado {
 	        map.put("entrega", pedido.getEntrega() != null ? pedido.getEntrega().toString() : "Sin fecha");
 	        map.put("estado", pedido.getEstado());
 	        
-	        // EXTRAEMOS SOLO EL NOMBRE (evita la recursión del objeto cliente)
+
 	        map.put("nombre_cliente", pedido.getCliente() != null ? pedido.getCliente().getUsuario() : "Anónimo");
 	        
-	        // Lógica del teléfono
+
 	        map.put("telefono", (pedido.getTelefono() == 0 || "Terminado".equalsIgnoreCase(pedido.getEstado())) ? "Oculto" : pedido.getTelefono());
 	        
 	        map.put("preciototal", pedido.getPreciototal());
 
-	        // EXTRAEMOS SOLO IDs DE PRODUCTOS (evita la recursión de productos)
+
 	        List<Integer> productosIds = pedido.getProductos().stream()
 	            .map(pp -> pp.getProducto().getID_producto())
 	            .collect(Collectors.toList());

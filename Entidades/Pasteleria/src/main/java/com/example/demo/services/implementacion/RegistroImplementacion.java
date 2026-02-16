@@ -43,19 +43,18 @@ public class RegistroImplementacion implements RegistroInterfaz {
 
 	@Override
 	public void RegistrarSalida(int idEmpleado) {
-	    // 1. Buscamos el registro abierto (el que tiene salida NULL)
+
 	    RegistroEntity registro = registrosql.buscarRegistroAbierto(idEmpleado);
 	    
 	    if (registro != null) {
-	        int idReg = registro.getID_Registro(); // Obtenemos su ID único
-	        
-	        // 2. Ponemos la hora de salida
+	        int idReg = registro.getID_Registro(); 
+
 	        registrosql.ActualizarHoraSalida(LocalDateTime.now(), idReg);
 	        
-	        // 3. Calculamos horas con Double
+
 	        Double horas = registrosql.calcularHorasPorId(idReg);
 	        
-	        // 4. Guardamos el total
+
 	        if (horas != null) {
 	            registrosql.ActualizarHorasTotales(horas, idReg);
 	        }
@@ -79,7 +78,7 @@ public class RegistroImplementacion implements RegistroInterfaz {
 
     @Override
     public List<RegistroDTO> listarTodosLosRegistros() {
-        // Llamamos a la nueva query nativa del repositorio
+
         List<RegistroEntity> listaCompleta = registrosql.listarTodosLosRegistros();
         
         return listaCompleta.stream()

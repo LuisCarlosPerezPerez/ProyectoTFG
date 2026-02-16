@@ -40,7 +40,7 @@ const IniciarSesionCliente = () => {
  return (
     <main style={Estilos.pantallaCompleta}>
       <section style={Estilos.tarjeta} aria-labelledby="login-title">
-        {/* Decoración superior: El rosa característico de Lama */}
+
         <div style={Estilos.barraRosa} aria-hidden="true"></div>
 
         <header style={Estilos.header}>
@@ -103,7 +103,7 @@ const Estilos: { [key: string]: React.CSSProperties } = {
     justifyContent: 'center',
     alignItems: 'center',
     minHeight: '100vh',
-    // Fondo blanco puro con un toque sutil de rosa en el gradiente
+
     backgroundColor: '#FFFFFF',
     backgroundImage: 'linear-gradient(135deg, #fff5f8 0%, #ffffff 100%)',
     padding: '20px',
@@ -113,15 +113,15 @@ const Estilos: { [key: string]: React.CSSProperties } = {
     backgroundColor: '#ffffff',
     width: '100%',
     maxWidth: '450px',
-    borderRadius: '24px', // Bordes mucho más redondeados y modernos
-    boxShadow: '0 20px 40px rgba(233, 30, 99, 0.12)', // Sombra con un toque rosa
+    borderRadius: '24px', 
+    boxShadow: '0 20px 40px rgba(233, 30, 99, 0.12)', 
     overflow: 'hidden',
     border: '1px solid #fce4ec',
     textAlign: 'center'
   },
   barraRosa: {
     height: '8px',
-    backgroundColor: '#E91E63', // Rosa vibrante Lama
+    backgroundColor: '#E91E63', 
     width: '100%'
   },
   header: {
@@ -149,7 +149,7 @@ const Estilos: { [key: string]: React.CSSProperties } = {
   etiqueta: {
     fontSize: '0.75rem',
     fontWeight: '700',
-    color: '#E91E63', // Etiquetas en rosa para accesibilidad y estilo
+    color: '#E91E63', 
     marginBottom: '8px',
     display: 'block',
     letterSpacing: '1px'
@@ -164,13 +164,13 @@ const Estilos: { [key: string]: React.CSSProperties } = {
     boxSizing: 'border-box',
     transition: 'all 0.3s ease',
     outline: 'none',
-    // Al hacer focus, el borde cambia al rosa de la marca
+
   },
   botonEntrar: {
     width: 'calc(100% - 80px)',
     margin: '10px 40px',
     padding: '16px',
-    backgroundColor: '#E91E63', // Botón vibrante
+    backgroundColor: '#E91E63', 
     color: '#ffffff',
     border: 'none',
     borderRadius: '12px',

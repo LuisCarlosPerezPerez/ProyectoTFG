@@ -9,7 +9,6 @@ const PaginaRegistros = () => {
     const [cargando, setCargando] = useState(false);
     
     const usuarioActual = authService.getUsuario();
-    // Obtenemos el ID del Admin/Empleado
     const idEmpleado = Number(usuarioActual?.ID_Empleado || usuarioActual?.id_empleado || usuarioActual?.id || 1);
 
     useEffect(() => {
@@ -20,7 +19,6 @@ const PaginaRegistros = () => {
         try {
             const data = await registroService.listarRegistros();
             
-            // Mapeo adaptado a tu consola (propiedad 'empleado')
             const mapeados = data.map((r: any) => ({
                 id_reg: r.ID_Registro || r.id_registro,
                 id_emp: r.empleado, 
@@ -30,15 +28,12 @@ const PaginaRegistros = () => {
                 horas: Number(r.total_horas || 0)
             }));
 
-            // Filtramos por el ID del usuario actual
             const misRegistros = mapeados.filter((r: any) => Number(r.id_emp) === idEmpleado);
             
-            // Ordenamos: el más reciente arriba
             const ordenados = misRegistros.sort((a: any, b: any) => b.id_reg - a.id_reg);
             
             setRegistros(ordenados);
 
-            // Si el registro más reciente NO tiene salida, el botón debe ser "Finalizar"
             if (ordenados.length > 0 && (ordenados[0].salida === null || ordenados[0].salida === undefined)) {
                 setEnTurno(true);
             } else {
@@ -53,7 +48,6 @@ const PaginaRegistros = () => {
         setCargando(true);
         try {
             if (!enTurno) {
-                // --- INICIAR JORNADA ---
                 const ahora = new Date();
                 const fechaSimple = ahora.toISOString().split('T')[0];
                 const horaLocal = ahora.toTimeString().split(' ')[0];
@@ -65,12 +59,9 @@ const PaginaRegistros = () => {
                     id_empleado: idEmpleado
                 });
             } else {
-                // --- FINALIZAR JORNADA ---
-                // Llamamos al endpoint que corregimos en el Backend
                 await registroService.registrarSalida(idEmpleado);
             }
             
-            // Pausa de seguridad para que la DB actualice
             setTimeout(() => {
                 cargarHistorial();
                 setCargando(false);

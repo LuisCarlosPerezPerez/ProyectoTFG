@@ -6,14 +6,14 @@ public class ClienteRegistroDTO {
     private String contraseña;
     private String email;
 
-    // Constructor completo
+
     public ClienteRegistroDTO(String usuario, String contraseña, String email) {
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.email = email;
     }
 
-    // Constructor vacio
+
     public ClienteRegistroDTO() {
 
     }

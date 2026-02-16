@@ -2,7 +2,7 @@
 
 export const navStyles = {
     nav: {
-        backgroundColor: '#3e2723', // Marrón chocolate oscuro
+        backgroundColor: '#3e2723',
         height: '70px',
         width: '100%',
         display: 'flex',
@@ -10,7 +10,7 @@ export const navStyles = {
         alignItems: 'center',
         padding: '0 40px',
         boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
-        borderBottom: '4px solid #bc6c25', // Borde dorado
+        borderBottom: '4px solid #bc6c25', 
         position: 'sticky' as 'sticky',
         top: 0,
         zIndex: 1000,
@@ -39,12 +39,12 @@ export const navStyles = {
         padding: '8px 12px',
         borderRadius: '4px'
     },
-    // Estilo para el link activo (donde estás parado)
+  
     activeLink: {
         color: '#ffb703',
         fontWeight: 'bold'
     },
-    // Botón especial para el Admin
+
     adminBadge: {
         color: '#ffb703',
         border: '1px solid #ffb703',
@@ -54,7 +54,7 @@ export const navStyles = {
         textTransform: 'uppercase' as 'uppercase',
         fontWeight: 'bold'
     },
-    // Botón de Login / Registro
+
     authBtn: {
         backgroundColor: '#bc6c25',
         color: 'white',
@@ -67,7 +67,7 @@ export const navStyles = {
         textDecoration: 'none',
         transition: 'background 0.3s'
     },
-    // Botón de Salir (Rojo)
+
     logoutBtn: {
         backgroundColor: '#d62828',
         color: 'white',

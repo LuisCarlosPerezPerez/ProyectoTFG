@@ -61,19 +61,18 @@ public class ImplementacionCliente implements ServicioCLiente {
 	}
 	@Override
 	public ClienteFullDTO comprarproducto(ClienteFullDTO clienteDto, int idProducto) {
-	    // 1. Cargar entidades principales
+
 	    ClienteEntity cliente = clienteRepository.findById(clienteDto.getId())
 	            .orElseThrow(() -> new RuntimeException("Cliente no encontrado"));
 	    
 	    ProductosEntity producto = productoRepository.findById(idProducto)
 	            .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
-	    // 2. Validación de Stock
 	    if (producto.getStock() <= 0) {
 	        throw new RuntimeException("Sin stock para: " + producto.getNombre());
 	    }
 
-	    // 3. Buscar o crear el pedido con estado "pendiente"
+
 	    PedidoEntity pedidoActivo = cliente.getPedido().stream()
 	            .filter(p -> "Comprando...".equalsIgnoreCase(p.getEstado()))
 	            .findFirst()
@@ -89,9 +88,7 @@ public class ImplementacionCliente implements ServicioCLiente {
 	        System.out.println("DEBUG: Creado nuevo pedido pendiente ID: " + pedidoActivo.getId());
 	    }
 
-	    // 4. LÓGICA DE CANTIDAD: Buscar si el producto ya está en este pedido
-	    // Suponiendo que tienes un relacionRepository o pedidoProductoRepository
-	    final PedidoEntity pedidoFinal = pedidoActivo; // Para usar en lambda
+	    final PedidoEntity pedidoFinal = pedidoActivo; 
 	    PedidoProductoEntity relacionExistente = relacionRepository.findAll().stream()
 	            .filter(rp -> rp.getPedido().getId() == pedidoFinal.getId() && 
 	                          rp.getProducto().getID_producto() == producto.getID_producto())
@@ -99,12 +96,12 @@ public class ImplementacionCliente implements ServicioCLiente {
 	            .orElse(null);
 
 	    if (relacionExistente != null) {
-	        // Si ya existe, incrementamos la cantidad
+
 	        System.out.println("DEBUG: El producto ya existe en el pedido. Incrementando cantidad.");
 	        relacionExistente.setCantidad(relacionExistente.getCantidad() + 1);
 	        relacionRepository.save(relacionExistente);
 	    } else {
-	        // Si no existe, creamos la relación con cantidad inicial de 1
+
 	        System.out.println("DEBUG: Primera vez que se añade este producto al pedido.");
 	        PedidoProductoEntity nuevaRelacion = new PedidoProductoEntity();
 	        nuevaRelacion.setPedido(pedidoActivo);

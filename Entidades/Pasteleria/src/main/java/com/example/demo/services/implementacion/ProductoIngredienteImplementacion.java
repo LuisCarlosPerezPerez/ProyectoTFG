@@ -22,28 +22,28 @@ public class ProductoIngredienteImplementacion implements ProductoIngredienteInt
     private ProductosIngredientesRepository RepoRelacion;
     
     @Autowired
-    private ProductoRepository RepoProducto; // Necesitas este
+    private ProductoRepository RepoProducto; 
     
     @Autowired
-    private IngredienteRepository RepoIngrediente; // Y este
+    private IngredienteRepository RepoIngrediente; 
 
     @Override
     public int GuardarRelacion(newProductoIngrediente relacionDto) {
-        // 1. Buscamos las entidades reales por su ID
+
         ProductosEntity producto = RepoProducto.findById(relacionDto.getId_producto()).orElse(null);
         IngredienteEntity ingrediente = RepoIngrediente.findById(relacionDto.getId_ingrediente()).orElse(null);
 
         if (producto == null || ingrediente == null) {
-            // Esto evita el Error 500 silencioso y te dice qué falta
+
             throw new RuntimeException("No se encontró el Producto o el Ingrediente");
         }
 
-        // 2. Creamos la entidad de relación y le pasamos los objetos completos
+
         ProductosIngredientesEntity entidad = new ProductosIngredientesEntity();
         entidad.setProducto(producto);
         entidad.setIngrediente(ingrediente);
 
-        // 3. Guardamos
+
         ProductosIngredientesEntity guardada = RepoRelacion.save(entidad);
         return guardada.getID_producto_ingrediente();
     }

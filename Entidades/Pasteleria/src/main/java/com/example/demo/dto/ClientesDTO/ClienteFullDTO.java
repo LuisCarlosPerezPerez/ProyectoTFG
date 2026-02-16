@@ -11,7 +11,7 @@ public class ClienteFullDTO {
 	private String email;
 	private List<Integer> listapedidos=new ArrayList<>();
 
-	//Constructor completo
+
 	public ClienteFullDTO(int id, String usuario, String contraseña, String email, List<Integer> list) {
 		this.id = id;
 		this.usuario = usuario;
@@ -21,7 +21,7 @@ public class ClienteFullDTO {
 	}
 
 	public ClienteFullDTO() {
-	    // Constructor vacío necesario para que Jackson (JSON) funcione
+
 	}
 	
 	public String getEmail() {

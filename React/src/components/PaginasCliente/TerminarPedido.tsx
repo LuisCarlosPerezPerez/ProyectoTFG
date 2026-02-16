@@ -120,7 +120,6 @@ export const FinalizarPedido = () => {
     return (
         <main style={Estilos.pantalla}>
             <section style={Estilos.tarjeta} aria-labelledby="finalizar-titulo">
-                {/* Acento visual rosa de la marca */}
                 <div style={Estilos.barraRosa} aria-hidden="true"></div>
 
                 <header style={Estilos.encabezado}>

@@ -83,7 +83,6 @@ const PoliticaPrivacidadPage = () => {
     );
 };
 
-// --- ESTILOS ---
 const s: Record<string, CSSProperties> = {
     container: {
         paddingTop: '120px',
