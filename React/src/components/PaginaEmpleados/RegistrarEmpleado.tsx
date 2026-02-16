@@ -31,7 +31,7 @@ const RegistrarEmpleado = () => {
         ID_Empleado: 0 
       };
 
-      const respuesta = await fetch('http://localhost:9090/api/Empleado/GuardarEmpleado', {
+      const respuesta = await fetch('/api/Empleado/GuardarEmpleado', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(datosParaBackend),

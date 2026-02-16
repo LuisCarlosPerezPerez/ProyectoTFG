@@ -16,7 +16,7 @@ services:
     image: mysql:oraclelinux9
     command: --lower_case_table_names=1
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: pasteleria
       TZ: "Europe/Madrid"
     healthcheck:
